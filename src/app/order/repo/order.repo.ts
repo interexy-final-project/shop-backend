@@ -1,5 +1,5 @@
-import { EntityRepository } from "@mikro-orm/postgresql";
-import {OrderEntity} from "app/order/entities/order.entity";
+import { EntityRepository } from '@mikro-orm/postgresql';
+import { OrderEntity } from 'app/order/entities/order.entity';
 
 export class OrderRepo extends EntityRepository<OrderEntity> {
   async getList() {

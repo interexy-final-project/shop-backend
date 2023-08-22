@@ -1,3 +1,3 @@
 export enum EUserPermissions {
-  ALL = "permissions.all",
+  ALL = 'permissions.all',
 }

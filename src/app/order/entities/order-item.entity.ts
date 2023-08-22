@@ -1,9 +1,9 @@
-import {Entity, Enum, ManyToOne, PrimaryKey, Property} from '@mikro-orm/core';
+import { Entity, Enum, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
 
-import {EOrderStatuses} from "app/order/enums/order-statuses.enum";
-import {OrderItemRepo} from "app/order/repo/order-item.repo";
-import {OrderEntity} from "app/order/entities/order.entity";
-import {IDEntity} from "shared/entities/id.entity";
+import { EOrderStatuses } from 'app/order/enums/order-statuses.enum';
+import { OrderItemRepo } from 'app/order/repo/order-item.repo';
+import { OrderEntity } from 'app/order/entities/order.entity';
+import { IDEntity } from 'shared/entities/id.entity';
 
 @Entity({ tableName: 'order_items', customRepository: () => OrderItemRepo })
 export class OrderItemEntity extends IDEntity {
@@ -21,9 +21,9 @@ export class OrderItemEntity extends IDEntity {
 
   @ManyToOne({
     entity: () => OrderEntity,
-    inversedBy: e => e.items,
-    joinColumn: "order_id",
-    referenceColumnName: "id",
+    inversedBy: (e) => e.items,
+    joinColumn: 'order_id',
+    referenceColumnName: 'id',
     nullable: true,
     lazy: true,
   })

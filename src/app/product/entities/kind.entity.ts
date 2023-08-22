@@ -1,9 +1,9 @@
-import {Entity, ManyToOne, OneToMany, Property} from '@mikro-orm/core';
-import {BaseEntity} from "app/product/entities/base.entity";
-import {KindRepo} from "app/product/repo/kind.repo";
-import {UserEntity} from "app/users/entities/user.entity";
-import {TypeEntity} from "app/product/entities/type.entity";
-import {ProductEntity} from "app/product/entities/product.entity";
+import { Entity, ManyToOne, OneToMany, Property } from '@mikro-orm/core';
+import { BaseEntity } from 'app/product/entities/base.entity';
+import { KindRepo } from 'app/product/repo/kind.repo';
+import { UserEntity } from 'app/users/entities/user.entity';
+import { TypeEntity } from 'app/product/entities/type.entity';
+import { ProductEntity } from 'app/product/entities/product.entity';
 
 @Entity({ tableName: 'kinds', customRepository: () => KindRepo })
 export class KindEntity extends BaseEntity {
@@ -12,14 +12,14 @@ export class KindEntity extends BaseEntity {
 
   @ManyToOne({
     entity: () => TypeEntity,
-    inversedBy: e => e.kinds,
-    joinColumn: "type_id",
-    referenceColumnName: "id",
+    inversedBy: (e) => e.kinds,
+    joinColumn: 'type_id',
+    referenceColumnName: 'id',
     nullable: true,
     lazy: true,
   })
   type?: TypeEntity;
 
-  @OneToMany(() => ProductEntity, e => e.kind)
+  @OneToMany(() => ProductEntity, (e) => e.kind)
   products?: ProductEntity[];
 }

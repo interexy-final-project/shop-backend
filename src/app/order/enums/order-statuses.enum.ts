@@ -1,3 +1,3 @@
 export enum EOrderStatuses {
-  CREATED = 'Created'
+  CREATED = 'Created',
 }

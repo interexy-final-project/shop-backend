@@ -1,10 +1,18 @@
-import {Entity, Enum, ManyToOne, PrimaryKey, PrimaryKeyType, Property} from '@mikro-orm/core';
+import {
+  Entity,
+  Enum,
+  ManyToOne,
+  OneToOne,
+  PrimaryKey,
+  PrimaryKeyType,
+  Property,
+} from '@mikro-orm/core';
 
-import {NoIdEntity} from "shared/entities/no-id.entity";
-import {CartItemRepo} from "app/cart/repo/cart-item.repo";
-import {UserEntity} from "app/users/entities/user.entity";
-import {ProductEntity} from "app/product/entities/product.entity";
-import {IDEntity} from "shared/entities/id.entity";
+import { NoIdEntity } from 'shared/entities/no-id.entity';
+import { CartItemRepo } from 'app/cart/repo/cart-item.repo';
+import { UserEntity } from 'app/users/entities/user.entity';
+import { ProductEntity } from 'app/product/entities/product.entity';
+import { IDEntity } from 'shared/entities/id.entity';
 
 @Entity({ tableName: 'cart_items', customRepository: () => CartItemRepo })
 export class CartItemEntity extends IDEntity {
@@ -19,21 +27,14 @@ export class CartItemEntity extends IDEntity {
 
   @ManyToOne({
     entity: () => UserEntity,
-    inversedBy: e => e.cartItems,
-    joinColumn: "user_id",
-    referenceColumnName: "id",
+    inversedBy: (e) => e.cartItems,
+    joinColumn: 'user_id',
+    referenceColumnName: 'id',
     nullable: true,
     lazy: true,
   })
   user?: UserEntity;
 
-  @ManyToOne({
-    entity: () => ProductEntity,
-    inversedBy: e => e.cartItems,
-    joinColumn: "product_id",
-    referenceColumnName: "id",
-    nullable: true,
-    lazy: true,
-  })
+  @OneToOne(() => ProductEntity, (product) => product.cartItem, { owner: true })
   product?: ProductEntity;
 }

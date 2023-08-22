@@ -1,4 +1,4 @@
 export enum EProductStatuses {
-  ACTIVE = "Active",
-  ARCHIVED = "Archived",
+  ACTIVE = 'Active',
+  ARCHIVED = 'Archived',
 }
