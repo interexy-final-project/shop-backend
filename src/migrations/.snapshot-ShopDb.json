@@ -364,6 +364,15 @@
           "primary": false,
           "nullable": true,
           "mappedType": "bigint"
+        },
+        "amount": {
+          "name": "amount",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
         }
       },
       "name": "products",
@@ -780,6 +789,29 @@
             "Created"
           ],
           "mappedType": "enum"
+        },
+        "address": {
+          "name": "address",
+          "type": "jsonb",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "json"
+        },
+        "payment_method": {
+          "name": "payment_method",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "enumItems": [
+            "Card",
+            "Cash",
+            "Kidney"
+          ],
+          "mappedType": "enum"
         }
       },
       "name": "orders",
@@ -959,7 +991,7 @@
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": true,
+          "nullable": false,
           "mappedType": "bigint"
         },
         "quantity": {
@@ -984,6 +1016,15 @@
       "name": "cart_items",
       "schema": "public",
       "indexes": [
+        {
+          "columnNames": [
+            "product_id"
+          ],
+          "composite": false,
+          "keyName": "cart_items_product_id_unique",
+          "primary": false,
+          "unique": true
+        },
         {
           "keyName": "cart_items_pkey",
           "columnNames": [
@@ -1019,7 +1060,6 @@
             "id"
           ],
           "referencedTableName": "public.products",
-          "deleteRule": "set null",
           "updateRule": "cascade"
         }
       }

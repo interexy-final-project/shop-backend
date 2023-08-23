@@ -1,7 +1,7 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable } from '@nestjs/common';
 
-import { EntityRepository } from "@mikro-orm/postgresql";
-import {ShippingAddressEntity} from "app/users/entities/shipping-address.entity";
+import { EntityRepository } from '@mikro-orm/postgresql';
+import { ShippingAddressEntity } from 'app/users/entities/shipping-address.entity';
 
 @Injectable()
 export class ShippingAddressRepo extends EntityRepository<ShippingAddressEntity> {

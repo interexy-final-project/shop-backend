@@ -1,5 +1,5 @@
-import { EntityRepository } from "@mikro-orm/postgresql";
-import {KindEntity} from "app/product/entities/kind.entity";
+import { EntityRepository } from '@mikro-orm/postgresql';
+import { KindEntity } from 'app/kind/entities/kind.entity';
 
 export class KindRepo extends EntityRepository<KindEntity> {
   async getList() {

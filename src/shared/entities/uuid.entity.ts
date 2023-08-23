@@ -1,9 +1,9 @@
-import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
+import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 import { v4 } from 'uuid';
 
 @Entity({ abstract: true })
 export abstract class UUIDEntity {
-  @PrimaryKey({ type: "uuid" })
+  @PrimaryKey({ type: 'uuid' })
   id: string = v4();
 
   @Property({ type: 'timestamptz' })

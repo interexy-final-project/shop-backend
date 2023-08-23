@@ -1,12 +1,10 @@
-import { Injectable } from "@nestjs/common";
-import { EntityRepository } from "@mikro-orm/postgresql";
+import { Injectable } from '@nestjs/common';
+import { EntityRepository } from '@mikro-orm/postgresql';
 
-import { UserRoleEntity } from "app/user-roles/entities/user-role.entity";
-
+import { UserRoleEntity } from 'app/user-roles/entities/user-role.entity';
 
 @Injectable()
 export class UserRolesRepo extends EntityRepository<UserRoleEntity> {
-
   async getAll() {
     return await this.findAll();
   }
