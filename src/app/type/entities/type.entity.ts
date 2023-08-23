@@ -1,8 +1,8 @@
 import { Entity, ManyToOne, OneToMany, Property } from '@mikro-orm/core';
-import { BaseEntity } from 'app/product/entities/base.entity';
+import { BaseEntity } from 'shared/entities/base.entity';
 import { TypeRepo } from 'app/product/repo/type.repo';
-import { KindEntity } from 'app/product/entities/kind.entity';
-import { CategoryEntity } from 'app/product/entities/category.entity';
+import { KindEntity } from 'app/kind/entities/kind.entity';
+import { CategoryEntity } from 'app/category/entities/category.entity';
 
 @Entity({ tableName: 'types', customRepository: () => TypeRepo })
 export class TypeEntity extends BaseEntity {

@@ -1,5 +1,5 @@
 import { EntityRepository } from '@mikro-orm/postgresql';
-import { TypeEntity } from 'app/product/entities/type.entity';
+import { TypeEntity } from 'app/type/entities/type.entity';
 
 export class TypeRepo extends EntityRepository<TypeEntity> {
   async getList() {

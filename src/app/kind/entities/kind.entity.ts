@@ -1,8 +1,8 @@
 import { Entity, ManyToOne, OneToMany, Property } from '@mikro-orm/core';
-import { BaseEntity } from 'app/product/entities/base.entity';
+import { BaseEntity } from 'shared/entities/base.entity';
 import { KindRepo } from 'app/product/repo/kind.repo';
 import { UserEntity } from 'app/users/entities/user.entity';
-import { TypeEntity } from 'app/product/entities/type.entity';
+import { TypeEntity } from 'app/type/entities/type.entity';
 import { ProductEntity } from 'app/product/entities/product.entity';
 
 @Entity({ tableName: 'kinds', customRepository: () => KindRepo })

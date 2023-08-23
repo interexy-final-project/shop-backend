@@ -7,12 +7,12 @@ import {
   Property,
 } from '@mikro-orm/core';
 
-import { BaseEntity } from 'app/product/entities/base.entity';
+import { BaseEntity } from 'shared/entities/base.entity';
 import { EProductColors } from 'app/product/enums/product-colors.enum';
 import { EProductSizes } from 'app/product/enums/product-sizes.enum';
 import { EProductStatuses } from 'app/product/enums/product-statuses.enum';
 import { ProductRepo } from 'app/product/repo/product.repo';
-import { KindEntity } from 'app/product/entities/kind.entity';
+import { KindEntity } from 'app/kind/entities/kind.entity';
 import { OrderItemEntity } from 'app/order/entities/order-item.entity';
 import { CartItemEntity } from 'app/cart/entities/cart-item.entity';
 

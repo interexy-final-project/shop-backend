@@ -13,7 +13,7 @@ import { UserRoleEntity } from 'app/user-roles/entities/user-role.entity';
 import { EUserRoles } from 'app/user-roles/enums/user-roles.enum';
 import { ShippingAddressEntity } from 'app/users/entities/shipping-address.entity';
 import { OrderEntity } from 'app/order/entities/order.entity';
-import { KindEntity } from 'app/product/entities/kind.entity';
+import { KindEntity } from 'app/kind/entities/kind.entity';
 import { CartItemEntity } from 'app/cart/entities/cart-item.entity';
 
 @Entity({ tableName: 'users', customRepository: () => UserRepo })

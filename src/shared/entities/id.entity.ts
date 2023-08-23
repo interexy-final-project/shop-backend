@@ -1,13 +1,13 @@
-import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
+import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 
 @Entity({ abstract: true })
 export abstract class IDEntity {
-  @PrimaryKey({ type: "bigserial", autoincrement: true })
+  @PrimaryKey({ type: 'bigserial', autoincrement: true })
   id!: number;
 
-  @Property({ type: "timestamptz" })
+  @Property({ type: 'timestamptz' })
   created: Date = new Date();
 
-  @Property({ type: "timestamptz", onUpdate: () => new Date() })
+  @Property({ type: 'timestamptz', onUpdate: () => new Date() })
   updated: Date = new Date();
 }
