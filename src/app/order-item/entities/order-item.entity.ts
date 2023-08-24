@@ -1,7 +1,7 @@
-import { Entity, Enum, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
+import { Entity, Enum, ManyToOne, Property } from '@mikro-orm/core';
 
 import { EOrderStatuses } from 'app/order/enums/order-statuses.enum';
-import { OrderItemRepo } from 'app/order/repo/order-item.repo';
+import { OrderItemRepo } from 'app/order-item/repo/order-item.repo';
 import { OrderEntity } from 'app/order/entities/order.entity';
 import { IDEntity } from 'shared/entities/id.entity';
 

@@ -11,7 +11,7 @@ import { UUIDEntity } from 'shared/entities/uuid.entity';
 import { EOrderStatuses } from 'app/order/enums/order-statuses.enum';
 import { UserEntity } from 'app/users/entities/user.entity';
 import { OrderRepo } from 'app/order/repo/order.repo';
-import { OrderItemEntity } from 'app/order/entities/order-item.entity';
+import { OrderItemEntity } from 'app/order-item/entities/order-item.entity';
 import { EPaymentMethods } from '../enums/payment-methods.enum';
 
 @Entity({ tableName: 'orders', customRepository: () => OrderRepo })

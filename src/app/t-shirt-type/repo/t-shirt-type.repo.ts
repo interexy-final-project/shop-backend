@@ -1,7 +1,7 @@
 import { EntityRepository } from '@mikro-orm/postgresql';
-import { TypeEntity } from 'app/type/entities/type.entity';
+import { TShirtTypeEntity } from '../entities/t-shirt.entity';
 
-export class TypeRepo extends EntityRepository<TypeEntity> {
+export class TShirtTypeRepo extends EntityRepository<TShirtTypeEntity> {
   async getList() {
     return await this.findAll();
   }

@@ -1,22 +1,20 @@
-import {
-  Entity,
-  Enum,
-  ManyToOne,
-  OneToMany,
-  OneToOne,
-  Property,
-} from '@mikro-orm/core';
+import { Entity, Enum, OneToOne, Property } from '@mikro-orm/core';
 
 import { BaseEntity } from 'shared/entities/base.entity';
 import { EProductColors } from 'app/product/enums/product-colors.enum';
 import { EProductSizes } from 'app/product/enums/product-sizes.enum';
 import { EProductStatuses } from 'app/product/enums/product-statuses.enum';
 import { ProductRepo } from 'app/product/repo/product.repo';
-import { KindEntity } from 'app/kind/entities/kind.entity';
-import { OrderItemEntity } from 'app/order/entities/order-item.entity';
 import { CartItemEntity } from 'app/cart/entities/cart-item.entity';
+import { EProductCategories } from '../enums/product-categories.enum';
 
-@Entity({ tableName: 'products', customRepository: () => ProductRepo })
+@Entity({
+  tableName: 'products',
+  abstract: true,
+  discriminatorColumn: 'type',
+  discriminatorValue: 'product',
+  customRepository: () => ProductRepo,
+})
 export class ProductEntity extends BaseEntity {
   @Property({ name: 'price' })
   price: number;
@@ -41,21 +39,11 @@ export class ProductEntity extends BaseEntity {
   @Property({ name: 'description', type: 'text' })
   description: string;
 
-  @Property({ name: 'kind_id' })
-  kindId!: number;
-
   @Property({ name: 'amount' })
-  quantity: number;
+  amount!: number;
 
-  @ManyToOne({
-    entity: () => KindEntity,
-    inversedBy: (e) => e.products,
-    joinColumn: 'kind_id',
-    referenceColumnName: 'id',
-    nullable: true,
-    lazy: true,
-  })
-  kind?: KindEntity;
+  @Enum({ name: 'category', array: false, items: () => EProductCategories })
+  category!: string;
 
   @OneToOne(() => CartItemEntity, (cartItem) => cartItem.product)
   cartItem?: CartItemEntity[];

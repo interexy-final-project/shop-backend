@@ -43,250 +43,6 @@
           "primary": false,
           "nullable": false,
           "mappedType": "text"
-        }
-      },
-      "name": "categories",
-      "schema": "public",
-      "indexes": [
-        {
-          "columnNames": [
-            "name"
-          ],
-          "composite": false,
-          "keyName": "categories_name_unique",
-          "primary": false,
-          "unique": true
-        },
-        {
-          "keyName": "categories_pkey",
-          "columnNames": [
-            "id"
-          ],
-          "composite": false,
-          "primary": true,
-          "unique": true
-        }
-      ],
-      "checks": [],
-      "foreignKeys": {}
-    },
-    {
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "bigserial",
-          "unsigned": true,
-          "autoincrement": true,
-          "primary": true,
-          "nullable": false,
-          "mappedType": "bigint"
-        },
-        "created": {
-          "name": "created",
-          "type": "timestamptz(0)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 6,
-          "mappedType": "datetime"
-        },
-        "updated": {
-          "name": "updated",
-          "type": "timestamptz(0)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 6,
-          "mappedType": "datetime"
-        },
-        "name": {
-          "name": "name",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "text"
-        },
-        "category_id": {
-          "name": "category_id",
-          "type": "bigint",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": true,
-          "mappedType": "bigint"
-        }
-      },
-      "name": "types",
-      "schema": "public",
-      "indexes": [
-        {
-          "columnNames": [
-            "name"
-          ],
-          "composite": false,
-          "keyName": "types_name_unique",
-          "primary": false,
-          "unique": true
-        },
-        {
-          "keyName": "types_pkey",
-          "columnNames": [
-            "id"
-          ],
-          "composite": false,
-          "primary": true,
-          "unique": true
-        }
-      ],
-      "checks": [],
-      "foreignKeys": {
-        "types_category_id_foreign": {
-          "constraintName": "types_category_id_foreign",
-          "columnNames": [
-            "category_id"
-          ],
-          "localTableName": "public.types",
-          "referencedColumnNames": [
-            "id"
-          ],
-          "referencedTableName": "public.categories",
-          "deleteRule": "set null",
-          "updateRule": "cascade"
-        }
-      }
-    },
-    {
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "bigserial",
-          "unsigned": true,
-          "autoincrement": true,
-          "primary": true,
-          "nullable": false,
-          "mappedType": "bigint"
-        },
-        "created": {
-          "name": "created",
-          "type": "timestamptz(0)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 6,
-          "mappedType": "datetime"
-        },
-        "updated": {
-          "name": "updated",
-          "type": "timestamptz(0)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 6,
-          "mappedType": "datetime"
-        },
-        "name": {
-          "name": "name",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "text"
-        },
-        "type_id": {
-          "name": "type_id",
-          "type": "bigint",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": true,
-          "mappedType": "bigint"
-        }
-      },
-      "name": "kinds",
-      "schema": "public",
-      "indexes": [
-        {
-          "columnNames": [
-            "name"
-          ],
-          "composite": false,
-          "keyName": "kinds_name_unique",
-          "primary": false,
-          "unique": true
-        },
-        {
-          "keyName": "kinds_pkey",
-          "columnNames": [
-            "id"
-          ],
-          "composite": false,
-          "primary": true,
-          "unique": true
-        }
-      ],
-      "checks": [],
-      "foreignKeys": {
-        "kinds_type_id_foreign": {
-          "constraintName": "kinds_type_id_foreign",
-          "columnNames": [
-            "type_id"
-          ],
-          "localTableName": "public.kinds",
-          "referencedColumnNames": [
-            "id"
-          ],
-          "referencedTableName": "public.types",
-          "deleteRule": "set null",
-          "updateRule": "cascade"
-        }
-      }
-    },
-    {
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "bigserial",
-          "unsigned": true,
-          "autoincrement": true,
-          "primary": true,
-          "nullable": false,
-          "mappedType": "bigint"
-        },
-        "created": {
-          "name": "created",
-          "type": "timestamptz(0)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 6,
-          "mappedType": "datetime"
-        },
-        "updated": {
-          "name": "updated",
-          "type": "timestamptz(0)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 6,
-          "mappedType": "datetime"
-        },
-        "name": {
-          "name": "name",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "text"
         },
         "price": {
           "name": "price",
@@ -356,15 +112,6 @@
           "nullable": false,
           "mappedType": "text"
         },
-        "kind_id": {
-          "name": "kind_id",
-          "type": "bigint",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": true,
-          "mappedType": "bigint"
-        },
         "amount": {
           "name": "amount",
           "type": "int",
@@ -373,6 +120,61 @@
           "primary": false,
           "nullable": false,
           "mappedType": "integer"
+        },
+        "category": {
+          "name": "category",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "enumItems": [
+            "Women",
+            "Man",
+            "Children"
+          ],
+          "mappedType": "enum"
+        },
+        "type": {
+          "name": "type",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "enumItems": [
+            "jeans_type_entity",
+            "shirt_type_entity",
+            "tshirt_type_entity"
+          ],
+          "mappedType": "enum"
+        },
+        "hip_girth": {
+          "name": "hip_girth",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
+        },
+        "sleeve_girth": {
+          "name": "sleeve_girth",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
+        },
+        "waist_girth": {
+          "name": "waist_girth",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
         }
       },
       "name": "products",
@@ -388,6 +190,15 @@
           "unique": true
         },
         {
+          "columnNames": [
+            "type"
+          ],
+          "composite": false,
+          "keyName": "products_type_index",
+          "primary": false,
+          "unique": false
+        },
+        {
           "keyName": "products_pkey",
           "columnNames": [
             "id"
@@ -398,21 +209,7 @@
         }
       ],
       "checks": [],
-      "foreignKeys": {
-        "products_kind_id_foreign": {
-          "constraintName": "products_kind_id_foreign",
-          "columnNames": [
-            "kind_id"
-          ],
-          "localTableName": "public.products",
-          "referencedColumnNames": [
-            "id"
-          ],
-          "referencedTableName": "public.kinds",
-          "deleteRule": "set null",
-          "updateRule": "cascade"
-        }
-      }
+      "foreignKeys": {}
     },
     {
       "columns": {

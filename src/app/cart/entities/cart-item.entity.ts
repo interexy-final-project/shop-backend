@@ -1,14 +1,5 @@
-import {
-  Entity,
-  Enum,
-  ManyToOne,
-  OneToOne,
-  PrimaryKey,
-  PrimaryKeyType,
-  Property,
-} from '@mikro-orm/core';
+import { Entity, ManyToOne, OneToOne, Property } from '@mikro-orm/core';
 
-import { NoIdEntity } from 'shared/entities/no-id.entity';
 import { CartItemRepo } from 'app/cart/repo/cart-item.repo';
 import { UserEntity } from 'app/users/entities/user.entity';
 import { ProductEntity } from 'app/product/entities/product.entity';
