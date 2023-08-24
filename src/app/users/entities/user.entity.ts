@@ -1,19 +1,11 @@
-import {
-  Cascade,
-  Entity,
-  Enum,
-  ManyToOne,
-  OneToMany,
-  Property,
-} from '@mikro-orm/core';
+import { Entity, Enum, ManyToOne, OneToMany, Property } from '@mikro-orm/core';
 import { UserRepo } from 'app/users/repo/user.repo';
 import { UUIDEntity } from 'shared/entities/uuid.entity';
 import { EUserStatuses } from 'app/users/enums/user-statuses.enum';
 import { UserRoleEntity } from 'app/user-roles/entities/user-role.entity';
 import { EUserRoles } from 'app/user-roles/enums/user-roles.enum';
-import { ShippingAddressEntity } from 'app/users/entities/shipping-address.entity';
+import { ShippingAddressEntity } from 'app/shipping-address/entities/shipping-address.entity';
 import { OrderEntity } from 'app/order/entities/order.entity';
-import { KindEntity } from 'app/kind/entities/kind.entity';
 import { CartItemEntity } from 'app/cart/entities/cart-item.entity';
 
 @Entity({ tableName: 'users', customRepository: () => UserRepo })

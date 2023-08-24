@@ -1,7 +1,7 @@
 import { Entity, ManyToOne, Property } from '@mikro-orm/core';
 import { UUIDEntity } from 'shared/entities/uuid.entity';
 import { UserEntity } from 'app/users/entities/user.entity';
-import { ShippingAddressRepo } from 'app/users/repo/shipping-address.repo';
+import { ShippingAddressRepo } from 'app/shipping-address/repo/shipping-address.repo';
 
 @Entity({
   tableName: 'shipping_addresses',
