@@ -5,16 +5,17 @@ import { UserEntity } from 'app/users/entities/user.entity';
 import { SecurityModule } from 'app/security/security.module';
 import { UserRepo } from 'app/users/repo/user.repo';
 import { MikroOrmModule } from '@mikro-orm/nestjs/mikro-orm.module';
+import { UserRolesRepo } from 'app/user-roles/repo/user-roles.repo';
 
 @Module({
   imports: [
     MikroOrmModule.forFeature({
-      entities: [UserEntity]
+      entities: [UserEntity],
     }),
-    SecurityModule
+    SecurityModule,
   ],
-  providers: [AuthService, UserRepo],
+  providers: [AuthService, UserRepo, UserRolesRepo],
   controllers: [AuthController],
-  exports: [AuthService]
+  exports: [AuthService],
 })
 export class AuthModule {}

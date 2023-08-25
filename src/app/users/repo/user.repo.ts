@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
 import { UserEntity } from 'app/users/entities/user.entity';
 import { UserSignUpForm } from 'app/auth/dto/user-sign-up.form';
+import { UserRoleDto } from 'app/user-roles/dto/user-role.dto';
 
 @Injectable()
 export class UserRepo extends EntityRepository<UserEntity> {
@@ -26,10 +27,11 @@ export class UserRepo extends EntityRepository<UserEntity> {
     return await this.findOne({ email, password });
   }
 
-  async addOneUser(dto: UserSignUpForm) {
+  async addOneUser(dto: UserSignUpForm, dto_role: UserRoleDto) {
     const newUser = this.create({
       email: dto.email,
       password: dto.password,
+      role: dto_role.type,
     });
     await this.persistAndFlush(newUser);
 
