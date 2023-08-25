@@ -15,7 +15,7 @@ import {
   JwtPermissionsGuard,
   RestrictRequest,
 } from 'app/security/guards/jwt-permissions.guard';
-import { EUserPermissions } from 'app/user-roles/enums/user-permissions.enum';
+import { UserPermissions } from 'app/user-roles/enums/user-permissions.enum';
 import { UserSessionDto } from 'app/security/dtos/user-session.dto';
 
 @Controller('auth')
@@ -55,7 +55,7 @@ export class AuthController {
 
   @Post('sign-out')
   @UseGuards(JwtPermissionsGuard)
-  @RestrictRequest(EUserPermissions.SignOut)
+  @RestrictRequest(UserPermissions.SignOut)
   async signOut(@CurrentUser() user: UserSessionDto) {
     return null;
   }
