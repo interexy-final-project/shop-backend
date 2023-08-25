@@ -1,3 +1,4 @@
+
 import { EUserPermissions } from 'app/user-roles/enums/user-permissions.enum';
 import { UserEntity } from 'app/users/entities/user.entity';
 import { IsUUID, IsString, IsNumber, IsArray } from 'class-validator';
@@ -38,3 +39,4 @@ export class UserSessionDto {
     };
   }
 }
+
