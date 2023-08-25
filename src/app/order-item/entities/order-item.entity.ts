@@ -1,6 +1,6 @@
 import { Entity, Enum, ManyToOne, Property } from '@mikro-orm/core';
 
-import { EOrderStatuses } from 'app/order/enums/order-statuses.enum';
+import { OrderStatuses } from 'app/order/enums/order-statuses.enum';
 import { OrderItemRepo } from 'app/order-item/repo/order-item.repo';
 import { OrderEntity } from 'app/order/entities/order.entity';
 import { IDEntity } from 'shared/entities/id.entity';
@@ -16,8 +16,8 @@ export class OrderItemEntity extends IDEntity {
   @Property({ name: 'quantity' })
   quantity: number;
 
-  @Enum({ name: 'status', array: false, items: () => EOrderStatuses })
-  status!: EOrderStatuses;
+  @Enum({ name: 'status', array: false, items: () => OrderStatuses })
+  status!: OrderStatuses;
 
   @ManyToOne({
     entity: () => OrderEntity,

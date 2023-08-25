@@ -1,16 +1,16 @@
 import { UserDto } from 'app/users/dto/user.dto';
 import { IsEnum, IsArray, IsBoolean, ValidateNested } from 'class-validator';
 import { UUIDEntity } from 'shared/entities/uuid.entity';
-import { EUserPermissions } from '../enums/user-permissions.enum';
-import { EUserRoles } from '../enums/user-roles.enum';
+import { UserPermissions } from '../enums/user-permissions.enum';
+import { UserRoles } from '../enums/user-roles.enum';
 import { UUIDDto } from 'shared/dtos/uuid.dto';
 
 export class UserRoleDto extends UUIDDto {
-  @IsEnum(EUserRoles)
-  type: EUserRoles;
+  @IsEnum(UserRoles)
+  type: UserRoles;
 
-  @IsArray({ context: EUserPermissions })
-  permissions: EUserPermissions[];
+  @IsArray({ context: UserPermissions })
+  permissions: UserPermissions[];
 
   @IsBoolean()
   isDefault: boolean;

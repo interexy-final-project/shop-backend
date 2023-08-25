@@ -1,6 +1,6 @@
 import { OrderDto } from 'app/order/dto/order.dto';
 import { OrderEntity } from 'app/order/entities/order.entity';
-import { EOrderStatuses } from 'app/order/enums/order-statuses.enum';
+import { OrderStatuses } from 'app/order/enums/order-statuses.enum';
 import {
   IsEnum,
   IsJSON,
@@ -20,8 +20,8 @@ export class OrderItemDto extends UUIDDto {
   @IsNumber()
   quantity: number;
 
-  @IsEnum(EOrderStatuses)
-  status!: EOrderStatuses;
+  @IsEnum(OrderStatuses)
+  status!: OrderStatuses;
 
   @ValidateNested({ context: OrderDto })
   order?: OrderDto;

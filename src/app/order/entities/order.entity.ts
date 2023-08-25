@@ -8,11 +8,11 @@ import {
 } from '@mikro-orm/core';
 
 import { UUIDEntity } from 'shared/entities/uuid.entity';
-import { EOrderStatuses } from 'app/order/enums/order-statuses.enum';
+import { OrderStatuses } from 'app/order/enums/order-statuses.enum';
 import { UserEntity } from 'app/users/entities/user.entity';
 import { OrderRepo } from 'app/order/repo/order.repo';
 import { OrderItemEntity } from 'app/order-item/entities/order-item.entity';
-import { EPaymentMethods } from '../enums/payment-methods.enum';
+import { PaymentMethods } from '../enums/payment-methods.enum';
 
 @Entity({ tableName: 'orders', customRepository: () => OrderRepo })
 export class OrderEntity extends UUIDEntity {
@@ -22,8 +22,8 @@ export class OrderEntity extends UUIDEntity {
   @Property({ name: 'total' })
   total: number;
 
-  @Enum({ name: 'status', array: false, items: () => EOrderStatuses })
-  status!: EOrderStatuses;
+  @Enum({ name: 'status', array: false, items: () => OrderStatuses })
+  status!: OrderStatuses;
 
   @Property({ name: 'address', type: 'JSON' })
   address: object;
@@ -31,9 +31,9 @@ export class OrderEntity extends UUIDEntity {
   @Enum({
     name: 'payment_method',
     array: false,
-    items: () => EPaymentMethods,
+    items: () => PaymentMethods,
   })
-  paymentMethod!: EPaymentMethods;
+  paymentMethod!: PaymentMethods;
 
   @ManyToOne({
     entity: () => UserEntity,

@@ -7,8 +7,8 @@ import {
   EnumType,
 } from '@mikro-orm/core';
 import { UserRolesRepo } from 'app/user-roles/repo/user-roles.repo';
-import { EUserRoles } from 'app/user-roles/enums/user-roles.enum';
-import { EUserPermissions } from 'app/user-roles/enums/user-permissions.enum';
+import { UserRoles } from 'app/user-roles/enums/user-roles.enum';
+import { UserPermissions } from 'app/user-roles/enums/user-permissions.enum';
 import { UserEntity } from 'app/users/entities/user.entity';
 import { UUIDEntity } from 'shared/entities/uuid.entity';
 
@@ -17,7 +17,7 @@ export class UserRoleEntity extends UUIDEntity {
   [EntityRepositoryType]?: UserRolesRepo;
 
   @Property({ name: 'type', type: 'text', unique: true })
-  type!: EUserRoles;
+  type!: UserRoles;
 
   @Property({ name: 'is_default', type: 'boolean' })
   isDefault!: boolean;
@@ -26,9 +26,9 @@ export class UserRoleEntity extends UUIDEntity {
     type: EnumType,
     name: 'permissions',
     array: true,
-    items: () => EUserPermissions,
+    items: () => UserPermissions,
   })
-  permissions!: EUserPermissions[];
+  permissions!: UserPermissions[];
 
   @OneToMany(() => UserEntity, (e) => e.role)
   users?: UserEntity[];

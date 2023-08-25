@@ -1,8 +1,8 @@
 import { OrderItemEntity } from 'app/order-item/entities/order-item.entity';
 import { UserEntity } from 'app/users/entities/user.entity';
 import { UUIDDto } from 'shared/dtos/uuid.dto';
-import { EOrderStatuses } from '../enums/order-statuses.enum';
-import { EPaymentMethods } from '../enums/payment-methods.enum';
+import { OrderStatuses } from '../enums/order-statuses.enum';
+import { PaymentMethods } from '../enums/payment-methods.enum';
 import {
   IsArray,
   IsEnum,
@@ -21,14 +21,14 @@ export class OrderDto extends UUIDDto {
   @IsNumber()
   total: number;
 
-  @IsEnum(EOrderStatuses)
-  status!: EOrderStatuses;
+  @IsEnum(OrderStatuses)
+  status!: OrderStatuses;
 
   @IsJSON()
   address: object;
 
-  @IsEnum(EPaymentMethods)
-  paymentMethod!: EPaymentMethods;
+  @IsEnum(PaymentMethods)
+  paymentMethod!: PaymentMethods;
 
   @ValidateNested({ context: UserDto })
   user?: UserDto;

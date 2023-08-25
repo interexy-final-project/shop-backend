@@ -1,4 +1,4 @@
-export enum EProductColors {
+export enum ProductColors {
   BLACK = 'Black',
   WHITE = 'White',
 }
