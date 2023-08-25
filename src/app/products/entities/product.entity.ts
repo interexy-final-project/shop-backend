@@ -13,6 +13,7 @@ import { ProductTypes } from '../enums/product-types.enum';
   tableName: 'products',
   discriminatorColumn: 'type',
   customRepository: () => ProductsRepo,
+  abstract: true,
 })
 export class ProductEntity extends BaseEntity {
   @Property({ name: 'price' })
