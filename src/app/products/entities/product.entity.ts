@@ -7,12 +7,11 @@ import { ProductStatuses } from 'app/products/enums/product-statuses.enum';
 import { ProductsRepo } from 'app/products/repo/products.repo';
 import { CartItemEntity } from 'app/cart/entities/cart-item.entity';
 import { ProductCategories } from '../enums/product-categories.enum';
+import { ProductTypes } from '../enums/product-types.enum';
 
 @Entity({
   tableName: 'products',
-  abstract: true,
   discriminatorColumn: 'type',
-  discriminatorValue: 'product',
   customRepository: () => ProductsRepo,
 })
 export class ProductEntity extends BaseEntity {
@@ -41,6 +40,13 @@ export class ProductEntity extends BaseEntity {
 
   @Property({ name: 'amount' })
   amount!: number;
+
+  @Enum({
+    name: 'type',
+    array: false,
+    items: () => ProductTypes,
+  })
+  type?: ProductTypes;
 
   @Enum({ name: 'category', array: false, items: () => ProductCategories })
   category!: ProductCategories;

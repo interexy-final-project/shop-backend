@@ -2,8 +2,12 @@ import { Entity, Property } from '@mikro-orm/core';
 
 import { ShirtTypeRepo } from '../repo/shirt-type.repo';
 import { ProductEntity } from 'app/products/entities/product.entity';
+import { ProductTypes } from 'app/products/enums/product-types.enum';
 
-@Entity({ tableName: 'shirt_type', customRepository: () => ShirtTypeRepo })
+@Entity({
+  customRepository: () => ShirtTypeRepo,
+  discriminatorValue: ProductTypes.SHIRT,
+})
 export class ShirtTypeEntity extends ProductEntity {
   @Property({ name: 'sleeve_girth' })
   sleeve_girth?: string;

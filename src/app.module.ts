@@ -10,6 +10,7 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { ProductsModule } from 'app/products/products.module';
 import { AuthModule } from 'app/auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { JeansTypeModule } from './app/jeans-type/jeans-type.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     }),
     ProductsModule,
     ProductsModule,
+    JeansTypeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

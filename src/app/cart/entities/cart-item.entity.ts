@@ -26,6 +26,8 @@ export class CartItemEntity extends UUIDEntity {
   })
   user?: UserEntity;
 
-  @OneToOne(() => ProductEntity, (product) => product.cartItem, { owner: true })
+  @OneToOne(() => ProductEntity, (product) => product.cartItem, {
+    owner: true,
+  })
   product?: ProductEntity;
 }
