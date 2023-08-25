@@ -24,6 +24,9 @@ export class UserDto extends UUIDDto {
   email!: string;
 
   @IsString()
+  rtHash?: string;
+
+  @IsString()
   password!: string;
 
   @IsEnum(UserStatuses)

@@ -53,5 +53,5 @@ export class ProductEntity extends BaseEntity {
   category!: ProductCategories;
 
   @OneToOne(() => CartItemEntity, (cartItem) => cartItem.product)
-  cartItem?: CartItemEntity[];
+  cartItem?: CartItemEntity;
 }

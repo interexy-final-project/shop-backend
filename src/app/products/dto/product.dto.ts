@@ -45,7 +45,7 @@ export class ProductDto extends UUIDDto {
   category!: string;
 
   @ValidateNested({ context: CartItemDto })
-  cartItem?: CartItemDto[];
+  cartItem?: CartItemDto;
 
   public static fromEntity(entity?: ProductEntity) {
     if (!entity) {
