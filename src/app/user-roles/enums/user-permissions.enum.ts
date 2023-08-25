@@ -1,4 +1,4 @@
-export enum EUserPermissions {
+export enum UserPermissions {
   ALL = 'permissions.all',
 
   RefreshToken = 'permissions.auth.refresh-token',

@@ -2,11 +2,11 @@ import { Entity, ManyToOne, OneToOne, Property } from '@mikro-orm/core';
 
 import { CartItemRepo } from 'app/cart/repo/cart-item.repo';
 import { UserEntity } from 'app/users/entities/user.entity';
-import { ProductEntity } from 'app/product/entities/product.entity';
-import { IDEntity } from 'shared/entities/id.entity';
+import { ProductEntity } from 'app/products/entities/product.entity';
+import { UUIDEntity } from 'shared/entities/uuid.entity';
 
 @Entity({ tableName: 'cart_items', customRepository: () => CartItemRepo })
-export class CartItemEntity extends IDEntity {
+export class CartItemEntity extends UUIDEntity {
   @Property({ name: 'order_id' })
   orderId: string;
 

@@ -6,7 +6,7 @@ export class JeansTypeRepo extends EntityRepository<JeansTypeEntity> {
     return await this.findAll();
   }
 
-  async getById(id: number) {
+  async getById(id: string) {
     return await this.findOne({ id });
   }
 }

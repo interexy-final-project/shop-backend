@@ -7,7 +7,7 @@ import {
   UnauthorizedException,
   createParamDecorator,
 } from '@nestjs/common';
-import { EUserPermissions } from 'app/user-roles/enums/user-permissions.enum';
+import { UserPermissions } from 'app/user-roles/enums/user-permissions.enum';
 import { UserSessionDto } from '../dtos/user-session.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { Reflector } from '@nestjs/core';
@@ -16,7 +16,7 @@ import { ErrorCodes } from 'shared/enums/error-codes.enum';
 
 import { difference, isEmpty, includes } from 'lodash';
 
-export const RestrictRequest = (...scopes: EUserPermissions[]) =>
+export const RestrictRequest = (...scopes: UserPermissions[]) =>
   SetMetadata('user_permissions', scopes);
 
 export const CurrentUser = createParamDecorator(
@@ -34,7 +34,7 @@ export class JwtPermissionsGuard
 {
   protected readonly logger = new Logger('User Permissions Guard');
 
-  protected permissions: EUserPermissions[];
+  protected permissions: UserPermissions[];
 
   constructor(
     private readonly reflector: Reflector,
@@ -45,7 +45,7 @@ export class JwtPermissionsGuard
 
   canActivate(context: ExecutionContext) {
     this.permissions =
-      this.reflector.get<EUserPermissions[]>(
+      this.reflector.get<UserPermissions[]>(
         'user_permissions',
         context.getHandler(),
       ) || [];
@@ -68,7 +68,7 @@ export class JwtPermissionsGuard
       return user;
     }
 
-    if (includes(user.permissions, EUserPermissions.ALL)) {
+    if (includes(user.permissions, UserPermissions.ALL)) {
       return user;
     }
 

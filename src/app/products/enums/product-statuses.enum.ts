@@ -1,4 +1,4 @@
-export enum EProductStatuses {
+export enum ProductStatuses {
   ACTIVE = 'Active',
   ARCHIVED = 'Archived',
 }
