@@ -25,7 +25,7 @@ export class UsersController {
   @UseGuards(JwtPermissionsGuard)
   @RestrictRequest(EUserPermissions.GetUserInfo)
   async getUserInfo(@Param('userId') userId: string) {
-    const entity = await this.usersService.
+    const entity = await this.usersService;
     const user = UserDetailDto.fromEntity(entity);
     return user;
   }
