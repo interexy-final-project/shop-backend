@@ -46,5 +46,5 @@ export class OrderEntity extends UUIDEntity {
   user?: UserEntity;
 
   @OneToMany(() => OrderItemEntity, (e) => e.order)
-  items?: OrderItemEntity[];
+  orderItems?: OrderItemEntity[];
 }

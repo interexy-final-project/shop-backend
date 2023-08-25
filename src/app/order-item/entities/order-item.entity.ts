@@ -21,7 +21,7 @@ export class OrderItemEntity extends IDEntity {
 
   @ManyToOne({
     entity: () => OrderEntity,
-    inversedBy: (e) => e.items,
+    inversedBy: (e) => e.orderItems,
     joinColumn: 'order_id',
     referenceColumnName: 'id',
     nullable: true,

@@ -17,7 +17,7 @@ export class SecurityService {
   }
 
   async generateTokens(entity: UserEntity) {
-    const payload = UserSessionDto.fromEntity(entity);
+    const payload = UserSessionDto.fromEntity(entity, []);
     const [access_token, refresh_token] = await Promise.all([
       this.jwtService.signAsync(payload, {
         expiresIn: 60 * 15,
@@ -31,7 +31,7 @@ export class SecurityService {
 
     return {
       access_token,
-      refresh_token
+      refresh_token,
     } as JwtTokenDto;
   }
 }
