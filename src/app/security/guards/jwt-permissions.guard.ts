@@ -28,7 +28,7 @@ export const CurrentUser = createParamDecorator(
 );
 
 @Injectable()
-export class JwtPermissionGuard
+export class JwtPermissionsGuard
   extends AuthGuard('jwt-strategy')
   implements CanActivate
 {

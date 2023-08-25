@@ -16,6 +16,10 @@ export class UsersService {
         return await this.repo_users.getByEmail(email);
     }
 
+    async getUserInfo(userId:string){
+        return await this.
+    }
+
     async addNewUser(dto: UserSignUpForm) {
         return await this.repo_users.addOneUser(dto)
     }
