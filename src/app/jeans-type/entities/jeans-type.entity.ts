@@ -1,7 +1,7 @@
 import { Entity, Property } from '@mikro-orm/core';
 
 import { JeansTypeRepo } from '../repo/jeans-type.repo';
-import { ProductEntity } from 'app/product/entities/product.entity';
+import { ProductEntity } from 'app/products/entities/product.entity';
 
 @Entity({ tableName: 'jeans_type', customRepository: () => JeansTypeRepo })
 export class JeansTypeEntity extends ProductEntity {

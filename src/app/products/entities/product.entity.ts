@@ -1,10 +1,10 @@
 import { Entity, Enum, OneToOne, Property } from '@mikro-orm/core';
 
 import { BaseEntity } from 'shared/entities/base.entity';
-import { EProductColors } from 'app/product/enums/product-colors.enum';
-import { EProductSizes } from 'app/product/enums/product-sizes.enum';
-import { EProductStatuses } from 'app/product/enums/product-statuses.enum';
-import { ProductRepo } from 'app/product/repo/product.repo';
+import { EProductColors } from 'app/products/enums/product-colors.enum';
+import { EProductSizes } from 'app/products/enums/product-sizes.enum';
+import { EProductStatuses } from 'app/products/enums/product-statuses.enum';
+import { ProductsRepo } from 'app/products/repo/products.repo';
 import { CartItemEntity } from 'app/cart/entities/cart-item.entity';
 import { EProductCategories } from '../enums/product-categories.enum';
 
@@ -13,14 +13,14 @@ import { EProductCategories } from '../enums/product-categories.enum';
   abstract: true,
   discriminatorColumn: 'type',
   discriminatorValue: 'product',
-  customRepository: () => ProductRepo,
+  customRepository: () => ProductsRepo,
 })
 export class ProductEntity extends BaseEntity {
   @Property({ name: 'price' })
-  price: number;
+  price!: number;
 
   @Property({ name: 'images' })
-  images: string[];
+  images!: string[];
 
   @Enum({ name: 'colors', array: true, items: () => EProductColors })
   colors!: EProductColors[];
@@ -37,7 +37,7 @@ export class ProductEntity extends BaseEntity {
   status!: EProductStatuses;
 
   @Property({ name: 'description', type: 'text' })
-  description: string;
+  description!: string;
 
   @Property({ name: 'amount' })
   amount!: number;
