@@ -1,4 +1,4 @@
-import { Controller, Param, UseGuards } from '@nestjs/common';
+import { Controller, Param, Post, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Get } from '@nestjs/common';
 import { UserDto } from './dto/user.dto';
@@ -6,7 +6,7 @@ import {
   JwtPermissionsGuard,
   RestrictRequest,
 } from 'app/security/guards/jwt-permissions.guard';
-import { EUserPermissions } from 'app/user-roles/enums/user-permissions.enum';
+import { UserPermissions } from 'app/user-roles/enums/user-permissions.enum';
 
 @Controller('users')
 export class UsersController {
@@ -14,7 +14,7 @@ export class UsersController {
 
   @Get()
   @UseGuards(JwtPermissionsGuard)
-  @RestrictRequest(EUserPermissions.GetUsers)
+  @RestrictRequest(UserPermissions.GetUsers)
   async getUsers() {
     const entities = await this.usersService.getUsers();
     const users = UserDto.fromEntities(entities);
@@ -23,10 +23,21 @@ export class UsersController {
 
   @Get(':userId')
   @UseGuards(JwtPermissionsGuard)
-  @RestrictRequest(EUserPermissions.GetUserInfo)
+  @RestrictRequest(UserPermissions.GetUserInfo)
   async getUserInfo(@Param('userId') userId: string) {
-    const entity = await this.usersService.
-    const user = UserDetailDto.fromEntity(entity);
+    const entity = await this.usersService.getUserInfo(userId);
+    const user = UserDto.fromEntity(entity);
     return user;
   }
+
+  // @Post()
+  // async addUsers(@Body() body: NewUserForm[]) {
+  //   const [form] = body;
+
+  //   const dto = NewUserForm.from(form);
+
+  //   const entity = await this.usersService.addNewUser(dto);
+  //   const user = UserDto.fromEntity(entity);
+  //   return user;
+  // }
 }
