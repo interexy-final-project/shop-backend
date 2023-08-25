@@ -1,4 +1,5 @@
 export enum ErrorCodes {
+
     InvalidForm = "errors.invalid-form",
   
     FieldShouldBeString = "errors.field-invalid.should-be-string",
