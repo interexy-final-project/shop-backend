@@ -4,6 +4,7 @@ import {
   ManyToOne,
   OneToMany,
   Property,
+  Unique,
 } from '@mikro-orm/core';
 import { UserRepo } from 'app/users/repo/user.repo';
 import { UUIDEntity } from 'shared/entities/uuid.entity';
@@ -13,6 +14,7 @@ import { ShippingAddressEntity } from 'app/shipping-address/entities/shipping-ad
 import { OrderEntity } from 'app/order/entities/order.entity';
 import { CartItemEntity } from 'app/cart/entities/cart-item.entity';
 
+@Unique({ name: 'ix_user_email', properties: ['email'] })
 @Entity({ tableName: 'users', customRepository: () => UserRepo })
 export class UserEntity extends UUIDEntity {
   @Property({ name: 'first_name', nullable: true })
@@ -27,7 +29,7 @@ export class UserEntity extends UUIDEntity {
   @Property({ name: 'password' })
   password!: string;
 
-  @Property({ name: 'rtHash', nullable: true})
+  @Property({ name: 'rtHash', nullable: true })
   rtHash?: string;
 
   @Enum({

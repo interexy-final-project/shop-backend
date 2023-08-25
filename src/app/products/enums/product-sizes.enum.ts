@@ -1,4 +1,4 @@
-export enum EProductSizes {
+export enum ProductSizes {
   XS = 'XS',
   S = 'S',
   M = 'M',

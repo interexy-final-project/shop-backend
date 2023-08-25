@@ -9,7 +9,7 @@ export class UserRolesRepo extends EntityRepository<UserRoleEntity> {
     return await this.findAll();
   }
 
-  async getById(id: number) {
+  async getById(id: string) {
     return await this.findOne({ id });
   }
 }

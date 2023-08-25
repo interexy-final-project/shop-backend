@@ -1,5 +1,4 @@
-
-import { EUserPermissions } from 'app/user-roles/enums/user-permissions.enum';
+import { UserPermissions } from 'app/user-roles/enums/user-permissions.enum';
 import { UserEntity } from 'app/users/entities/user.entity';
 import { IsUUID, IsString, IsNumber, IsArray } from 'class-validator';
 
@@ -13,8 +12,8 @@ export class UserSessionDto {
   @IsNumber()
   role_id: number;
 
-  @IsArray({ context: EUserPermissions })
-  permissions: EUserPermissions[];
+  @IsArray({ context: UserPermissions })
+  permissions: UserPermissions[];
 
   constructor() {}
 
@@ -29,7 +28,7 @@ export class UserSessionDto {
 
   public static fromEntity(
     entity: UserEntity,
-    permissions: EUserPermissions[],
+    permissions: UserPermissions[],
   ): UserSessionDto {
     return {
       id: entity.id,
@@ -39,4 +38,3 @@ export class UserSessionDto {
     };
   }
 }
-
