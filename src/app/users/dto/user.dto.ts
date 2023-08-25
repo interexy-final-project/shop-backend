@@ -1,9 +1,4 @@
-import { CartItemEntity } from 'app/cart/entities/cart-item.entity';
-import { OrderEntity } from 'app/order/entities/order.entity';
-import { ShippingAddressEntity } from 'app/shipping-address/entities/shipping-address.entity';
-import { UserRoleEntity } from 'app/user-roles/entities/user-role.entity';
-import { UUIDEntity } from 'shared/entities/uuid.entity';
-import { EUserStatuses } from '../enums/user-statuses.enum';
+import { UserStatuses } from '../enums/user-statuses.enum';
 import { UUIDDto } from 'shared/dtos/uuid.dto';
 import {
   IsArray,
@@ -16,6 +11,7 @@ import { UserRoleDto } from 'app/user-roles/dto/user-role.dto';
 import { ShippingAddressDto } from 'app/shipping-address/dto/shipping-address.dto';
 import { OrderDto } from 'app/order/dto/order.dto';
 import { CartItemDto } from 'app/cart/dto/cart-item.dto';
+import { UserEntity } from '../entities/user.entity';
 
 export class UserDto extends UUIDDto {
   @IsString()
@@ -30,8 +26,8 @@ export class UserDto extends UUIDDto {
   @IsString()
   password!: string;
 
-  @IsEnum(EUserStatuses)
-  status!: EUserStatuses;
+  @IsEnum(UserStatuses)
+  status!: UserStatuses;
 
   @IsNumber()
   roleId!: number;
@@ -50,4 +46,24 @@ export class UserDto extends UUIDDto {
   @IsArray()
   @ValidateNested({ context: CartItemDto })
   cartItems?: CartItemDto[];
+
+  static fromEntity(entity?: UserEntity) {
+    if (!entity) {
+      return;
+    }
+    const it = new UserDto();
+    it.id = entity.id;
+    it.created = entity.created.valueOf();
+    it.updated = entity.updated.valueOf();
+    it.email = entity.email;
+
+    return it;
+  }
+
+  static fromEntities(entities?: UserEntity[]) {
+    if (!entities?.map) {
+      return;
+    }
+    return entities.map((entity) => this.fromEntity(entity));
+  }
 }
