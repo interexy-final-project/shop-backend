@@ -10,6 +10,7 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { ProductsModule } from 'app/products/products.module';
 import { AuthModule } from 'app/auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { JeansTypeModule } from './app/jeans-type/jeans-type.module';
 import { CartModule } from 'app/cart/cart.module';
 import { OrderModule } from 'app/order/order.module';
 import { OrderItemModule } from 'app/order-item/order-item.module';
@@ -28,6 +29,7 @@ import { OrderItemModule } from 'app/order-item/order-item.module';
       inject: [ConfigService],
     }),
     ProductsModule,
+    JeansTypeModule,
     CartModule,
     OrderModule,
     OrderItemModule

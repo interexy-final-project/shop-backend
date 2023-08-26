@@ -71,7 +71,9 @@
           "nullable": false,
           "enumItems": [
             "Black",
-            "White"
+            "White",
+            "RED",
+            "BLUE"
           ],
           "mappedType": "array"
         },
@@ -121,20 +123,6 @@
           "nullable": false,
           "mappedType": "integer"
         },
-        "category": {
-          "name": "category",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "enumItems": [
-            "Women",
-            "Man",
-            "Children"
-          ],
-          "mappedType": "enum"
-        },
         "type": {
           "name": "type",
           "type": "text",
@@ -143,9 +131,23 @@
           "primary": false,
           "nullable": false,
           "enumItems": [
-            "jeans_type_entity",
-            "shirt_type_entity",
-            "tshirt_type_entity"
+            "Jeans-type",
+            "Shirt-type",
+            "T-shirt-type"
+          ],
+          "mappedType": "enum"
+        },
+        "category": {
+          "name": "category",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "enumItems": [
+            "Woman",
+            "Man",
+            "Children"
           ],
           "mappedType": "enum"
         },

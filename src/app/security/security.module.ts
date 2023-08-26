@@ -16,7 +16,7 @@ import { JwtStrategyService } from './jwt-strategy.service';
       entities: [UserEntity],
     }),
   ],
-  providers: [SecurityService, UserRepo, JwtStrategyService],
+  providers: [SecurityService, UserRepo],
   exports: [SecurityService],
 })
 export class SecurityModule {}

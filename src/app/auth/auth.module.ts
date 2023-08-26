@@ -10,12 +10,12 @@ import { UserRolesRepo } from 'app/user-roles/repo/user-roles.repo';
 @Module({
   imports: [
     MikroOrmModule.forFeature({
-      entities: [UserEntity]
+      entities: [UserEntity],
     }),
     SecurityModule,
   ],
   providers: [AuthService, UserRepo, UserRolesRepo],
   controllers: [AuthController],
-  exports: [AuthService]
+  exports: [AuthService],
 })
 export class AuthModule {}
