@@ -9,6 +9,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { UUIDDto } from 'shared/dtos/uuid.dto';
+import { OrderItemEntity } from '../entities/order-item.entity';
 
 export class OrderItemDto extends UUIDDto {
   @IsString()
@@ -25,4 +26,13 @@ export class OrderItemDto extends UUIDDto {
 
   @ValidateNested({ context: OrderDto })
   order?: OrderDto;
+
+  public static fromEntity(entity: OrderItemEntity): OrderItemDto {
+    return {
+      id: entity.id,
+      orderId: entity.orderId,
+      product: entity.product,
+      quantity: entity.quantity
+    };
+  }
 }

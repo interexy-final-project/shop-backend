@@ -1,3 +1,4 @@
 export enum OrderStatuses {
-  CREATED = 'Created',
+  ACTIVE = 'Active',
+  ARCHIVED = 'Archived',
 }
