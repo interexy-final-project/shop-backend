@@ -4,6 +4,7 @@ import { UUIDEntity } from 'shared/entities/uuid.entity';
 import { UserPermissions } from '../enums/user-permissions.enum';
 import { UserRoles } from '../enums/user-roles.enum';
 import { UUIDDto } from 'shared/dtos/uuid.dto';
+import { UserRoleEntity } from '../entities/user-role.entity';
 
 export class UserRoleDto extends UUIDDto {
   @IsEnum(UserRoles)
@@ -17,4 +18,26 @@ export class UserRoleDto extends UUIDDto {
 
   @ValidateNested({ context: UserDto })
   users?: UserDto[];
+
+  public static fromEntity(entity: UserRoleEntity) {
+    const dto = new UserRoleDto();
+
+    dto.id = entity.id;
+    dto.created = new Date(entity.created).valueOf();
+    dto.updated = new Date(entity.updated).valueOf();
+    dto.type = entity.type;
+    dto.permissions = entity.permissions;
+    dto.isDefault = entity.isDefault;
+    dto.users = UserDto.fromEntities(entity.users);
+
+    return dto;
+  }
+
+  static fromEntities(entities?: UserRoleEntity[]) {
+    if (!entities?.map) {
+      return;
+    }
+
+    return entities.map((entity) => this.fromEntity(entity));
+  }
 }
