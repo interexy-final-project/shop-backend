@@ -59,20 +59,19 @@ export class JeansTypeRepo extends EntityRepository<JeansTypeEntity> {
       JeansTypeEntity,
       { id },
     );
-    wrap(entityToArchive).assign({ status: ProductStatuses.ARCHIVED });
-    await this.getEntityManager().persistAndFlush(entityToArchive);
-
-    if (entityToArchive) {
-      return {
-        statusCode: HttpStatus.OK,
-        message: 'Product has been deleted successfully',
-      };
-    } else {
+    if (!entityToArchive)
       return {
         statusCode: HttpStatus.NOT_FOUND,
         message: 'Product not found or could not be deleted',
       };
-    }
+
+    wrap(entityToArchive).assign({ status: ProductStatuses.ARCHIVED });
+    await this.getEntityManager().persistAndFlush(entityToArchive);
+
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'Product has been deleted successfully',
+    };
   }
   async getById(id: string) {
     return await this.getEntityManager().findOne(JeansTypeEntity, { id });
