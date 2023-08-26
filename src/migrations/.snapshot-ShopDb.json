@@ -71,7 +71,9 @@
           "nullable": false,
           "enumItems": [
             "Black",
-            "White"
+            "White",
+            "RED",
+            "BLUE"
           ],
           "mappedType": "array"
         },
@@ -143,7 +145,7 @@
           "primary": false,
           "nullable": false,
           "enumItems": [
-            "Women",
+            "Woman",
             "Man",
             "Children"
           ],
@@ -158,8 +160,8 @@
           "nullable": true,
           "mappedType": "string"
         },
-        "waist_girth": {
-          "name": "waist_girth",
+        "sleeve_girth": {
+          "name": "sleeve_girth",
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
@@ -167,8 +169,8 @@
           "nullable": true,
           "mappedType": "string"
         },
-        "sleeve_girth": {
-          "name": "sleeve_girth",
+        "waist_girth": {
+          "name": "waist_girth",
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,

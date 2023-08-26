@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { JeansTypeService } from './jeans-type.service';
 import { JeansTypeDto } from './dto/jeans-type.dto';
 
@@ -12,7 +20,19 @@ export class JeansTypeController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.jeansTypeService.findJeansProduct(id);
+  async findOne(@Param('id') id: string) {
+    const entity = await this.jeansTypeService.findJeansProduct(id);
+    const jeansTypeProduct = JeansTypeDto.fromEntity(entity);
+    return jeansTypeProduct || [];
+  }
+
+  @Delete(':id')
+  async deleteOne(@Param('id') id: string) {
+    return await this.jeansTypeService.deleteJeansProduct(id);
+  }
+
+  @Put(':id')
+  async updateOne(@Param('id') id: string, @Body() dtoToUpdate: JeansTypeDto) {
+    return await this.jeansTypeService.updateJeansProduct(id, dtoToUpdate);
   }
 }

@@ -10,5 +10,5 @@ import { ProductTypes } from 'app/products/enums/product-types.enum';
 })
 export class JeansTypeEntity extends ProductEntity {
   @Property({ name: 'hip_girth' })
-  hip_girth!: string;
+  hipGirth!: string;
 }

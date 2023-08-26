@@ -9,5 +9,5 @@ import { ProductTypes } from 'app/products/enums/product-types.enum';
 })
 export class TShirtTypeEntity extends ProductEntity {
   @Property({ name: 'waist_girth' })
-  waist_girth?: string;
+  waistGirth?: string;
 }

@@ -13,4 +13,12 @@ export class JeansTypeService {
   public async findJeansProduct(id: string) {
     return this.repo_jeans_type.getById(id);
   }
+
+  public async deleteJeansProduct(id: string) {
+    return this.repo_jeans_type.deleteById(id);
+  }
+
+  public async updateJeansProduct(id: string, dtoToUpdate: JeansTypeDto) {
+    return this.repo_jeans_type.updateById(id, dtoToUpdate);
+  }
 }
