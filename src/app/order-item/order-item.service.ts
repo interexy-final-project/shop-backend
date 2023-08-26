@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { OrderItemRepo } from './repo/order-item.repo';
+import { OrderItemDto } from './dto/order-item.dto';
 
 @Injectable()
 export class OrderItemService {
@@ -9,7 +10,7 @@ export class OrderItemService {
     return await this.order_item_repo.getOrderItemList(orderId);
   }
 
-  async createOrderItem(cardId: string) {
-    return await this.order_item_repo.createOrderItem(cardId);
+  async createOrderItem(dto: Partial<OrderItemDto>, cardId: string) {
+    return await this.order_item_repo.createOrderItem(dto, cardId);
   }
 }

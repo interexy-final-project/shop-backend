@@ -28,7 +28,13 @@ export class OrderItemDto extends UUIDDto {
   order?: OrderDto;
 
   public static fromEntity(entity: OrderItemEntity): OrderItemDto {
+    if(!entity) {
+      return
+    }
     return {
+      status: entity.status,
+      updated: entity.updated.valueOf(),
+      created: entity.created.valueOf(),
       id: entity.id,
       orderId: entity.orderId,
       product: entity.product,

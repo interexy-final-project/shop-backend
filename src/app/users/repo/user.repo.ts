@@ -1,15 +1,12 @@
 import { Injectable } from '@nestjs/common';
 
-import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
+import { EntityRepository } from '@mikro-orm/postgresql';
 import { UserEntity } from 'app/users/entities/user.entity';
 import { UserSignUpForm } from 'app/auth/dto/user-sign-up.form';
 import { UserRoleDto } from 'app/user-roles/dto/user-role.dto';
 
 @Injectable()
 export class UserRepo extends EntityRepository<UserEntity> {
-  constructor(private readonly manager: EntityManager) {
-    super(manager, UserEntity);
-  }
 
   async getList() {
     return await this.findAll();

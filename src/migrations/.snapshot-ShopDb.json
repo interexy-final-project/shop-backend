@@ -8,12 +8,12 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "uuid",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
+          "type": "bigserial",
+          "unsigned": true,
+          "autoincrement": true,
+          "primary": true,
           "nullable": false,
-          "mappedType": "uuid"
+          "mappedType": "bigint"
         },
         "created": {
           "name": "created",
@@ -215,12 +215,12 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "uuid",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
+          "type": "bigserial",
+          "unsigned": true,
+          "autoincrement": true,
+          "primary": true,
           "nullable": false,
-          "mappedType": "uuid"
+          "mappedType": "bigint"
         },
         "created": {
           "name": "created",
@@ -268,11 +268,7 @@
           "primary": false,
           "nullable": false,
           "enumItems": [
-            "permissions.all",
-            "permissions.auth.refresh-token",
-            "permissions.auth.sign-out",
-            "permissions.users.get-users",
-            "permissions.users.get-user-info"
+            "permissions.all"
           ],
           "mappedType": "array"
         }
@@ -394,12 +390,12 @@
         },
         "role_id": {
           "name": "role_id",
-          "type": "uuid",
+          "type": "bigint",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
-          "mappedType": "uuid"
+          "mappedType": "bigint"
         }
       },
       "name": "users",
@@ -411,15 +407,6 @@
           ],
           "composite": false,
           "keyName": "users_email_unique",
-          "primary": false,
-          "unique": true
-        },
-        {
-          "keyName": "ix_user_email",
-          "columnNames": [
-            "email"
-          ],
-          "composite": false,
           "primary": false,
           "unique": true
         },
@@ -768,12 +755,12 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "uuid",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
+          "type": "bigserial",
+          "unsigned": true,
+          "autoincrement": true,
+          "primary": true,
           "nullable": false,
-          "mappedType": "uuid"
+          "mappedType": "bigint"
         },
         "created": {
           "name": "created",
@@ -806,12 +793,12 @@
         },
         "product_id": {
           "name": "product_id",
-          "type": "uuid",
+          "type": "bigint",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "uuid"
+          "mappedType": "bigint"
         },
         "quantity": {
           "name": "quantity",

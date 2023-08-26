@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { ExtractJwt, Strategy } from "passport-jwt";
-import * as passport from "passport";
+import passport from "passport";
 
 import { UserSessionDto } from "./dtos/user-session.dto";
 
@@ -21,7 +21,7 @@ export class JwtStrategyService extends Strategy {
       {
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
         passReqToCallback: true,
-        secretOrKey: configService.get("app.jwt_access_token_secret")
+        secretOrKey: "jwt_access_secret_key"
       },
       async (req, payload, next) => await this.verify(req, payload, next)
     );

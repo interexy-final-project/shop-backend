@@ -7,13 +7,13 @@ import { UUIDEntity } from 'shared/entities/uuid.entity';
 
 @Entity({ tableName: 'cart_items', customRepository: () => CartItemRepo })
 export class CartItemEntity extends UUIDEntity {
-  @Property({ name: 'order_id' })
-  orderId: string;
+  @Property({ name: 'user_id' })
+  userId: string;
 
   @Property({ name: 'product_id' })
   productId: number;
 
-  @Property({ name: 'quantity' })
+  @Property({ name: 'quantity', default: 1})
   quantity: number;
 
   @ManyToOne({

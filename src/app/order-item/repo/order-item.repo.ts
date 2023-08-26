@@ -7,13 +7,12 @@ export class OrderItemRepo extends EntityRepository<OrderItemEntity> {
     return await this.findAll( { populateWhere: { orderId }});
   }
 
-  async createOrderItem(dto: OrderItemDto, orderId: string) {
-    //fromEntity
+  async createOrderItem(dto: Partial<OrderItemDto>, orderId: string) {
     const newOrderItem =  this.create({
-        //result
+        orderId: orderId,
+        product: dto.product,
+        quantity: dto.quantity,
     })
-    await this.persistAndFlush(newOrderItem);
-
-    return newOrderItem
+    return await this.em.persistAndFlush(newOrderItem);
   }
 }
