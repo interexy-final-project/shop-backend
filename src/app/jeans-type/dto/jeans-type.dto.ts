@@ -1,7 +1,27 @@
-import { IsString } from 'class-validator';
-import { UUIDDto } from 'shared/dtos/uuid.dto';
+import { ProductDto } from 'app/products/dto/product.dto';
 
-export class JeansTypeDto extends UUIDDto {
+import { IsString } from 'class-validator';
+import { JeansTypeEntity } from '../entities/jeans-type.entity';
+
+export class JeansTypeDto extends ProductDto {
   @IsString()
-  hip_girth?: string;
+  hipGirth?: string;
+
+  public static fromEntity(entity?: JeansTypeEntity) {
+    if (!entity) {
+      return;
+    }
+
+    const it: JeansTypeEntity = super.fromEntity(entity);
+    it.hipGirth = entity.hipGirth;
+    return it;
+  }
+
+  public static fromEntities(entities?: JeansTypeEntity[]) {
+    if (!entities?.map) {
+      return;
+    }
+
+    return entities.map((entity) => this.fromEntity(entity));
+  }
 }
