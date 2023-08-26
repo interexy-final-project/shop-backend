@@ -4,6 +4,7 @@ import { JeansTypeDto } from '../dto/jeans-type.dto';
 import { HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { ProductStatuses } from 'app/products/enums/product-statuses.enum';
 import { wrap } from '@mikro-orm/core';
+import { PaginationQueryDto } from 'shared/dtos/pagination-query.dto';
 
 @Injectable()
 export class JeansTypeRepo extends EntityRepository<JeansTypeEntity> {
@@ -104,5 +105,13 @@ export class JeansTypeRepo extends EntityRepository<JeansTypeEntity> {
       statusCode: HttpStatus.OK,
       message: 'jeans-type product has not been created',
     };
+  }
+
+  public async getAll(paginationQuery: PaginationQueryDto) {
+    return this.getEntityManager().findAndCount(
+      JeansTypeEntity,
+      {},
+      { limit: paginationQuery.limit, offset: paginationQuery.offset },
+    );
   }
 }

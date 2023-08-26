@@ -6,9 +6,11 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { JeansTypeService } from './jeans-type.service';
 import { JeansTypeDto } from './dto/jeans-type.dto';
+import { PaginationQueryDto } from 'shared/dtos/pagination-query.dto';
 
 @Controller('jeans-type')
 export class JeansTypeController {
@@ -34,5 +36,14 @@ export class JeansTypeController {
   @Put(':id')
   async updateOne(@Param('id') id: string, @Body() dtoToUpdate: JeansTypeDto) {
     return await this.jeansTypeService.updateJeansProduct(id, dtoToUpdate);
+  }
+
+  @Get()
+  public async getJeansProducts(@Query() paginationQuery: PaginationQueryDto) {
+    const entitiesAndCount = await this.jeansTypeService.getAllJeansProducts(
+      paginationQuery,
+    );
+    const jeansProducts = JeansTypeDto.fromEntities(entitiesAndCount[0]);
+    return jeansProducts || [];
   }
 }
