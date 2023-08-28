@@ -11,7 +11,7 @@ export class CartItemEntity extends UUIDEntity {
   userId: string;
 
   @Property({ name: 'product_id' })
-  productId: number;
+  productId: string;
 
   @Property({ name: 'quantity', default: 1})
   quantity: number;
@@ -28,6 +28,7 @@ export class CartItemEntity extends UUIDEntity {
 
   @OneToOne(() => ProductEntity, (product) => product.cartItem, {
     owner: true,
+    nullable: true,
   })
   product?: ProductEntity;
 }

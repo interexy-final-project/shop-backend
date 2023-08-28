@@ -8,221 +8,12 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "bigserial",
-          "unsigned": true,
-          "autoincrement": true,
-          "primary": true,
-          "nullable": false,
-          "mappedType": "bigint"
-        },
-        "created": {
-          "name": "created",
-          "type": "timestamptz(0)",
+          "type": "uuid",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": 6,
-          "mappedType": "datetime"
-        },
-        "updated": {
-          "name": "updated",
-          "type": "timestamptz(0)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 6,
-          "mappedType": "datetime"
-        },
-        "name": {
-          "name": "name",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "text"
-        },
-        "price": {
-          "name": "price",
-          "type": "int",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "integer"
-        },
-        "images": {
-          "name": "images",
-          "type": "text[]",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "array"
-        },
-        "colors": {
-          "name": "colors",
-          "type": "text[]",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "enumItems": [
-            "Black",
-            "White",
-            "RED",
-            "BLUE"
-          ],
-          "mappedType": "array"
-        },
-        "sizes": {
-          "name": "sizes",
-          "type": "text[]",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "enumItems": [
-            "XS",
-            "S",
-            "M"
-          ],
-          "mappedType": "array"
-        },
-        "status": {
-          "name": "status",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "default": "'Active'",
-          "enumItems": [
-            "Active",
-            "Archived"
-          ],
-          "mappedType": "enum"
-        },
-        "description": {
-          "name": "description",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "text"
-        },
-        "amount": {
-          "name": "amount",
-          "type": "int",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "integer"
-        },
-        "type": {
-          "name": "type",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "enumItems": [
-            "Jeans-type",
-            "Shirt-type",
-            "T-shirt-type"
-          ],
-          "mappedType": "enum"
-        },
-        "category": {
-          "name": "category",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "enumItems": [
-            "Woman",
-            "Man",
-            "Children"
-          ],
-          "mappedType": "enum"
-        },
-        "hip_girth": {
-          "name": "hip_girth",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": true,
-          "mappedType": "string"
-        },
-        "sleeve_girth": {
-          "name": "sleeve_girth",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": true,
-          "mappedType": "string"
-        },
-        "waist_girth": {
-          "name": "waist_girth",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": true,
-          "mappedType": "string"
-        }
-      },
-      "name": "products",
-      "schema": "public",
-      "indexes": [
-        {
-          "columnNames": [
-            "name"
-          ],
-          "composite": false,
-          "keyName": "products_name_unique",
-          "primary": false,
-          "unique": true
-        },
-        {
-          "columnNames": [
-            "type"
-          ],
-          "composite": false,
-          "keyName": "products_type_index",
-          "primary": false,
-          "unique": false
-        },
-        {
-          "keyName": "products_pkey",
-          "columnNames": [
-            "id"
-          ],
-          "composite": false,
-          "primary": true,
-          "unique": true
-        }
-      ],
-      "checks": [],
-      "foreignKeys": {}
-    },
-    {
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "bigserial",
-          "unsigned": true,
-          "autoincrement": true,
-          "primary": true,
-          "nullable": false,
-          "mappedType": "bigint"
+          "mappedType": "uuid"
         },
         "created": {
           "name": "created",
@@ -270,7 +61,11 @@
           "primary": false,
           "nullable": false,
           "enumItems": [
-            "permissions.all"
+            "permissions.all",
+            "permissions.auth.refresh-token",
+            "permissions.auth.sign-out",
+            "permissions.users.get-users",
+            "permissions.users.get-user-info"
           ],
           "mappedType": "array"
         }
@@ -392,12 +187,12 @@
         },
         "role_id": {
           "name": "role_id",
-          "type": "bigint",
+          "type": "uuid",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
-          "mappedType": "bigint"
+          "mappedType": "uuid"
         }
       },
       "name": "users",
@@ -409,6 +204,15 @@
           ],
           "composite": false,
           "keyName": "users_email_unique",
+          "primary": false,
+          "unique": true
+        },
+        {
+          "keyName": "ix_user_email",
+          "columnNames": [
+            "email"
+          ],
+          "composite": false,
           "primary": false,
           "unique": true
         },
@@ -594,7 +398,8 @@
           "primary": false,
           "nullable": false,
           "enumItems": [
-            "Created"
+            "Active",
+            "Archived"
           ],
           "mappedType": "enum"
         },
@@ -656,12 +461,12 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "bigserial",
-          "unsigned": true,
-          "autoincrement": true,
-          "primary": true,
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
           "nullable": false,
-          "mappedType": "bigint"
+          "mappedType": "uuid"
         },
         "created": {
           "name": "created",
@@ -718,7 +523,8 @@
           "primary": false,
           "nullable": false,
           "enumItems": [
-            "Created"
+            "Active",
+            "Archived"
           ],
           "mappedType": "enum"
         }
@@ -757,12 +563,12 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "bigserial",
-          "unsigned": true,
-          "autoincrement": true,
-          "primary": true,
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
           "nullable": false,
-          "mappedType": "bigint"
+          "mappedType": "uuid"
         },
         "created": {
           "name": "created",
@@ -784,33 +590,6 @@
           "length": 6,
           "mappedType": "datetime"
         },
-        "order_id": {
-          "name": "order_id",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "string"
-        },
-        "product_id": {
-          "name": "product_id",
-          "type": "bigint",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "bigint"
-        },
-        "quantity": {
-          "name": "quantity",
-          "type": "int",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "integer"
-        },
         "user_id": {
           "name": "user_id",
           "type": "uuid",
@@ -819,6 +598,25 @@
           "primary": false,
           "nullable": true,
           "mappedType": "uuid"
+        },
+        "product_id": {
+          "name": "product_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "uuid"
+        },
+        "quantity": {
+          "name": "quantity",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "1",
+          "mappedType": "integer"
         }
       },
       "name": "cart_items",
@@ -868,6 +666,248 @@
             "id"
           ],
           "referencedTableName": "public.products",
+          "deleteRule": "set null",
+          "updateRule": "cascade"
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "created": {
+          "name": "created",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "updated": {
+          "name": "updated",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "text"
+        },
+        "price": {
+          "name": "price",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "images": {
+          "name": "images",
+          "type": "text[]",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "array"
+        },
+        "colors": {
+          "name": "colors",
+          "type": "text[]",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "enumItems": [
+            "Black",
+            "White",
+            "RED",
+            "BLUE"
+          ],
+          "mappedType": "array"
+        },
+        "sizes": {
+          "name": "sizes",
+          "type": "text[]",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "enumItems": [
+            "XS",
+            "S",
+            "M"
+          ],
+          "mappedType": "array"
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "'Active'",
+          "enumItems": [
+            "Active",
+            "Archived"
+          ],
+          "mappedType": "enum"
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "text"
+        },
+        "amount": {
+          "name": "amount",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "type": {
+          "name": "type",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "enumItems": [
+            "Jeans-type",
+            "Shirt-type",
+            "T-shirt-type"
+          ],
+          "mappedType": "enum"
+        },
+        "category": {
+          "name": "category",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "enumItems": [
+            "Woman",
+            "Man",
+            "Children"
+          ],
+          "mappedType": "enum"
+        },
+        "cart_item_id": {
+          "name": "cart_item_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "uuid"
+        },
+        "hip_girth": {
+          "name": "hip_girth",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
+        },
+        "sleeve_girth": {
+          "name": "sleeve_girth",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
+        },
+        "waist_girth": {
+          "name": "waist_girth",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
+        }
+      },
+      "name": "products",
+      "schema": "public",
+      "indexes": [
+        {
+          "columnNames": [
+            "name"
+          ],
+          "composite": false,
+          "keyName": "products_name_unique",
+          "primary": false,
+          "unique": true
+        },
+        {
+          "columnNames": [
+            "type"
+          ],
+          "composite": false,
+          "keyName": "products_type_index",
+          "primary": false,
+          "unique": false
+        },
+        {
+          "columnNames": [
+            "cart_item_id"
+          ],
+          "composite": false,
+          "keyName": "products_cart_item_id_unique",
+          "primary": false,
+          "unique": true
+        },
+        {
+          "keyName": "products_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "products_cart_item_id_foreign": {
+          "constraintName": "products_cart_item_id_foreign",
+          "columnNames": [
+            "cart_item_id"
+          ],
+          "localTableName": "public.products",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.cart_items",
+          "deleteRule": "set null",
           "updateRule": "cascade"
         }
       }

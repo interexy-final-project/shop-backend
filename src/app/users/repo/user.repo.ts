@@ -1,12 +1,15 @@
 import { Injectable } from '@nestjs/common';
 
-import { EntityRepository } from '@mikro-orm/postgresql';
+import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
 import { UserEntity } from 'app/users/entities/user.entity';
 import { UserSignUpForm } from 'app/auth/dto/user-sign-up.form';
 import { UserRoleDto } from 'app/user-roles/dto/user-role.dto';
 
 @Injectable()
 export class UserRepo extends EntityRepository<UserEntity> {
+  constructor(manager: EntityManager) {
+    super(manager, UserEntity)
+  }
 
   async getList() {
     return await this.findAll();
@@ -28,7 +31,7 @@ export class UserRepo extends EntityRepository<UserEntity> {
     const newUser = this.create({
       email: dto.email,
       password: dto.password,
-      role: dto_role.type,
+      role: dto_role.id,
     });
     await this.persistAndFlush(newUser);
 

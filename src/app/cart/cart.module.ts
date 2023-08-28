@@ -15,6 +15,5 @@ import { CartItemRepo } from './repo/cart-item.repo';
   ],
   controllers: [CartController],
   providers: [CartService, CartItemRepo],
-  exports: [CartService]
 })
 export class CartModule {}

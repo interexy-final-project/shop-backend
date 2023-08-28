@@ -9,7 +9,7 @@ export class CartItemDto extends UUIDDto {
   userId: string;
 
   @IsNumber()
-  productId: number;
+  productId: string;
 
   @IsNumber()
   quantity: number;

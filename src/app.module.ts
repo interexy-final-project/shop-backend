@@ -18,6 +18,9 @@ import { OrderItemModule } from 'app/order-item/order-item.module';
 @Module({
   imports: [
     AuthModule,
+    CartModule,
+    OrderModule,
+    OrderItemModule,
     ConfigModule.forRoot({
       envFilePath: '.env',
       load: [app_config, database_config],
@@ -30,9 +33,6 @@ import { OrderItemModule } from 'app/order-item/order-item.module';
     }),
     ProductsModule,
     JeansTypeModule,
-    CartModule,
-    OrderModule,
-    OrderItemModule
   ],
   controllers: [AppController],
   providers: [AppService],
