@@ -10,6 +10,14 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { ProductsModule } from 'app/products/products.module';
 import { AuthModule } from 'app/auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import {
+  AcceptLanguageResolver,
+  HeaderResolver,
+  I18nModule,
+  I18nService,
+  QueryResolver,
+} from 'nestjs-i18n';
+import * as path from 'path';
 
 @Module({
   imports: [
@@ -25,7 +33,14 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       inject: [ConfigService],
     }),
     ProductsModule,
-    ProductsModule,
+    I18nModule.forRoot({
+      fallbackLanguage: 'en',
+      loaderOptions: {
+        path: path.join(__dirname, '/i18n/'),
+        watch: true,
+      },
+      resolvers: [new HeaderResolver(['x-lang'])],
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
