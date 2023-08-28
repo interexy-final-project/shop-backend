@@ -16,8 +16,8 @@ export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
   @Post()
-  create(@Body() createOrderDto: OrderDto, userId: string) {
-    return this.orderService.createOrder(createOrderDto, userId);
+  create(@Body() createOrderDto: OrderDto) {
+    return this.orderService.createOrder(createOrderDto);
   }
 
   @Get(':id')

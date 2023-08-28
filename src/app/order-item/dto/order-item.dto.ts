@@ -21,24 +21,20 @@ export class OrderItemDto extends UUIDDto {
   @IsNumber()
   quantity: number;
 
-  @IsEnum(OrderStatuses)
-  status!: OrderStatuses;
-
   @ValidateNested({ context: OrderDto })
   order?: OrderDto;
 
   public static fromEntity(entity: OrderItemEntity): OrderItemDto {
-    if(!entity) {
-      return
+    if (!entity) {
+      return;
     }
     return {
-      status: entity.status,
       updated: entity.updated.valueOf(),
       created: entity.created.valueOf(),
       id: entity.id,
       orderId: entity.orderId,
       product: entity.product,
-      quantity: entity.quantity
+      quantity: entity.quantity,
     };
   }
 }

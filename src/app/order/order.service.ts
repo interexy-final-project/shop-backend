@@ -22,9 +22,8 @@ export class OrderService {
     return await this.order_repo.getList(userId, status);
   }
 
-  async createOrder(dto: OrderDto, userId: string) {
-    const newOrder = await this.order_repo.createOrder(dto);
-    const { id } = newOrder;
+  async createOrder(dto: OrderDto) {
+    const { id, userId } = await this.order_repo.createOrder(dto);
     const cartItems = CartItemDto.fromEntities(
       await this.cart_repo.getCartItems(userId),
     );

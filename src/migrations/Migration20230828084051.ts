@@ -1,8 +1,12 @@
 import { Migration } from '@mikro-orm/migrations';
 
-export class Migration20230828081610 extends Migration {
+export class Migration20230828084051 extends Migration {
 
   async up(): Promise<void> {
+    this.addSql('create table "products" ("id" uuid not null, "created" timestamptz(0) not null, "updated" timestamptz(0) not null, "name" text not null, "price" int not null, "images" text[] not null, "colors" text[] not null, "sizes" text[] not null, "status" text check ("status" in (\'Active\', \'Archived\')) not null default \'Active\', "description" text not null, "amount" int not null, "type" text check ("type" in (\'Jeans-type\', \'Shirt-type\', \'T-shirt-type\')) not null, "category" text check ("category" in (\'Woman\', \'Man\', \'Children\')) not null, "hip_girth" varchar(255) null, "sleeve_girth" varchar(255) null, "waist_girth" varchar(255) null, constraint "products_pkey" primary key ("id"));');
+    this.addSql('alter table "products" add constraint "products_name_unique" unique ("name");');
+    this.addSql('create index "products_type_index" on "products" ("type");');
+
     this.addSql('create table "user_roles" ("id" uuid not null, "created" timestamptz(0) not null, "updated" timestamptz(0) not null, "type" text not null, "is_default" boolean not null, "permissions" text[] not null, constraint "user_roles_pkey" primary key ("id"));');
     this.addSql('alter table "user_roles" add constraint "user_roles_type_unique" unique ("type");');
 
@@ -19,11 +23,6 @@ export class Migration20230828081610 extends Migration {
     this.addSql('create table "cart_items" ("id" uuid not null, "created" timestamptz(0) not null, "updated" timestamptz(0) not null, "user_id" uuid null, "product_id" uuid null, "quantity" int not null default 1, constraint "cart_items_pkey" primary key ("id"));');
     this.addSql('alter table "cart_items" add constraint "cart_items_product_id_unique" unique ("product_id");');
 
-    this.addSql('create table "products" ("id" uuid not null, "created" timestamptz(0) not null, "updated" timestamptz(0) not null, "name" text not null, "price" int not null, "images" text[] not null, "colors" text[] not null, "sizes" text[] not null, "status" text check ("status" in (\'Active\', \'Archived\')) not null default \'Active\', "description" text not null, "amount" int not null, "type" text check ("type" in (\'Jeans-type\', \'Shirt-type\', \'T-shirt-type\')) not null, "category" text check ("category" in (\'Woman\', \'Man\', \'Children\')) not null, "cart_item_id" uuid null, "hip_girth" varchar(255) null, "sleeve_girth" varchar(255) null, "waist_girth" varchar(255) null, constraint "products_pkey" primary key ("id"));');
-    this.addSql('alter table "products" add constraint "products_name_unique" unique ("name");');
-    this.addSql('create index "products_type_index" on "products" ("type");');
-    this.addSql('alter table "products" add constraint "products_cart_item_id_unique" unique ("cart_item_id");');
-
     this.addSql('alter table "users" add constraint "users_role_id_foreign" foreign key ("role_id") references "user_roles" ("id") on update cascade on delete set null;');
 
     this.addSql('alter table "shipping_addresses" add constraint "shipping_addresses_user_id_foreign" foreign key ("user_id") references "users" ("id") on update cascade on delete set null;');
@@ -34,38 +33,6 @@ export class Migration20230828081610 extends Migration {
 
     this.addSql('alter table "cart_items" add constraint "cart_items_user_id_foreign" foreign key ("user_id") references "users" ("id") on update cascade on delete set null;');
     this.addSql('alter table "cart_items" add constraint "cart_items_product_id_foreign" foreign key ("product_id") references "products" ("id") on update cascade on delete set null;');
-
-    this.addSql('alter table "products" add constraint "products_cart_item_id_foreign" foreign key ("cart_item_id") references "cart_items" ("id") on update cascade on delete set null;');
-  }
-
-  async down(): Promise<void> {
-    this.addSql('alter table "users" drop constraint "users_role_id_foreign";');
-
-    this.addSql('alter table "shipping_addresses" drop constraint "shipping_addresses_user_id_foreign";');
-
-    this.addSql('alter table "orders" drop constraint "orders_user_id_foreign";');
-
-    this.addSql('alter table "cart_items" drop constraint "cart_items_user_id_foreign";');
-
-    this.addSql('alter table "order_items" drop constraint "order_items_order_id_foreign";');
-
-    this.addSql('alter table "products" drop constraint "products_cart_item_id_foreign";');
-
-    this.addSql('alter table "cart_items" drop constraint "cart_items_product_id_foreign";');
-
-    this.addSql('drop table if exists "user_roles" cascade;');
-
-    this.addSql('drop table if exists "users" cascade;');
-
-    this.addSql('drop table if exists "shipping_addresses" cascade;');
-
-    this.addSql('drop table if exists "orders" cascade;');
-
-    this.addSql('drop table if exists "order_items" cascade;');
-
-    this.addSql('drop table if exists "cart_items" cascade;');
-
-    this.addSql('drop table if exists "products" cascade;');
   }
 
 }

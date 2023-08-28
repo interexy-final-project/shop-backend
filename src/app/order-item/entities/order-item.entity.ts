@@ -16,9 +16,6 @@ export class OrderItemEntity extends UUIDEntity {
   @Property({ name: 'quantity' })
   quantity: number;
 
-  @Enum({ name: 'status', array: false, items: () => OrderStatuses })
-  status!: OrderStatuses;
-
   @ManyToOne({
     entity: () => OrderEntity,
     inversedBy: (e) => e.orderItems,
