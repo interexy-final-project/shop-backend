@@ -11,8 +11,8 @@ import { UserPermissions } from 'app/user-roles/enums/user-permissions.enum';
 import { UserSessionDto } from '../dtos/user-session.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { Reflector } from '@nestjs/core';
-import { I18nService } from 'nestjs-i18n';
-import { ErrorCodes } from 'shared/enums/error-codes.enum';
+// import { I18nService } from 'nestjs-i18n';
+// import { ErrorCodes } from 'shared/enums/error-codes.enum';
 
 import { difference, isEmpty, includes } from 'lodash';
 
