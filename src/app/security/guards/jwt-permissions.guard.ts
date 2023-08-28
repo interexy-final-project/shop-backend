@@ -11,8 +11,8 @@ import { UserPermissions } from 'app/user-roles/enums/user-permissions.enum';
 import { UserSessionDto } from '../dtos/user-session.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { Reflector } from '@nestjs/core';
-import { I18nService } from 'nestjs-i18n';
-import { ErrorCodes } from 'shared/enums/error-codes.enum';
+// import { I18nService } from 'nestjs-i18n';
+// import { ErrorCodes } from 'shared/enums/error-codes.enum';
 
 import { difference, isEmpty, includes } from 'lodash';
 
@@ -37,8 +37,7 @@ export class JwtPermissionsGuard
   protected permissions: UserPermissions[];
 
   constructor(
-    private readonly reflector: Reflector,
-    private readonly i18n: I18nService,
+    private readonly reflector: Reflector, // private readonly i18n: I18nService,
   ) {
     super();
   }
@@ -58,10 +57,9 @@ export class JwtPermissionsGuard
     if (error || !user) {
       this.logger.error('User is not authorized to perform request');
 
-      throw (
-        error ||
-        new UnauthorizedException(this.i18n.t(ErrorCodes.NotAuthorizedRequest))
-      );
+      throw error;
+      // error ||
+      // new UnauthorizedException(this.i18n.t(ErrorCodes.NotAuthorizedRequest))
     }
 
     if (isEmpty(this.permissions)) {
@@ -75,9 +73,8 @@ export class JwtPermissionsGuard
     if (difference(this.permissions, user.permissions).length) {
       this.logger.error('User is not authorized to perform request');
 
-      throw new UnauthorizedException(
-        this.i18n.t(ErrorCodes.NotAuthorizedRequest),
-      );
+      throw new UnauthorizedException();
+      // this.i18n.t(ErrorCodes.NotAuthorizedRequest),
     }
     return user;
   }

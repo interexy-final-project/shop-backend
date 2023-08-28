@@ -12,6 +12,10 @@ import { ProductStatuses } from '../enums/product-statuses.enum';
 import { CartItemDto } from 'app/cart/dto/cart-item.dto';
 import { ProductEntity } from '../entities/product.entity';
 import { UUIDDto } from 'shared/dtos/uuid.dto';
+import { ProductCategories } from '../enums/product-categories.enum';
+import { JeansTypeEntity } from 'app/jeans-type/entities/jeans-type.entity';
+import { TShirtTypeEntity } from 'app/t-shirt-type/entities/t-shirt.entity';
+import { ShirtTypeEntity } from 'app/shirt-type/entities/shirt-type.entity';
 
 export class ProductDto extends UUIDDto {
   @IsString()
@@ -41,18 +45,35 @@ export class ProductDto extends UUIDDto {
   @IsNumber()
   amount!: number;
 
-  @IsString()
-  category!: string;
+  @IsEnum(ProductCategories)
+  category!: ProductCategories;
 
   @ValidateNested({ context: CartItemDto })
-  cartItem?: CartItemDto[];
+  cartItem?: CartItemDto;
 
-  public static fromEntity(entity?: ProductEntity) {
+  public static fromEntity(
+    entity?:
+      | ProductEntity
+      | JeansTypeEntity
+      | TShirtTypeEntity
+      | ShirtTypeEntity,
+  ) {
     if (!entity) {
       return;
     }
+    let it = null;
+    if (JeansTypeEntity) {
+      it = new JeansTypeEntity();
+    }
 
-    const it = new ProductDto();
+    if (TShirtTypeEntity) {
+      it = new TShirtTypeEntity();
+    }
+
+    if (ShirtTypeEntity) {
+      it = new ShirtTypeEntity();
+    }
+
     it.id = entity.id;
     it.name = entity.name;
     it.description = entity.description;
@@ -70,7 +91,13 @@ export class ProductDto extends UUIDDto {
     return it;
   }
 
-  public static fromEntities(entities?: ProductEntity[]) {
+  public static fromEntities(
+    entities?:
+      | ProductEntity[]
+      | JeansTypeEntity[]
+      | TShirtTypeEntity[]
+      | ShirtTypeEntity[],
+  ) {
     if (!entities?.map) {
       return;
     }

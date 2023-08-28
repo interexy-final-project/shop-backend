@@ -7,8 +7,8 @@ import { UserRoleDto } from 'app/user-roles/dto/user-role.dto';
 
 @Injectable()
 export class UserRepo extends EntityRepository<UserEntity> {
-  constructor(private readonly manager: EntityManager) {
-    super(manager, UserEntity);
+  constructor(manager: EntityManager) {
+    super(manager, UserEntity)
   }
 
   async getList() {
@@ -31,7 +31,7 @@ export class UserRepo extends EntityRepository<UserEntity> {
     const newUser = this.create({
       email: dto.email,
       password: dto.password,
-      role: dto_role.type,
+      role: dto_role.id,
     });
     await this.persistAndFlush(newUser);
 

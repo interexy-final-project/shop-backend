@@ -10,6 +10,7 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { ProductsModule } from 'app/products/products.module';
 import { AuthModule } from 'app/auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+
 import {
   AcceptLanguageResolver,
   HeaderResolver,
@@ -19,9 +20,18 @@ import {
 } from 'nestjs-i18n';
 import * as path from 'path';
 
+import { JeansTypeModule } from './app/jeans-type/jeans-type.module';
+import { CartModule } from 'app/cart/cart.module';
+import { OrderModule } from 'app/order/order.module';
+import { OrderItemModule } from 'app/order-item/order-item.module';
+
+
 @Module({
   imports: [
     AuthModule,
+    CartModule,
+    OrderModule,
+    OrderItemModule,
     ConfigModule.forRoot({
       envFilePath: '.env',
       load: [app_config, database_config],
@@ -33,6 +43,7 @@ import * as path from 'path';
       inject: [ConfigService],
     }),
     ProductsModule,
+
     I18nModule.forRoot({
       fallbackLanguage: 'en',
       loaderOptions: {
@@ -41,6 +52,9 @@ import * as path from 'path';
       },
       resolvers: [new HeaderResolver(['x-lang'])],
     }),
+
+    JeansTypeModule,
+
   ],
   controllers: [AppController],
   providers: [AppService],
