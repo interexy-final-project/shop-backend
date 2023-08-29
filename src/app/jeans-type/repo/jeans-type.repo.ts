@@ -62,6 +62,7 @@ export class JeansTypeRepo extends EntityRepository<JeansTypeEntity> {
       message: 'Product has been deleted successfully',
     };
   }
+
   async getById(id: string) {
     try {
       return await this.getEntityManager().findOne(JeansTypeEntity, { id });

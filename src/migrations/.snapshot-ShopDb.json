@@ -148,6 +148,8 @@
         },
         "waist_girth": {
           "name": "waist_girth",
+        "sleeve_length": {
+          "name": "sleeve_length",
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
@@ -607,7 +609,8 @@
           "primary": false,
           "nullable": false,
           "enumItems": [
-            "Created"
+            "Active",
+            "Archived"
           ],
           "mappedType": "enum"
         },
@@ -669,12 +672,12 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "bigserial",
-          "unsigned": true,
-          "autoincrement": true,
-          "primary": true,
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
           "nullable": false,
-          "mappedType": "bigint"
+          "mappedType": "uuid"
         },
         "created": {
           "name": "created",
@@ -722,18 +725,6 @@
           "primary": false,
           "nullable": false,
           "mappedType": "integer"
-        },
-        "status": {
-          "name": "status",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "enumItems": [
-            "Created"
-          ],
-          "mappedType": "enum"
         }
       },
       "name": "order_items",
@@ -797,14 +788,14 @@
           "length": 6,
           "mappedType": "datetime"
         },
-        "order_id": {
-          "name": "order_id",
-          "type": "varchar(255)",
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": false,
-          "mappedType": "string"
+          "nullable": true,
+          "mappedType": "uuid"
         },
         "product_id": {
           "name": "product_id",
@@ -812,7 +803,7 @@
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": false,
+          "nullable": true,
           "mappedType": "uuid"
         },
         "quantity": {
@@ -822,16 +813,8 @@
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "default": "1",
           "mappedType": "integer"
-        },
-        "user_id": {
-          "name": "user_id",
-          "type": "uuid",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": true,
-          "mappedType": "uuid"
         }
       },
       "name": "cart_items",
@@ -881,6 +864,7 @@
             "id"
           ],
           "referencedTableName": "public.products",
+          "deleteRule": "set null",
           "updateRule": "cascade"
         }
       }

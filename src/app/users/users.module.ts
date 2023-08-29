@@ -14,6 +14,6 @@ import { UserRepo } from './repo/user.repo';
     SecurityModule,
   ],
   controllers: [UsersController],
-  providers: [UsersService, UserRepo],
+  providers: [UsersService, UserRepo]
 })
 export class UsersModule {}
