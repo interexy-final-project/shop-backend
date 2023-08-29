@@ -160,8 +160,8 @@
           "nullable": true,
           "mappedType": "string"
         },
-        "sleeve_girth": {
-          "name": "sleeve_girth",
+        "sleeve_length": {
+          "name": "sleeve_length",
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,

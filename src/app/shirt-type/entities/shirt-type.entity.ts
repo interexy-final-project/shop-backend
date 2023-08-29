@@ -9,6 +9,6 @@ import { ProductTypes } from 'app/products/enums/product-types.enum';
   discriminatorValue: ProductTypes.SHIRT,
 })
 export class ShirtTypeEntity extends ProductEntity {
-  @Property({ name: 'sleeve_girth' })
-  sleeve_Girth?: string;
+  @Property({ name: 'sleeve_length' })
+  sleeve_Length?: string;
 }
