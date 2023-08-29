@@ -11,16 +11,11 @@ import { ProductsModule } from 'app/products/products.module';
 import { AuthModule } from 'app/auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
-import {
-  AcceptLanguageResolver,
-  HeaderResolver,
-  I18nModule,
-  I18nService,
-  QueryResolver,
-} from 'nestjs-i18n';
+import { HeaderResolver, I18nModule } from 'nestjs-i18n';
 import * as path from 'path';
 
 import { JeansTypeModule } from './app/jeans-type/jeans-type.module';
+import { TShirtTypeModule } from './app/t-shirt-type/t-shirt-type.module';
 import { CartModule } from 'app/cart/cart.module';
 import { OrderModule } from 'app/order/order.module';
 import { OrderItemModule } from 'app/order-item/order-item.module';
@@ -54,6 +49,8 @@ import { ShirtTypeModule } from 'app/shirt-type/shirt-type.module';
     }),
 
     JeansTypeModule,
+    AuthModule,
+    TShirtTypeModule,
     ShirtTypeModule,
   ],
   controllers: [AppController],

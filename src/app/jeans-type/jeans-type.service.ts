@@ -1,13 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { JeansTypeRepo } from './repo/jeans-type.repo';
-import { JeansTypeDto } from './dto/jeans-type.dto';
 import { PaginationQueryDto } from 'shared/dtos/pagination-query.dto';
+import { JeansTypeEntity } from './entities/jeans-type.entity';
+import { NewJeansTypeForm } from './dto/new-jeans-type.form';
 
 @Injectable()
 export class JeansTypeService {
   public constructor(private readonly repo_jeans_type: JeansTypeRepo) {}
 
-  public async addJeansProduct(dto: JeansTypeDto) {
+  public async addJeansProduct(dto: NewJeansTypeForm) {
     return this.repo_jeans_type.addOne(dto);
   }
 
@@ -19,8 +20,11 @@ export class JeansTypeService {
     return this.repo_jeans_type.deleteById(id);
   }
 
-  public async updateJeansProduct(id: string, dtoToUpdate: JeansTypeDto) {
-    return this.repo_jeans_type.updateById(id, dtoToUpdate);
+  public async updateJeansProduct(
+    entityToUpdate: JeansTypeEntity,
+    dto: NewJeansTypeForm,
+  ) {
+    return this.repo_jeans_type.updateById(entityToUpdate, dto);
   }
 
   public async getAllJeansProducts(paginationQuery: PaginationQueryDto) {
