@@ -1,4 +1,4 @@
-import { Entity, Property } from '@mikro-orm/core';
+import { Entity, Enum, Property } from '@mikro-orm/core';
 import { TShirtTypeRepo } from '../repo/t-shirt-type.repo';
 import { ProductEntity } from 'app/products/entities/product.entity';
 import { ProductTypes } from 'app/products/enums/product-types.enum';
@@ -10,4 +10,9 @@ import { ProductTypes } from 'app/products/enums/product-types.enum';
 export class TShirtTypeEntity extends ProductEntity {
   @Property({ name: 'waist_girth' })
   waistGirth?: string;
+
+  @Enum({
+    name: 'type',
+  })
+  type?: ProductTypes.JEANS;
 }

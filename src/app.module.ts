@@ -11,6 +11,7 @@ import { ProductsModule } from 'app/products/products.module';
 import { AuthModule } from 'app/auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JeansTypeModule } from './app/jeans-type/jeans-type.module';
+import { TShirtTypeModule } from './app/t-shirt-type/t-shirt-type.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { JeansTypeModule } from './app/jeans-type/jeans-type.module';
     ProductsModule,
     JeansTypeModule,
     AuthModule,
+    TShirtTypeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -70,8 +70,8 @@
           "primary": false,
           "nullable": false,
           "enumItems": [
-            "Black",
-            "White",
+            "BLACK",
+            "WHITE",
             "RED",
             "BLUE"
           ],
@@ -123,20 +123,6 @@
           "nullable": false,
           "mappedType": "integer"
         },
-        "type": {
-          "name": "type",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "enumItems": [
-            "Jeans-type",
-            "Shirt-type",
-            "T-shirt-type"
-          ],
-          "mappedType": "enum"
-        },
         "category": {
           "name": "category",
           "type": "text",
@@ -146,7 +132,7 @@
           "nullable": false,
           "enumItems": [
             "Woman",
-            "Man",
+            "Men",
             "Children"
           ],
           "mappedType": "enum"
@@ -160,8 +146,8 @@
           "nullable": true,
           "mappedType": "string"
         },
-        "sleeve_girth": {
-          "name": "sleeve_girth",
+        "waist_girth": {
+          "name": "waist_girth",
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
@@ -169,8 +155,22 @@
           "nullable": true,
           "mappedType": "string"
         },
-        "waist_girth": {
-          "name": "waist_girth",
+        "type": {
+          "name": "type",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "enumItems": [
+            "Jeans-type",
+            "T-shirt-type",
+            "Shirt-type"
+          ],
+          "mappedType": "enum"
+        },
+        "sleeve_girth": {
+          "name": "sleeve_girth",
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,

@@ -5,7 +5,6 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator';
-import { BaseEntity } from 'shared/entities/base.entity';
 import { ProductColors } from '../enums/product-colors.enum';
 import { ProductSizes } from '../enums/product-sizes.enum';
 import { ProductStatuses } from '../enums/product-statuses.enum';
@@ -16,6 +15,7 @@ import { ProductCategories } from '../enums/product-categories.enum';
 import { JeansTypeEntity } from 'app/jeans-type/entities/jeans-type.entity';
 import { TShirtTypeEntity } from 'app/t-shirt-type/entities/t-shirt.entity';
 import { ShirtTypeEntity } from 'app/shirt-type/entities/shirt-type.entity';
+import { ProductTypes } from '../enums/product-types.enum';
 
 export class ProductDto extends UUIDDto {
   @IsString()
@@ -38,6 +38,9 @@ export class ProductDto extends UUIDDto {
 
   @IsEnum(ProductStatuses)
   status!: ProductStatuses;
+
+  @IsEnum(ProductTypes)
+  type!: ProductTypes;
 
   @IsString()
   description: string;
@@ -84,6 +87,7 @@ export class ProductDto extends UUIDDto {
     it.status = entity.status;
     it.amount = entity.amount;
     it.category = entity.category;
+    it.type = entity.type;
     it.created = entity.created.valueOf();
     it.updated = entity.updated.valueOf();
     // it.cartItem = CartItemDto.fromEntities(entity.cartItem);
