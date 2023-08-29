@@ -1,9 +1,9 @@
 import { Migration } from '@mikro-orm/migrations';
 
-export class Migration20230828084051 extends Migration {
+export class Migration20230828155618 extends Migration {
 
   async up(): Promise<void> {
-    this.addSql('create table "products" ("id" uuid not null, "created" timestamptz(0) not null, "updated" timestamptz(0) not null, "name" text not null, "price" int not null, "images" text[] not null, "colors" text[] not null, "sizes" text[] not null, "status" text check ("status" in (\'Active\', \'Archived\')) not null default \'Active\', "description" text not null, "amount" int not null, "type" text check ("type" in (\'Jeans-type\', \'Shirt-type\', \'T-shirt-type\')) not null, "category" text check ("category" in (\'Woman\', \'Man\', \'Children\')) not null, "hip_girth" varchar(255) null, "sleeve_girth" varchar(255) null, "waist_girth" varchar(255) null, constraint "products_pkey" primary key ("id"));');
+    this.addSql('create table "products" ("id" uuid not null, "created" timestamptz(0) not null, "updated" timestamptz(0) not null, "name" text not null, "price" int not null, "images" text[] not null, "colors" text[] not null, "sizes" text[] not null, "status" text check ("status" in (\'Active\', \'Archived\')) not null default \'Active\', "description" text not null, "amount" int not null, "type" text check ("type" in (\'Jeans-type\', \'Shirt-type\', \'T-shirt-type\')) not null, "category" text check ("category" in (\'Woman\', \'Man\', \'Children\')) not null, "hip_girth" varchar(255) null, "sleeve_length" varchar(255) null, "waist_girth" varchar(255) null, constraint "products_pkey" primary key ("id"));');
     this.addSql('alter table "products" add constraint "products_name_unique" unique ("name");');
     this.addSql('create index "products_type_index" on "products" ("type");');
 
@@ -18,7 +18,7 @@ export class Migration20230828084051 extends Migration {
 
     this.addSql('create table "orders" ("id" uuid not null, "created" timestamptz(0) not null, "updated" timestamptz(0) not null, "user_id" uuid null, "total" int not null, "status" text check ("status" in (\'Active\', \'Archived\')) not null, "address" jsonb not null, "payment_method" text check ("payment_method" in (\'Card\', \'Cash\', \'Kidney\')) not null, constraint "orders_pkey" primary key ("id"));');
 
-    this.addSql('create table "order_items" ("id" uuid not null, "created" timestamptz(0) not null, "updated" timestamptz(0) not null, "order_id" uuid null, "product" jsonb not null, "quantity" int not null, "status" text check ("status" in (\'Active\', \'Archived\')) not null, constraint "order_items_pkey" primary key ("id"));');
+    this.addSql('create table "order_items" ("id" uuid not null, "created" timestamptz(0) not null, "updated" timestamptz(0) not null, "order_id" uuid null, "product" jsonb not null, "quantity" int not null, constraint "order_items_pkey" primary key ("id"));');
 
     this.addSql('create table "cart_items" ("id" uuid not null, "created" timestamptz(0) not null, "updated" timestamptz(0) not null, "user_id" uuid null, "product_id" uuid null, "quantity" int not null default 1, constraint "cart_items_pkey" primary key ("id"));');
     this.addSql('alter table "cart_items" add constraint "cart_items_product_id_unique" unique ("product_id");');

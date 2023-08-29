@@ -24,7 +24,7 @@ import { JeansTypeModule } from './app/jeans-type/jeans-type.module';
 import { CartModule } from 'app/cart/cart.module';
 import { OrderModule } from 'app/order/order.module';
 import { OrderItemModule } from 'app/order-item/order-item.module';
-
+import { ShirtTypeModule } from 'app/shirt-type/shirt-type.module';
 
 @Module({
   imports: [
@@ -54,7 +54,7 @@ import { OrderItemModule } from 'app/order-item/order-item.module';
     }),
 
     JeansTypeModule,
-
+    ShirtTypeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
