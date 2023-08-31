@@ -146,8 +146,6 @@
           "nullable": true,
           "mappedType": "string"
         },
-        "waist_girth": {
-          "name": "waist_girth",
         "sleeve_length": {
           "name": "sleeve_length",
           "type": "varchar(255)",
@@ -157,28 +155,23 @@
           "nullable": true,
           "mappedType": "string"
         },
-        "type": {
-          "name": "type",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": true,
-          "enumItems": [
-            "Jeans-type",
-            "T-shirt-type",
-            "Shirt-type"
-          ],
-          "mappedType": "enum"
-        },
-        "sleeve_girth": {
-          "name": "sleeve_girth",
+        "waist_girth": {
+          "name": "waist_girth",
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
           "mappedType": "string"
+        },
+        "type": {
+          "name": "type",
+          "type": "smallint",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "enum"
         }
       },
       "name": "products",
@@ -192,15 +185,6 @@
           "keyName": "products_name_unique",
           "primary": false,
           "unique": true
-        },
-        {
-          "columnNames": [
-            "type"
-          ],
-          "composite": false,
-          "keyName": "products_type_index",
-          "primary": false,
-          "unique": false
         },
         {
           "keyName": "products_pkey",
@@ -375,12 +359,12 @@
         },
         "rt_hash": {
           "name": "rt_hash",
-          "type": "varchar(255)",
+          "type": "text",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
-          "mappedType": "string"
+          "mappedType": "text"
         },
         "status": {
           "name": "status",
@@ -392,7 +376,7 @@
           "default": "'Active'",
           "enumItems": [
             "Active",
-            "Inactive"
+            "Archived"
           ],
           "mappedType": "enum"
         },

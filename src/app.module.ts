@@ -20,13 +20,18 @@ import { CartModule } from 'app/cart/cart.module';
 import { OrderModule } from 'app/order/order.module';
 import { OrderItemModule } from 'app/order-item/order-item.module';
 import { ShirtTypeModule } from 'app/shirt-type/shirt-type.module';
+import { EventEmitterModule } from '@nestjs/event-emitter';
+import { EventsModule } from 'app/events/events.module';
+import { UsersModule } from 'app/users/users.module';
+import { UserRolesModule } from 'app/user-roles/users-roles.module';
 
 @Module({
   imports: [
-    AuthModule,
     CartModule,
     OrderModule,
     OrderItemModule,
+    UsersModule,
+    UserRolesModule,
     ConfigModule.forRoot({
       envFilePath: '.env',
       load: [app_config, database_config],
@@ -52,6 +57,8 @@ import { ShirtTypeModule } from 'app/shirt-type/shirt-type.module';
     AuthModule,
     TShirtTypeModule,
     ShirtTypeModule,
+    EventsModule,
+    EventEmitterModule.forRoot({}),
   ],
   controllers: [AppController],
   providers: [AppService],
