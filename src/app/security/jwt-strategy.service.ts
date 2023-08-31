@@ -10,10 +10,13 @@ import { SecurityService } from './security.service';
 import { ErrorCodes } from 'shared/enums/error-codes.enum';
 
 import { I18nService } from 'nestjs-i18n';
-
+import { PassportStrategy } from '@nestjs/passport';
 
 @Injectable()
-export class JwtStrategyService extends Strategy {
+export class JwtStrategyService extends PassportStrategy(
+  Strategy,
+  'jwt-strategy',
+) {
   readonly name = 'jwt-strategy';
 
   constructor(
@@ -21,7 +24,6 @@ export class JwtStrategyService extends Strategy {
     private readonly securityService: SecurityService,
 
     private readonly i18n: I18nService,
-
   ) {
     super(
       {
@@ -29,7 +31,6 @@ export class JwtStrategyService extends Strategy {
         passReqToCallback: true,
 
         secretOrKey: configService.get('app.jwt_secret'),
-
       },
       async (req, payload, next) => await this.verify(req, payload, next),
     );
@@ -44,9 +45,7 @@ export class JwtStrategyService extends Strategy {
     }
 
     if (user.status !== UserStatuses.ACTIVE) {
-
       return done(this.i18n.t(ErrorCodes.InvalidStatus_UserInactive), false);
-
     }
 
     done(null, payload);

@@ -5,7 +5,6 @@ import {
   Logger,
   SetMetadata,
   UnauthorizedException,
-  createParamDecorator,
 } from '@nestjs/common';
 import { UserPermissions } from 'app/user-roles/enums/user-permissions.enum';
 import { UserSessionDto } from '../dtos/user-session.dto';
@@ -18,14 +17,6 @@ import { difference, isEmpty, includes } from 'lodash';
 
 export const RestrictRequest = (...scopes: UserPermissions[]) =>
   SetMetadata('user_permissions', scopes);
-
-export const CurrentUser = createParamDecorator(
-  (data: unknown, context: ExecutionContext) => {
-    const request = context.switchToHttp().getRequest();
-
-    return request.user as UserSessionDto;
-  },
-);
 
 @Injectable()
 export class JwtPermissionsGuard

@@ -36,6 +36,8 @@ export class AuthService {
 
   async signUp(form: UserSignUpForm) {
     const e_role = await this.repo_user_roles.getDefaultRole(UserRoles.CLIENT);
+    console.log(e_role);
+
     const dto_role = UserRoleDto.fromEntity(e_role);
     const entity = await this.repo_users.addOneUser(form, dto_role);
     const { access_token, refresh_token } =

@@ -1,22 +1,9 @@
-import {
-  Body,
-  Controller,
-  Post,
-  BadRequestException,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Post, BadRequestException } from '@nestjs/common';
 
 import { AuthService } from './auth.service';
 import { UserSignInForm } from './dto/user-sign-in.form';
 import { UserSignUpForm } from './dto/user-sign-up.form';
 import { ErrorCodes } from 'shared/enums/error-codes.enum';
-import {
-  CurrentUser,
-  JwtPermissionsGuard,
-  RestrictRequest,
-} from 'app/security/guards/jwt-permissions.guard';
-import { UserPermissions } from 'app/user-roles/enums/user-permissions.enum';
-import { UserSessionDto } from 'app/security/dtos/user-session.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -52,11 +39,4 @@ export class AuthController {
 
   @Post('access-token')
   async getAccessToken() {}
-
-  @Post('sign-out')
-  @UseGuards(JwtPermissionsGuard)
-  @RestrictRequest(UserPermissions.SignOut)
-  async signOut(@CurrentUser() user: UserSessionDto) {
-    return null;
-  }
 }
