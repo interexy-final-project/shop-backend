@@ -10,7 +10,7 @@ import { ProductCategories } from './enums/product-categories.enum';
 export class ProductsService {
   constructor(private readonly repo_products: ProductsRepo) {}
 
-  public async getAllProducts(
+  public async getAllProductsByFilters(
     category: ProductCategories,
     sizes: ProductSizes[],
     colors: ProductColors[],

@@ -10,15 +10,15 @@ import { ProductTypes } from './enums/product-types.enum';
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
-  @Get()
-  public async getProducts(
+  @Get('byFilters')
+  public async getProductsByFilters(
     @Query('category') category: ProductCategories,
     @Query('sizes') sizes: ProductSizes[],
     @Query('colors') colors: ProductColors[],
     @Query('type') type: ProductTypes,
     @Query() paginationQuery: PaginationQueryDto,
   ) {
-    const entities = await this.productsService.getAllProducts(
+    const entities = await this.productsService.getAllProductsByFilters(
       category,
       sizes,
       colors,
@@ -26,59 +26,6 @@ export class ProductsController {
       paginationQuery,
     );
     const products = ProductDto.fromEntities(entities);
-    return products || [];
-  }
-
-  @Get('byCategory/:category')
-  public async getByCategory(
-    @Param('category') category: ProductCategories,
-    @Query() paginationQuery: PaginationQueryDto,
-  ) {
-    const entitiesAndCount =
-      await this.productsService.getAllProductsByCategory(
-        category,
-        paginationQuery,
-      );
-    const products = ProductDto.fromEntities(entitiesAndCount);
-    return products || [];
-  }
-
-  @Get('bySizes')
-  public async getBySizes(
-    @Query('sizes') sizes: ProductSizes[],
-    @Query() paginationQuery: PaginationQueryDto,
-  ) {
-    const entitiesAndCount = await this.productsService.getAllProductsBySizes(
-      sizes,
-      paginationQuery,
-    );
-    const products = ProductDto.fromEntities(entitiesAndCount);
-    return products || [];
-  }
-
-  @Get('byColors')
-  public async getByColors(
-    @Query('colors') colors: ProductColors[],
-    @Query() paginationQuery: PaginationQueryDto,
-  ) {
-    const entitiesAndCount = await this.productsService.getAllProductsByColors(
-      colors,
-      paginationQuery,
-    );
-    const products = ProductDto.fromEntities(entitiesAndCount);
-    return products || [];
-  }
-
-  @Get('byType/:type')
-  public async getByType(
-    @Param('type') type: ProductTypes,
-    @Query() paginationQuery: PaginationQueryDto,
-  ) {
-    const entitiesAndCount = await this.productsService.getAllProductsByType(
-      type,
-      paginationQuery,
-    );
-    const products = ProductDto.fromEntities(entitiesAndCount);
     return products || [];
   }
 }
