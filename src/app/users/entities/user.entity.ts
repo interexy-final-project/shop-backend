@@ -29,7 +29,7 @@ export class UserEntity extends UUIDEntity {
   @Property({ name: 'password' })
   password!: string;
 
-  @Property({ name: 'rtHash', nullable: true })
+  @Property({ name: 'rtHash', nullable: true, type: 'text' })
   rtHash?: string;
 
   @Enum({

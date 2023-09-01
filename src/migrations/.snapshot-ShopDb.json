@@ -70,8 +70,8 @@
           "primary": false,
           "nullable": false,
           "enumItems": [
-            "Black",
-            "White",
+            "BLACK",
+            "WHITE",
             "RED",
             "BLUE"
           ],
@@ -123,20 +123,6 @@
           "nullable": false,
           "mappedType": "integer"
         },
-        "type": {
-          "name": "type",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "enumItems": [
-            "Jeans-type",
-            "Shirt-type",
-            "T-shirt-type"
-          ],
-          "mappedType": "enum"
-        },
         "category": {
           "name": "category",
           "type": "text",
@@ -146,7 +132,7 @@
           "nullable": false,
           "enumItems": [
             "Woman",
-            "Man",
+            "Men",
             "Children"
           ],
           "mappedType": "enum"
@@ -160,8 +146,8 @@
           "nullable": true,
           "mappedType": "string"
         },
-        "sleeve_girth": {
-          "name": "sleeve_girth",
+        "sleeve_length": {
+          "name": "sleeve_length",
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
@@ -177,6 +163,15 @@
           "primary": false,
           "nullable": true,
           "mappedType": "string"
+        },
+        "type": {
+          "name": "type",
+          "type": "smallint",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "enum"
         }
       },
       "name": "products",
@@ -190,15 +185,6 @@
           "keyName": "products_name_unique",
           "primary": false,
           "unique": true
-        },
-        {
-          "columnNames": [
-            "type"
-          ],
-          "composite": false,
-          "keyName": "products_type_index",
-          "primary": false,
-          "unique": false
         },
         {
           "keyName": "products_pkey",
@@ -373,12 +359,12 @@
         },
         "rt_hash": {
           "name": "rt_hash",
-          "type": "varchar(255)",
+          "type": "text",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
-          "mappedType": "string"
+          "mappedType": "text"
         },
         "status": {
           "name": "status",
@@ -390,7 +376,7 @@
           "default": "'Active'",
           "enumItems": [
             "Active",
-            "Inactive"
+            "Archived"
           ],
           "mappedType": "enum"
         },

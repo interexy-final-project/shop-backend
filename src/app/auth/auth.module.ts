@@ -7,6 +7,9 @@ import { UserRepo } from 'app/users/repo/user.repo';
 import { MikroOrmModule } from '@mikro-orm/nestjs/mikro-orm.module';
 import { UserRolesRepo } from 'app/user-roles/repo/user-roles.repo';
 
+import { JwtPermissionsGuard } from 'app/security/guards/jwt-permissions.guard';
+
+
 @Module({
   imports: [
     MikroOrmModule.forFeature({
@@ -14,7 +17,9 @@ import { UserRolesRepo } from 'app/user-roles/repo/user-roles.repo';
     }),
     SecurityModule,
   ],
-  providers: [AuthService, UserRepo, UserRolesRepo],
+
+  providers: [AuthService, UserRepo, UserRolesRepo, JwtPermissionsGuard],
+
   controllers: [AuthController],
   exports: [AuthService],
 })

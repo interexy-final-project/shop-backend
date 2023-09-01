@@ -1,4 +1,4 @@
-import { Controller, Param, UseGuards } from '@nestjs/common';
+import { Controller, Delete, Param, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Get } from '@nestjs/common';
 import { UserDto } from './dto/user.dto';
@@ -22,7 +22,7 @@ export class UsersController {
   }
 
   @Get(':userId')
-  @UseGuards(JwtPermissionsGuard)
+  // @UseGuards(JwtPermissionsGuard)
   @RestrictRequest(UserPermissions.GetUserInfo)
   async getUserInfo(@Param('userId') userId: string) {
     const entity = await this.usersService.getUserInfo(userId);
@@ -30,14 +30,10 @@ export class UsersController {
     return user;
   }
 
-  // @Post()
-  // async addUsers(@Body() body: NewUserForm[]) {
-  //   const [form] = body;
-
-  //   const dto = NewUserForm.from(form);
-
-  //   const entity = await this.usersService.addNewUser(dto);
-  //   const user = UserDto.fromEntity(entity);
-  //   return user;
-  // }
+  @Delete(':userId')
+  // @UseGuards(JwtPermissionsGuard)
+  @RestrictRequest(UserPermissions.SignOut)
+  async deleteUser(@Param('userId') userId: string) {
+    await this.usersService.deleteUser(userId);
+  }
 }
