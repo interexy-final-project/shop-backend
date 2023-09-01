@@ -56,7 +56,7 @@ export class ShirtTypeController {
     const entitiesAndCount = await this.shirtTypeService.getAllShirtProducts(
       paginationQuery,
     );
-    const shirtProducts = ShirtTypeDto.fromEntities(entitiesAndCount[0]);
+    const shirtProducts = ShirtTypeDto.fromEntities(entitiesAndCount);
     return shirtProducts || [];
   }
 }

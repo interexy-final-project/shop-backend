@@ -50,8 +50,8 @@ export class TShirtTypeController {
     const entitiesAndCount = await this.tshirtTypeService.getAllTShirtProducts(
       paginationQuery,
     );
-    const jeansProducts = TShirtTypeDto.fromEntities(entitiesAndCount[0]);
-    return { products: jeansProducts, count: entitiesAndCount[1] } || [];
+    const jeansProducts = TShirtTypeDto.fromEntities(entitiesAndCount);
+    return jeansProducts || [];
   }
 
   @Delete(':id')
