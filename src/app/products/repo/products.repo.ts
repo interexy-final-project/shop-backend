@@ -45,11 +45,12 @@ export class ProductsRepo extends EntityRepository<ProductEntity> {
     category: string,
     paginationQuery: PaginationQueryDto,
   ) {
+    const { count, page } = paginationQuery;
+
     return this.getEntityManager().findAndCount(
       ProductEntity,
       { category: ProductCategories[category] },
-      { limit: paginationQuery.limit, offset: paginationQuery.offset },
+      { limit: count ?? 10, offset: page * count ?? 0 },
     );
   }
-
 }

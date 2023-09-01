@@ -12,10 +12,12 @@ export class TShirtTypeRepo extends EntityRepository<TShirtTypeEntity> {
     super(manager, TShirtTypeEntity);
   }
   async getAll(paginationQuery: PaginationQueryDto) {
+    const { page, count } = paginationQuery;
+
     return this.getEntityManager().findAndCount(
       TShirtTypeEntity,
       {},
-      { limit: paginationQuery.limit, offset: paginationQuery.offset },
+      { limit: count ?? 10, offset: page * count ?? 0 },
     );
   }
 
