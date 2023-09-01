@@ -5,6 +5,7 @@ import {
   Body,
   Put,
   Param,
+  Query,
   Delete,
 } from '@nestjs/common';
 import { OrderService } from './order.service';
@@ -15,18 +16,38 @@ import { OrderStatuses } from './enums/order-statuses.enum';
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
+  @Get()
+  async getAll(
+    @Query('page') page,
+    @Query('count') count,
+    @Query('sortBy') orderBy,
+    @Query('direction') direction,
+  ) {
+    const entities = await this.orderService.getOrders({
+      page,
+      count,
+      orderBy,
+      direction,
+    });
+    const orders = OrderDto.fromEntities(entities);
+    return orders || [];
+  }
+
   @Post()
-  create(@Body() createOrderDto: OrderDto) {
-    return this.orderService.createOrder(createOrderDto);
+  async create(@Body() createOrderDto: OrderDto) {
+    return await this.orderService.createOrder(createOrderDto);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string, @Body() status: OrderStatuses) {
-    return this.orderService.getOrderByUserIdAndStatus(id, status);
+  async findOne(@Param('id') id: string, @Body() status: OrderStatuses) {
+    return await this.orderService.getOrderByUserIdAndStatus(id, status);
   }
 
-  @Put(':id')
-  update(@Param('id') id: string) {
-    return this.orderService.updateOrder(id);
+  @Put()
+  async update(@Body() ids: string[]) {
+    //TODO mb should add queries for consistent displaying
+    await this.orderService.updateOrder(ids);
+
+    return await this.orderService.getOrders();
   }
 }

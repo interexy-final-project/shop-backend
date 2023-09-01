@@ -101,10 +101,11 @@ export class ShirtTypeRepo extends EntityRepository<ShirtTypeEntity> {
   }
 
   public async getAll(paginationQuery: PaginationQueryDto) {
+    const { page, count } = paginationQuery;
     return this.getEntityManager().findAndCount(
       ShirtTypeEntity,
       {},
-      { limit: paginationQuery.limit, offset: paginationQuery.offset },
+      { limit: count ?? 10, offset: page * count ?? 0 },
     );
   }
 }

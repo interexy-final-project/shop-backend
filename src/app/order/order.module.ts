@@ -10,11 +10,11 @@ import { CartItemRepo } from 'app/cart/repo/cart-item.repo';
 @Module({
   imports: [
     MikroOrmModule.forFeature({
-      entities: [OrderEntity]
-    })
+      entities: [OrderEntity],
+    }),
   ],
   controllers: [OrderController],
   providers: [OrderService, OrderRepo, OrderItemRepo, CartItemRepo],
-  exports: [OrderService]
+  exports: [OrderService],
 })
 export class OrderModule {}
