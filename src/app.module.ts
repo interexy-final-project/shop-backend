@@ -20,6 +20,7 @@ import { CartModule } from 'app/cart/cart.module';
 import { OrderModule } from 'app/order/order.module';
 import { OrderItemModule } from 'app/order-item/order-item.module';
 import { ShirtTypeModule } from 'app/shirt-type/shirt-type.module';
+import { FetchPropertiesModule } from './app/fetch-properties/fetch-properties.module';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { ShirtTypeModule } from 'app/shirt-type/shirt-type.module';
     AuthModule,
     TShirtTypeModule,
     ShirtTypeModule,
+    FetchPropertiesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -4,7 +4,6 @@ import {
   Controller,
   Delete,
   Get,
-  NotFoundException,
   Param,
   Post,
   Put,
@@ -79,7 +78,7 @@ export class JeansTypeController {
     const entitiesAndCount = await this.jeansTypeService.getAllJeansProducts(
       paginationQuery,
     );
-    const jeansProducts = JeansTypeDto.fromEntities(entitiesAndCount[0]);
+    const jeansProducts = JeansTypeDto.fromEntities(entitiesAndCount);
     return { products: jeansProducts, count: entitiesAndCount[1] } || [];
   }
 }
