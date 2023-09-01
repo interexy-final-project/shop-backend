@@ -146,8 +146,6 @@
           "nullable": true,
           "mappedType": "string"
         },
-        "waist_girth": {
-          "name": "waist_girth",
         "sleeve_length": {
           "name": "sleeve_length",
           "type": "varchar(255)",
@@ -166,9 +164,6 @@
           "nullable": true,
           "mappedType": "string"
         },
-        "sleeve_length": {
-          "name": "sleeve_length",
-          "type": "varchar(255)",
         "type": {
           "name": "type",
           "type": "smallint",

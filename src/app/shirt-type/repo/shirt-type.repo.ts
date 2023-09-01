@@ -1,6 +1,6 @@
 import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
 import { ShirtTypeEntity } from '../entities/shirt-type.entity';
-import { HttpStatus, Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { ShirtTypeDto } from '../dto/shirt-type.dto';
 import { wrap } from '@mikro-orm/core';
 import { PaginationQueryDto } from 'shared/dtos/pagination-query.dto';
@@ -30,6 +30,9 @@ export class ShirtTypeRepo extends EntityRepository<ShirtTypeEntity> {
     wrap(entityToUpdate).assign(updateEntity);
 
     await this.getEntityManager().persistAndFlush(entityToUpdate);
+
+    console.log(entityToUpdate);
+    console.log(updateEntity);
 
     if (entityToUpdate) {
       return {
@@ -98,7 +101,6 @@ export class ShirtTypeRepo extends EntityRepository<ShirtTypeEntity> {
   }
 
   public async getAll(paginationQuery: PaginationQueryDto) {
-    return this.getEntityManager().find(
     const { page, count } = paginationQuery;
     return this.getEntityManager().findAndCount(
       ShirtTypeEntity,

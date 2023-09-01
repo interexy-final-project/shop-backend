@@ -20,11 +20,11 @@ import { CartModule } from 'app/cart/cart.module';
 import { OrderModule } from 'app/order/order.module';
 import { OrderItemModule } from 'app/order-item/order-item.module';
 import { ShirtTypeModule } from 'app/shirt-type/shirt-type.module';
-import { FetchPropertiesModule } from './app/fetch-properties/fetch-properties.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { EventsModule } from 'app/events/events.module';
 import { UsersModule } from 'app/users/users.module';
 import { UserRolesModule } from 'app/user-roles/users-roles.module';
+
 @Module({
   imports: [
     CartModule,
@@ -57,7 +57,6 @@ import { UserRolesModule } from 'app/user-roles/users-roles.module';
     AuthModule,
     TShirtTypeModule,
     ShirtTypeModule,
-    FetchPropertiesModule,
     EventsModule,
     EventEmitterModule.forRoot({}),
   ],

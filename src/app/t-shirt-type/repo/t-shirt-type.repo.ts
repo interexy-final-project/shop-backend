@@ -12,7 +12,6 @@ export class TShirtTypeRepo extends EntityRepository<TShirtTypeEntity> {
     super(manager, TShirtTypeEntity);
   }
   async getAll(paginationQuery: PaginationQueryDto) {
-    return this.getEntityManager().find(
     const { page, count } = paginationQuery;
 
     return this.getEntityManager().findAndCount(
@@ -91,6 +90,7 @@ export class TShirtTypeRepo extends EntityRepository<TShirtTypeEntity> {
       category: dto.category,
       waistGirth: dto.waistGirth,
     };
+    console.log(updatedEntity);
 
     wrap(entityToUpdate).assign(updatedEntity);
     await this.getEntityManager().persistAndFlush(entityToUpdate);

@@ -41,6 +41,7 @@ export class ProductEntity extends BaseEntity {
 
   @Property({ name: 'amount' })
   amount!: number;
+
   @Enum({
     name: 'type',
     array: false,
@@ -51,8 +52,6 @@ export class ProductEntity extends BaseEntity {
   @Enum({ name: 'category', array: false, items: () => ProductCategories })
   category!: ProductCategories;
 
-  @OneToOne(() => CartItemEntity, (cartItem) => cartItem.product, {
-    nullable: true,
-  })
+  @OneToOne(() => CartItemEntity, (cartItem) => cartItem.product, { nullable: true})
   cartItem?: CartItemEntity;
 }

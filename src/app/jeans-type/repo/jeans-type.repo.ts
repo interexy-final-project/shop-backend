@@ -25,6 +25,7 @@ export class JeansTypeRepo extends EntityRepository<JeansTypeEntity> {
       category: dto.category,
       hipGirth: dto.hipGirth,
     };
+    console.log(updatedEntity);
 
     wrap(entityToUpdate).assign(updatedEntity);
     await this.getEntityManager().persistAndFlush(entityToUpdate);
@@ -98,7 +99,7 @@ export class JeansTypeRepo extends EntityRepository<JeansTypeEntity> {
   }
 
   public async getAll(paginationQuery: PaginationQueryDto) {
-    return this.getEntityManager().find(
+    return this.getEntityManager().findAndCount(
       JeansTypeEntity,
       {},
       { limit: paginationQuery.count, offset: paginationQuery.page },
