@@ -5,6 +5,7 @@ import { OrderStatuses } from './enums/order-statuses.enum';
 import { OrderDto } from './dto/order.dto';
 import { CartItemRepo } from 'app/cart/repo/cart-item.repo';
 import { CartItemDto } from 'app/cart/dto/cart-item.dto';
+import { OrderPaginationQueryDto } from './dto/order-pagination-query.dto';
 
 @Injectable()
 export class OrderService {
@@ -13,6 +14,9 @@ export class OrderService {
     private readonly order_item_repo: OrderItemRepo,
     private readonly cart_repo: CartItemRepo,
   ) {}
+  async getOrders(queryParams?:OrderPaginationQueryDto) {
+    return await this.order_repo.getAllOrders(queryParams);
+  }
 
   async getOrderById(id: string) {
     return await this.order_repo.getById(id);
@@ -29,25 +33,31 @@ export class OrderService {
     );
     cartItems.map(async (item) => {
       // const productJSON = awaith this.product_repo.productJSON({item.productId})
-      await this.order_item_repo.createOrderItem({...item, product: {
-        "name": "somename",
-        "price": "223",
-        "images" : ["http://img1", "http://img2"],
-        "colors" : ["RED","BLUE"],
-        "sizes" : ["S", "M"],
-        "status" : "Active",
-        "description" : "some description",
-        "amount" : "5",
-        "category" : "Children",
-        "hip_girth" : "23"
-        }}, id);
+      await this.order_item_repo.createOrderItem(
+        {
+          ...item,
+          product: {
+            name: 'somename',
+            price: '223',
+            images: ['http://img1', 'http://img2'],
+            colors: ['RED', 'BLUE'],
+            sizes: ['S', 'M'],
+            status: 'Active',
+            description: 'some description',
+            amount: '5',
+            category: 'Children',
+            hip_girth: '23',
+          },
+        },
+        id,
+      );
     });
     cartItems.map(async (item) => {
       await this.cart_repo.deleteCartItem(item.id);
     });
   }
 
-  async updateOrder(id: string){
-    return await this.order_repo.updateOrder(id)
+  async updateOrder(ids: string[]) {
+    return await this.order_repo.updateOrders(ids);
   }
 }
