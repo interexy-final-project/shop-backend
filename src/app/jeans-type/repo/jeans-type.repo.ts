@@ -101,7 +101,7 @@ export class JeansTypeRepo extends EntityRepository<JeansTypeEntity> {
     return this.getEntityManager().find(
       JeansTypeEntity,
       {},
-      { limit: paginationQuery.limit, offset: paginationQuery.offset },
+      { limit: paginationQuery.count, offset: paginationQuery.page },
     );
   }
 }

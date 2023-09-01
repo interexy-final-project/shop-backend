@@ -36,9 +36,9 @@ export class OrderDto extends UUIDDto {
   @ValidateNested({ context: OrderItemDto })
   items?: OrderItemDto[];
 
-  public static fromEntity(entity: OrderEntity){
-    if(!entity) {
-      return
+  public static fromEntity(entity: OrderEntity) {
+    if (!entity) {
+      return;
     }
 
     const dto = new OrderDto();
@@ -51,5 +51,13 @@ export class OrderDto extends UUIDDto {
     dto.address = entity.address;
 
     return dto;
+  }
+
+  public static fromEntities(entities: OrderEntity[]) {
+    if (!entities?.map) {
+      return;
+    }
+
+    return entities.map((entity) => this.fromEntity(entity));
   }
 }

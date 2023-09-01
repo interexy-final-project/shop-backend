@@ -4,11 +4,12 @@ import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
 import { UserEntity } from 'app/users/entities/user.entity';
 import { UserSignUpForm } from 'app/auth/dto/user-sign-up.form';
 import { UserRoleDto } from 'app/user-roles/dto/user-role.dto';
+import { UserStatuses } from '../enums/user-statuses.enum';
 
 @Injectable()
 export class UserRepo extends EntityRepository<UserEntity> {
   constructor(manager: EntityManager) {
-    super(manager, UserEntity)
+    super(manager, UserEntity);
   }
 
   async getList() {
@@ -45,5 +46,17 @@ export class UserRepo extends EntityRepository<UserEntity> {
     );
 
     return hash;
+  }
+
+  async deleteUser(userId: string): Promise<UserEntity | null> {
+    const user = await this.findOneOrFail({ id: userId });
+
+    if (user) {
+      user.status = UserStatuses.ARCHIVED;
+      user.rtHash = null;
+      await this.persistAndFlush(user);
+    }
+
+    return user ?? null;
   }
 }
