@@ -5,11 +5,49 @@ import { PaginationQueryDto } from 'shared/dtos/pagination-query.dto';
 import { ProductCategories } from '../enums/product-categories.enum';
 import { ProductsPaginationQueryDto } from '../dto/products-pagination-query.dto';
 import { ProductStatuses } from '../enums/product-statuses.enum';
+import { ProductColors } from '../enums/product-colors.enum';
+import { ProductSizes } from '../enums/product-sizes.enum';
+import { ProductTypes } from '../enums/product-types.enum';
 
 @Injectable()
 export class ProductsRepo extends EntityRepository<ProductEntity> {
   constructor(manager: EntityManager) {
     super(manager, ProductEntity);
+  }
+
+  async getAll(
+    category: ProductCategories,
+    sizes: ProductSizes[],
+    colors: ProductColors[],
+    type: ProductTypes,
+    paginationQuery: PaginationQueryDto,
+  ) {
+    const filterOptions: { [key: string]: any } = {};
+
+    if (category) {
+      filterOptions.category = category;
+    }
+
+    if (sizes) {
+      filterOptions.sizes = { $overlap: sizes };
+    }
+
+    if (colors) {
+      filterOptions.colors = { $overlap: colors };
+    }
+
+    if (type) {
+      filterOptions.type = type;
+    }
+    const result = await this.getEntityManager().find(
+      ProductEntity,
+      filterOptions,
+      {
+        limit: paginationQuery.count,
+        offset: paginationQuery.page,
+      },
+    );
+    return result;
   }
 
   async getAllProducts(queryParams?: ProductsPaginationQueryDto) {

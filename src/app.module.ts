@@ -24,6 +24,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { EventsModule } from 'app/events/events.module';
 import { UsersModule } from 'app/users/users.module';
 import { UserRolesModule } from 'app/user-roles/users-roles.module';
+import { FetchPropertiesModule } from 'app/fetch-properties/fetch-properties.module';
 
 @Module({
   imports: [
@@ -58,6 +59,7 @@ import { UserRolesModule } from 'app/user-roles/users-roles.module';
     TShirtTypeModule,
     ShirtTypeModule,
     EventsModule,
+    FetchPropertiesModule,
     EventEmitterModule.forRoot({}),
   ],
   controllers: [AppController],

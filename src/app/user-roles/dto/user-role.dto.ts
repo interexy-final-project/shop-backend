@@ -21,7 +21,6 @@ export class UserRoleDto extends UUIDDto {
 
   public static fromEntity(entity: UserRoleEntity) {
     const dto = new UserRoleDto();
-    console.log(entity)
 
     dto.id = entity.id;
     dto.created = new Date(entity.created).valueOf();
