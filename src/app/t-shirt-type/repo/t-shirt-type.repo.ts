@@ -90,7 +90,6 @@ export class TShirtTypeRepo extends EntityRepository<TShirtTypeEntity> {
       category: dto.category,
       waistGirth: dto.waistGirth,
     };
-    console.log(updatedEntity);
 
     wrap(entityToUpdate).assign(updatedEntity);
     await this.getEntityManager().persistAndFlush(entityToUpdate);

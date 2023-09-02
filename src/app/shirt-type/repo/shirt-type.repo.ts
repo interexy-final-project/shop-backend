@@ -31,9 +31,6 @@ export class ShirtTypeRepo extends EntityRepository<ShirtTypeEntity> {
 
     await this.getEntityManager().persistAndFlush(entityToUpdate);
 
-    console.log(entityToUpdate);
-    console.log(updateEntity);
-
     if (entityToUpdate) {
       return {
         statusCode: HttpStatus.OK,
