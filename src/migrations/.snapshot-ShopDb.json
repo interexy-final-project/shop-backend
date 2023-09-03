@@ -709,6 +709,35 @@
           "primary": false,
           "nullable": false,
           "mappedType": "integer"
+        },
+        "size": {
+          "name": "size",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "enumItems": [
+            "XS",
+            "S",
+            "M"
+          ],
+          "mappedType": "enum"
+        },
+        "color": {
+          "name": "color",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "enumItems": [
+            "BLACK",
+            "WHITE",
+            "RED",
+            "BLUE"
+          ],
+          "mappedType": "enum"
         }
       },
       "name": "order_items",
@@ -799,6 +828,35 @@
           "nullable": false,
           "default": "1",
           "mappedType": "integer"
+        },
+        "size": {
+          "name": "size",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "enumItems": [
+            "XS",
+            "S",
+            "M"
+          ],
+          "mappedType": "enum"
+        },
+        "color": {
+          "name": "color",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "enumItems": [
+            "BLACK",
+            "WHITE",
+            "RED",
+            "BLUE"
+          ],
+          "mappedType": "enum"
         }
       },
       "name": "cart_items",

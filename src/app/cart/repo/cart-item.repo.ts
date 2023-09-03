@@ -16,7 +16,11 @@ export class CartItemRepo extends EntityRepository<CartItemEntity> {
   }
 
   async getCartItems(userId: string) {
-    return await this.getEntityManager().find(CartItemEntity, { userId });
+    return await this.getEntityManager().find(
+      CartItemEntity,
+      { userId },
+      { populate: ['product'] },
+    );
   }
 
   async createNewCartItem(dto: CartItemDto) {
@@ -24,6 +28,8 @@ export class CartItemRepo extends EntityRepository<CartItemEntity> {
       userId: dto.userId,
       quantity: 1,
       productId: dto.productId,
+      size: dto.size,
+      color: dto.color,
     });
 
     return await this.getEntityManager().persistAndFlush(newCartItem);
