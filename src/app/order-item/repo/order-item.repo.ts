@@ -17,6 +17,8 @@ export class OrderItemRepo extends EntityRepository<OrderItemEntity> {
       orderId: orderId,
       product: dto.product,
       quantity: dto.quantity,
+      color: dto.color,
+      size: dto.size,
     });
     return await this.getEntityManager().persistAndFlush(newOrderItem);
   }

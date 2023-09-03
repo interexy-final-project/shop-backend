@@ -30,6 +30,13 @@ export class ProductsController {
     return products || [];
   }
 
+  @Get('byIds')
+  public async getProductsByIds(@Query('ids') ids: string[]) {
+    console.log(ids);
+    const products = this.productsService.getProductsByIds(ids);
+    return products || [];
+  }
+
   @Get()
   async getProducts(
     @Query('page') page,

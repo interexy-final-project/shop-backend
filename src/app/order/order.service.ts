@@ -14,7 +14,7 @@ export class OrderService {
     private readonly order_item_repo: OrderItemRepo,
     private readonly cart_repo: CartItemRepo,
   ) {}
-  async getOrders(queryParams?:OrderPaginationQueryDto) {
+  async getOrders(queryParams?: OrderPaginationQueryDto) {
     return await this.order_repo.getAllOrders(queryParams);
   }
 

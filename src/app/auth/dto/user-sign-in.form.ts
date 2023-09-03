@@ -1,6 +1,6 @@
-import { IsEmail, IsString, validate } from "class-validator";
+import { IsEmail, IsString, validate } from 'class-validator';
 
-import { ErrorCodes } from "shared/enums/error-codes.enum";
+import { ErrorCodes } from 'shared/enums/error-codes.enum';
 
 export class UserSignInForm {
   @IsEmail(undefined, { message: ErrorCodes.FieldShouldBeEmail })

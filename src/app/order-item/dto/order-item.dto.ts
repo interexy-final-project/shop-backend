@@ -10,6 +10,8 @@ import {
 } from 'class-validator';
 import { UUIDDto } from 'shared/dtos/uuid.dto';
 import { OrderItemEntity } from '../entities/order-item.entity';
+import { ProductColors } from 'app/products/enums/product-colors.enum';
+import { ProductSizes } from 'app/products/enums/product-sizes.enum';
 
 export class OrderItemDto extends UUIDDto {
   @IsString()
@@ -20,6 +22,12 @@ export class OrderItemDto extends UUIDDto {
 
   @IsNumber()
   quantity: number;
+
+  @IsEnum(ProductSizes)
+  size!: ProductSizes;
+
+  @IsEnum(ProductColors)
+  color!: ProductColors;
 
   @ValidateNested({ context: OrderDto })
   order?: OrderDto;
@@ -35,6 +43,8 @@ export class OrderItemDto extends UUIDDto {
       orderId: entity.orderId,
       product: entity.product,
       quantity: entity.quantity,
+      size: entity.size,
+      color: entity.color,
     };
   }
 }
