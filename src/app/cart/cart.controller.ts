@@ -14,8 +14,10 @@ import { CartItemDto } from './dto/cart-item.dto';
 export class CartController {
   constructor(private readonly cartService: CartService) {}
 
-  @Post()
+  @Post('add')
   create(@Body() createCartDto: CartItemDto) {
+
+    console.log('createCartDto',createCartDto)
     return this.cartService.createNewCartItem(createCartDto);
   }
 
