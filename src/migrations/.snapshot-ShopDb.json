@@ -863,15 +863,6 @@
       "schema": "public",
       "indexes": [
         {
-          "columnNames": [
-            "product_id"
-          ],
-          "composite": false,
-          "keyName": "cart_items_product_id_unique",
-          "primary": false,
-          "unique": true
-        },
-        {
           "keyName": "cart_items_pkey",
           "columnNames": [
             "id"

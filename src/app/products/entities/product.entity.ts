@@ -1,4 +1,4 @@
-import { Entity, Enum, OneToOne, Property } from '@mikro-orm/core';
+import { Entity, Enum, OneToMany, OneToOne, Property } from '@mikro-orm/core';
 
 import { BaseEntity } from 'shared/entities/base.entity';
 import { ProductColors } from 'app/products/enums/product-colors.enum';
@@ -46,14 +46,20 @@ export class ProductEntity extends BaseEntity {
     name: 'type',
     array: false,
     items: () => ProductTypes,
+    type: 'text',
   })
   type?: ProductTypes;
 
   @Enum({ name: 'category', array: false, items: () => ProductCategories })
   category!: ProductCategories;
 
-  @OneToOne(() => CartItemEntity, (cartItem) => cartItem.product, {
+  //   @OneToOne(() => CartItemEntity, (cartItem) => cartItem.product, {
+  //     nullable: true,
+  //   })
+  //   cartItem?: CartItemEntity;
+
+  @OneToMany(() => CartItemEntity, (cartItem) => cartItem.product, {
     nullable: true,
   })
-  cartItem?: CartItemEntity;
+  cartItems?: CartItemEntity[];
 }

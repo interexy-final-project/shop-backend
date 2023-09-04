@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
 import { CartItemEntity } from 'app/cart/entities/cart-item.entity';
 import { CartItemDto } from '../dto/cart-item.dto';
+import { ErrorCodes } from 'shared/enums/error-codes.enum';
 
 @Injectable()
 export class CartItemRepo extends EntityRepository<CartItemEntity> {
@@ -10,9 +11,13 @@ export class CartItemRepo extends EntityRepository<CartItemEntity> {
   }
 
   async getCartItem(cartId: string) {
-    return await this.getEntityManager().findOne(CartItemEntity, {
-      id: cartId,
-    });
+    return await this.getEntityManager().findOne(
+      CartItemEntity,
+      {
+        id: cartId,
+      },
+      { populate: ['product'] },
+    );
   }
 
   async getCartItems(userId: string) {
@@ -24,6 +29,21 @@ export class CartItemRepo extends EntityRepository<CartItemEntity> {
   }
 
   async createNewCartItem(dto: CartItemDto) {
+    const existingCartItem = await this.getEntityManager().findOne(
+      CartItemEntity,
+      {
+        userId: dto.userId,
+        productId: dto.productId,
+        size: dto.size,
+        color: dto.color,
+      },
+    );
+
+    if (existingCartItem) {
+      throw new BadRequestException({
+        message: ErrorCodes.CartItemExists,
+      });
+    }
     const newCartItem = this.getEntityManager().create(CartItemEntity, {
       userId: dto.userId,
       quantity: 1,
@@ -35,20 +55,23 @@ export class CartItemRepo extends EntityRepository<CartItemEntity> {
     return await this.getEntityManager().persistAndFlush(newCartItem);
   }
 
-  async updateCartItem(dto: CartItemDto, cartId: string) {
-    const CartItem = await this.getCartItem(cartId);
-    this.getEntityManager().assign(
-      CartItem,
+  async updateCartItem(dto: Partial<CartItemDto>, cartId: string) {
+    const cartItem = await this.getCartItem(cartId);
+    const result = this.getEntityManager().assign(
+      cartItem,
       { quantity: dto.quantity },
       { mergeObjects: true },
     );
+    await this.getEntityManager().flush();
 
-    return await this.getEntityManager().flush();
+    return result;
   }
 
   async deleteCartItem(cartId: string) {
-    const CartItem = await this.getCartItem(cartId);
+    const cartItem = await this.getCartItem(cartId);
 
-    return await this.getEntityManager().removeAndFlush(CartItem);
+    await this.getEntityManager().removeAndFlush(cartItem);
+
+    return cartItem;
   }
 }

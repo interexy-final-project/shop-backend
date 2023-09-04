@@ -8,10 +8,8 @@ import { CartItemRepo } from './repo/cart-item.repo';
 @Module({
   imports: [
     MikroOrmModule.forFeature({
-      entities: [
-        CartItemEntity
-      ]
-    })
+      entities: [CartItemEntity],
+    }),
   ],
   controllers: [CartController],
   providers: [CartService, CartItemRepo],

@@ -30,7 +30,7 @@ export class CartController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateCartDto: CartItemDto) {
+  update(@Param('id') id: string, @Body() updateCartDto: Partial<CartItemDto>) {
     return this.cartService.updateCartItem(updateCartDto, id);
   }
 

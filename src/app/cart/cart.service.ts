@@ -18,7 +18,7 @@ export class CartService {
     return await this.cart_item_repo.getCartItem(cartId);
   }
 
-  async updateCartItem(dto: CartItemDto, cartId: string) {
+  async updateCartItem(dto: Partial<CartItemDto>, cartId: string) {
     return await this.cart_item_repo.updateCartItem(dto, cartId);
   }
 
