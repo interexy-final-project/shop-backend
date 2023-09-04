@@ -12,6 +12,7 @@ export enum ErrorCodes {
 
   NotExists_User = 'errors.not-exists.user',
   Wrong_Password = 'error.password',
-
   Wrong_Id = 'errors.invalid-id.product-find-one',
+
+  CartItemExists = 'error.product-already-added-to-the-cart',
 }

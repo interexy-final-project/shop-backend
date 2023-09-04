@@ -42,9 +42,19 @@ export class CartItemEntity extends UUIDEntity {
   })
   user?: UserEntity;
 
-  @OneToOne(() => ProductEntity, (product) => product.cartItem, {
-    owner: true,
+  // @OneToOne(() => ProductEntity, (product) => product.cartItem, {
+  //   owner: true,
+  //   nullable: true,
+  // })
+  // product?: ProductEntity;
+
+  @ManyToOne({
+    entity: () => ProductEntity,
+    inversedBy: (p) => p.cartItems,
+    joinColumn: 'product_id',
+    referenceColumnName: 'id',
     nullable: true,
+    lazy: true,
   })
   product?: ProductEntity;
 }
