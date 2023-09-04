@@ -28,7 +28,7 @@ export class CartItemRepo extends EntityRepository<CartItemEntity> {
     );
   }
 
-  async createNewCartItem(dto: CartItemDto) {
+  async checkIfCartItemExists(dto: CartItemDto) {
     const existingCartItem = await this.getEntityManager().findOne(
       CartItemEntity,
       {
@@ -39,11 +39,10 @@ export class CartItemRepo extends EntityRepository<CartItemEntity> {
       },
     );
 
-    if (existingCartItem) {
-      throw new BadRequestException({
-        message: ErrorCodes.CartItemExists,
-      });
-    }
+    return existingCartItem;
+  }
+
+  async createNewCartItem(dto: CartItemDto) {
     const newCartItem = this.getEntityManager().create(CartItemEntity, {
       userId: dto.userId,
       quantity: 1,
