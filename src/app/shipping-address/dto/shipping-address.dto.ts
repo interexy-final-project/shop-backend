@@ -1,8 +1,6 @@
 import { UserDto } from 'app/users/dto/user.dto';
-import { UserEntity } from 'app/users/entities/user.entity';
 import { IsString, ValidateNested } from 'class-validator';
 import { UUIDDto } from 'shared/dtos/uuid.dto';
-import { UUIDEntity } from 'shared/entities/uuid.entity';
 
 export class ShippingAddressDto extends UUIDDto {
   @IsString()
@@ -15,8 +13,36 @@ export class ShippingAddressDto extends UUIDDto {
   phone!: string;
 
   @IsString()
-  user_id!: string;
+  userId!: string;
+
+  @IsString()
+  postalCode!: string;
 
   @ValidateNested({ context: UserDto })
   user?: UserDto;
+
+  public static fromEntity(entity?: ShippingAddressDto) {
+    if (!entity) {
+      return;
+    }
+
+    const dto = new ShippingAddressDto();
+    dto.id = entity.id;
+    dto.address = entity.address;
+    dto.city = entity.city;
+    dto.phone = entity.phone;
+    dto.userId = entity.userId;
+    dto.created = entity.created;
+    dto.updated = entity.updated;
+    dto.postalCode = entity.postalCode;
+    return dto;
+  }
+
+  public static fromEntities(entities?: ShippingAddressDto[]) {
+    if (!entities?.map) {
+      return;
+    }
+
+    return entities.map((entity) => this.fromEntity(entity));
+  }
 }

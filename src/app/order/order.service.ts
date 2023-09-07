@@ -6,6 +6,7 @@ import { OrderDto } from './dto/order.dto';
 import { CartItemRepo } from 'app/cart/repo/cart-item.repo';
 import { CartItemDto } from 'app/cart/dto/cart-item.dto';
 import { OrderPaginationQueryDto } from './dto/order-pagination-query.dto';
+import { ProductsRepo } from 'app/products/repo/products.repo';
 
 @Injectable()
 export class OrderService {
@@ -13,6 +14,7 @@ export class OrderService {
     private readonly order_repo: OrderRepo,
     private readonly order_item_repo: OrderItemRepo,
     private readonly cart_repo: CartItemRepo,
+    private readonly product_repo: ProductsRepo,
   ) {}
   async getOrders(queryParams?: OrderPaginationQueryDto) {
     return await this.order_repo.getAllOrders(queryParams);
@@ -27,27 +29,19 @@ export class OrderService {
   }
 
   async createOrder(dto: OrderDto) {
+    console.log(dto);
     const { id, userId } = await this.order_repo.createOrder(dto);
     const cartItems = CartItemDto.fromEntities(
       await this.cart_repo.getCartItems(userId),
     );
     cartItems.map(async (item) => {
-      // const productJSON = awaith this.product_repo.productJSON({item.productId})
+      console.log(item, 'item');
+      const productJSON = await this.product_repo.getById(item.productId);
+      console.log(productJSON, 'json');
       await this.order_item_repo.createOrderItem(
         {
           ...item,
-          product: {
-            name: 'somename',
-            price: '223',
-            images: ['http://img1', 'http://img2'],
-            colors: ['RED', 'BLUE'],
-            sizes: ['S', 'M'],
-            status: 'Active',
-            description: 'some description',
-            amount: '5',
-            category: 'Children',
-            hip_girth: '23',
-          },
+          product: productJSON,
         },
         id,
       );

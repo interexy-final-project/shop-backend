@@ -21,11 +21,13 @@ export class CartItemRepo extends EntityRepository<CartItemEntity> {
   }
 
   async getCartItems(userId: string) {
-    return await this.getEntityManager().find(
+    const result = await this.getEntityManager().find(
       CartItemEntity,
       { userId },
       { populate: ['product'] },
     );
+
+    return result;
   }
 
   async checkIfCartItemExists(dto: CartItemDto) {

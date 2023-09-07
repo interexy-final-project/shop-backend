@@ -146,15 +146,6 @@
           "nullable": true,
           "mappedType": "string"
         },
-        "sleeve_length": {
-          "name": "sleeve_length",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": true,
-          "mappedType": "string"
-        },
         "waist_girth": {
           "name": "waist_girth",
           "type": "varchar(255)",
@@ -166,12 +157,26 @@
         },
         "type": {
           "name": "type",
-          "type": "smallint",
+          "type": "text",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
+          "enumItems": [
+            "Jeans-type",
+            "T-shirt-type",
+            "Shirt-type"
+          ],
           "mappedType": "enum"
+        },
+        "sleeve_length": {
+          "name": "sleeve_length",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
         }
       },
       "name": "products",
@@ -185,6 +190,15 @@
           "keyName": "products_name_unique",
           "primary": false,
           "unique": true
+        },
+        {
+          "columnNames": [
+            "type"
+          ],
+          "composite": false,
+          "keyName": "products_type_index",
+          "primary": false,
+          "unique": false
         },
         {
           "keyName": "products_pkey",
@@ -504,6 +518,15 @@
           "primary": false,
           "nullable": true,
           "mappedType": "uuid"
+        },
+        "postal_code": {
+          "name": "postal_code",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
         }
       },
       "name": "shipping_addresses",
