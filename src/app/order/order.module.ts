@@ -6,6 +6,7 @@ import { OrderEntity } from './entities/order.entity';
 import { OrderRepo } from './repo/order.repo';
 import { OrderItemRepo } from 'app/order-item/repo/order-item.repo';
 import { CartItemRepo } from 'app/cart/repo/cart-item.repo';
+import { ProductsRepo } from 'app/products/repo/products.repo';
 
 @Module({
   imports: [
@@ -14,7 +15,13 @@ import { CartItemRepo } from 'app/cart/repo/cart-item.repo';
     }),
   ],
   controllers: [OrderController],
-  providers: [OrderService, OrderRepo, OrderItemRepo, CartItemRepo],
+  providers: [
+    OrderService,
+    OrderRepo,
+    OrderItemRepo,
+    CartItemRepo,
+    ProductsRepo,
+  ],
   exports: [OrderService],
 })
 export class OrderModule {}

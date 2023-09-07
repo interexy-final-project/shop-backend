@@ -39,6 +39,7 @@ export class CartItemDto extends UUIDDto {
     dto.updated = entity.updated.valueOf();
     dto.quantity = entity.quantity;
     dto.userId = entity.userId;
+    dto.productId = entity.productId;
     dto.color = entity.color;
     dto.size = entity.size;
 

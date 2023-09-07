@@ -92,7 +92,7 @@ export class JeansTypeRepo extends EntityRepository<JeansTypeEntity> {
       };
 
     return {
-      statusCode: HttpStatus.OK,
+      statusCode: HttpStatus.BAD_REQUEST,
       message: 'jeans-type product has not been created',
     };
   }
