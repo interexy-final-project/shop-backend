@@ -6,4 +6,5 @@ export enum UserPermissions {
 
   GetUsers = 'permissions.users.get-users',
   GetUserInfo = 'permissions.users.get-user-info',
+  USER = 'client'
 }

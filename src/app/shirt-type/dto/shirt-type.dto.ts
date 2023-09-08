@@ -12,7 +12,7 @@ export class ShirtTypeDto extends ProductDto {
     }
 
     const instance: ShirtTypeEntity = super.fromEntity(entity);
-    instance.sleeve_Length = entity.sleeve_Length;
+    instance.sleeveLength = entity.sleeveLength;
     return instance;
   }
 
