@@ -17,20 +17,26 @@ import { CartItemEntity } from 'app/cart/entities/cart-item.entity';
 @Unique({ name: 'ix_user_email', properties: ['email'] })
 @Entity({ tableName: 'users', customRepository: () => UserRepo })
 export class UserEntity extends UUIDEntity {
-  @Property({ name: 'first_name', nullable: true })
-  firstName?: string;
+  @Property({ name: 'first_name' })
+  firstName!: string;
 
-  @Property({ name: 'second_name', nullable: true })
-  secondName?: string;
+  @Property({ name: 'last_name' })
+  lastName!: string;
 
   @Property({ name: 'email', unique: true })
   email!: string;
+
+  @Property({ name: 'phone', unique: true })
+  phone!: string;
 
   @Property({ name: 'password' })
   password!: string;
 
   @Property({ name: 'rtHash', nullable: true, type: 'text' })
   rtHash?: string;
+
+  @Property({ name: 'resetToken', nullable: true, type: 'text' })
+  resetToken?: string;
 
   @Enum({
     name: 'status',

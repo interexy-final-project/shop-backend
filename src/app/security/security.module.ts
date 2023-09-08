@@ -6,6 +6,7 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { UserEntity } from 'app/users/entities/user.entity';
 import { UserRepo } from 'app/users/repo/user.repo';
 import { JwtStrategyService } from './jwt-strategy.service';
+import { JwtRefreshStrategyService } from './jwt-refresh-strategy.service';
 // import { PassportModule } from '@nestjs/passport';
 
 @Module({
@@ -17,7 +18,7 @@ import { JwtStrategyService } from './jwt-strategy.service';
     }),
   ],
 
-  providers: [SecurityService, UserRepo, JwtStrategyService],
+  providers: [SecurityService, UserRepo, JwtStrategyService, JwtRefreshStrategyService],
 
   exports: [SecurityService],
 })
