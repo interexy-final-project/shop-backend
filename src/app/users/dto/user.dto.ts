@@ -18,7 +18,7 @@ export class UserDto extends UUIDDto {
   firstName: string;
 
   @IsString()
-  secondName: string;
+  lastName: string;
 
   @IsString()
   email!: string;
@@ -28,6 +28,9 @@ export class UserDto extends UUIDDto {
 
   @IsString()
   password!: string;
+
+  @IsString()
+  phone!: string;
 
   @IsEnum(UserStatuses)
   status!: UserStatuses;
@@ -59,6 +62,9 @@ export class UserDto extends UUIDDto {
     it.created = entity.created.valueOf();
     it.updated = entity.updated.valueOf();
     it.email = entity.email;
+    it.firstName = entity.firstName;
+    it.lastName = entity.lastName;
+    it.phone = entity.phone;
 
     return it;
   }

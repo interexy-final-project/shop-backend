@@ -3,21 +3,16 @@ import { JwtService } from '@nestjs/jwt';
 import { UserEntity } from 'app/users/entities/user.entity';
 import { UserSessionDto } from './dtos/user-session.dto';
 import { JwtTokenDto } from './dtos/jwt-token.dto';
-import { UserRepo } from 'app/users/repo/user.repo';
+import { UserPermissions } from 'app/user-roles/enums/user-permissions.enum';
 
 @Injectable()
 export class SecurityService {
   constructor(
     private readonly jwtService: JwtService,
-    private readonly repo_user: UserRepo,
   ) {}
 
-  async getUserByEmail(email: string) {
-    return await this.repo_user.getByEmail(email);
-  }
-
   async generateTokens(entity: UserEntity) {
-    const payload = UserSessionDto.fromEntity(entity, []);
+    const payload = UserSessionDto.fromEntity(entity, [UserPermissions.USER]);
     const [access_token, refresh_token] = await Promise.all([
       this.jwtService.signAsync(payload, {
         expiresIn: 60 * 15,
@@ -33,5 +28,17 @@ export class SecurityService {
       access_token,
       refresh_token,
     } as JwtTokenDto;
+  }
+
+  async generateResetToken(email: string) {
+    const resetToken = await this.jwtService.signAsync(
+      { email },
+      {
+        expiresIn: 120,
+        secret: process.env.JWT_RESET_TOKEN_SECRET,
+      },
+    );
+
+    return resetToken;
   }
 }

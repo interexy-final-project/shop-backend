@@ -79,7 +79,7 @@ export class ShirtTypeRepo extends EntityRepository<ShirtTypeEntity> {
       description: dto.description,
       amount: dto.amount,
       category: dto.category,
-      sleeve_Length: dto.sleeveLength,
+      sleeveLength: dto.sleeveLength,
       created: new Date(),
       updated: new Date(),
     });
