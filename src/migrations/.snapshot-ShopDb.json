@@ -546,6 +546,15 @@
           "primary": false,
           "nullable": true,
           "mappedType": "uuid"
+        },
+        "postal_code": {
+          "name": "postal_code",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
         }
       },
       "name": "shipping_addresses",

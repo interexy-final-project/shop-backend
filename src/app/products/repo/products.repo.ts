@@ -91,4 +91,9 @@ export class ProductsRepo extends EntityRepository<ProductEntity> {
       { limit: count ?? 10, offset: page * count ?? 0 },
     );
   }
+
+  async productJSON(productId: string) {
+    const product = await this.getById(productId);
+    return JSON.stringify(product);
+  }
 }

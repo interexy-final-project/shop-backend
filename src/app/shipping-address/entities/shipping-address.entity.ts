@@ -18,7 +18,10 @@ export class ShippingAddressEntity extends UUIDEntity {
   phone!: string;
 
   @Property({ name: 'user_id' })
-  user_id!: string;
+  userId!: string;
+
+  @Property({ name: 'postal_code' })
+  postalCode!: string;
 
   @ManyToOne({
     entity: () => UserEntity,

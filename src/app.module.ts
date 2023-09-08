@@ -25,6 +25,7 @@ import { EventsModule } from 'app/events/events.module';
 import { UsersModule } from 'app/users/users.module';
 import { UserRolesModule } from 'app/user-roles/users-roles.module';
 import { FetchPropertiesModule } from 'app/fetch-properties/fetch-properties.module';
+import { ShippingAddressModule } from './app/shipping-address/shipping-address.module';
 
 @Module({
   imports: [
@@ -61,6 +62,7 @@ import { FetchPropertiesModule } from 'app/fetch-properties/fetch-properties.mod
     EventsModule,
     FetchPropertiesModule,
     EventEmitterModule.forRoot({}),
+    ShippingAddressModule,
   ],
   controllers: [AppController],
   providers: [AppService],
