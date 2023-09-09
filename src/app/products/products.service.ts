@@ -52,4 +52,8 @@ export class ProductsService {
       paginationQuery,
     );
   }
+
+  public async findProduct(id: string) {
+    return this.repo_products.getById(id);
+  }
 }

@@ -7,6 +7,7 @@ import {
   Param,
   Query,
   Delete,
+  NotFoundException,
 } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { OrderDto } from './dto/order.dto';
