@@ -26,6 +26,8 @@ export class ProductsController {
     @Query('sizes') sizes: ProductSizes[],
     @Query('colors') colors: ProductColors[],
     @Query('type') type: ProductTypes,
+    @Query('price') price: 'asc' | 'desc',
+
     @Query() paginationQuery: PaginationQueryDto,
   ) {
     const entities = await this.productsService.getAllProductsByFilters(
@@ -33,6 +35,7 @@ export class ProductsController {
       sizes,
       colors,
       type,
+      price,
       paginationQuery,
     );
     const products = ProductDto.fromEntities(entities);
@@ -64,8 +67,8 @@ export class ProductsController {
     return await this.productsService.getAllProducts();
   }
 
-  @Get(':category')
-  public async getByCategory(
+  @Get()
+  public async getAllProductsByCategory(
     @Param('category') category: string,
     @Query() paginationQuery: PaginationQueryDto,
   ) {
@@ -76,6 +79,19 @@ export class ProductsController {
       );
     const products = ProductDto.fromEntities(entitiesAndCount[0]);
     return products || [];
+  }
+
+  // ПОЛУЧАЕМ ТИПЫ КАТЕГОРИИ (ДЖИНСЫ, МАЙКИ, РУБАШКИ)
+
+  @Get('types')
+  public async getAllTypes(
+    @Query('category') category: ProductCategories,
+    @Query('type') type: ProductTypes,
+    @Query() paginationQuery: PaginationQueryDto,
+  ) {
+    const entities = await this.productsService.getAllTypes(type);
+    const types = ProductDto.fromEntities(entities);
+    return types || [];
   }
 
   @Get('product/:id')

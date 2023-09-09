@@ -16,6 +16,7 @@ export class ProductsService {
     sizes: ProductSizes[],
     colors: ProductColors[],
     type: ProductTypes,
+    price: 'asc' | 'desc',
     paginationQuery: PaginationQueryDto,
   ) {
     return this.repo_products.getAll(
@@ -23,12 +24,19 @@ export class ProductsService {
       sizes,
       colors,
       type,
+      price,
       paginationQuery,
     );
   }
 
   async getAllProducts(queryParams?: ProductsPaginationQueryDto) {
     return await this.repo_products.getAllProducts(queryParams);
+  }
+
+  // ПОЛУЧАЕМ ТИПЫ КАТЕГОРИИ (ДЖИНСЫ, МАЙКИ, РУБАШКИ)
+
+  public async getAllTypes(type: ProductTypes) {
+    return this.repo_products.getAllTypes(type);
   }
 
   async updateProducts(ids: string[]) {
@@ -39,7 +47,10 @@ export class ProductsService {
     category: string,
     paginationQuery: PaginationQueryDto,
   ) {
-    return this.repo_products.getAllByCategory(category, paginationQuery);
+    return this.repo_products.getAllProductsByCategory(
+      category,
+      paginationQuery,
+    );
   }
 
   public async findProduct(id: string) {

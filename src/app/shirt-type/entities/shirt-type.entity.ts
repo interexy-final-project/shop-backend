@@ -1,4 +1,4 @@
-import { Entity, Property } from '@mikro-orm/core';
+import { Entity, Enum, Property } from '@mikro-orm/core';
 
 import { ShirtTypeRepo } from '../repo/shirt-type.repo';
 import { ProductEntity } from 'app/products/entities/product.entity';

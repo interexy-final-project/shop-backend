@@ -14,7 +14,7 @@ import {
 import { AuthService } from './auth.service';
 import { UserSignInForm } from './dto/user-sign-in.form';
 import { UserSignUpForm } from './dto/user-sign-up.form';
-import { ErrorCodes } from 'shared/enums/error-codes.enum';
+import { I18n, I18nContext } from 'nestjs-i18n';
 import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
 import { UserResetPasswordForm } from './dto/user-reset-password.form';
@@ -25,31 +25,31 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
   @HttpCode(HttpStatus.OK)
   @Post('sign-in')
-  async signIn(@Body() body: UserSignInForm) {
-    const errors = await UserSignInForm.validate(body);
+  async signIn(@Body() body: UserSignInForm, @I18n() i18n: I18nContext) {
+    const dto = UserSignInForm.from(body);
+    const errors = await UserSignInForm.validate(dto);
     if (errors) {
       throw new BadRequestException({
-        message: ErrorCodes.InvalidForm,
+        message: i18n.t('test.invalidForm'),
         errors,
       });
     }
-    const dto = UserSignInForm.from(body);
 
     return await this.authService.signIn(dto);
   }
 
   @HttpCode(HttpStatus.CREATED)
   @Post('sign-up')
-  async signUp(@Body() body: UserSignUpForm) {
-    const errors = await UserSignUpForm.validate(body);
+  async signUp(@Body() body: UserSignUpForm, @I18n() i18n: I18nContext) {
+    const dto = UserSignUpForm.from(body);
+    const errors = await UserSignUpForm.validate(dto);
     if (errors) {
       throw new BadRequestException({
-        message: ErrorCodes.InvalidForm,
+        message: i18n.t('test.invalidForm'),
         errors,
       });
     }
-    const dto = UserSignUpForm.from(body);
-    console.log(dto)
+    console.log(dto);
 
     return await this.authService.signUp(dto);
   }
@@ -73,9 +73,12 @@ export class AuthController {
   }
 
   @Post('change-password/:token')
-  async changePassword(@Param('token') token, @Body() body:UserChangePasswordForm ) {
+  async changePassword(
+    @Param('token') token,
+    @Body() body: UserChangePasswordForm,
+  ) {
     const dto = UserChangePasswordForm.from(body);
-    await this.authService.changePassword(token, dto.password)
+    await this.authService.changePassword(token, dto.password);
   }
 
   @Post('reset-password')

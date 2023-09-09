@@ -10,18 +10,14 @@ export class JwtStrategyService extends PassportStrategy(
 ) {
   readonly name = 'jwt-strategy';
 
-  constructor(
-    private readonly configService: ConfigService,
-  ) {
-    super(
-      {
-        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-        secretOrKey: configService.get('JWT_ACCESS_TOKEN_SECRET'),
-      },
-    );
+  constructor(private readonly configService: ConfigService) {
+    super({
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      secretOrKey: configService.get('JWT_ACCESS_TOKEN_SECRET'),
+    });
   }
 
   validate(payload: any) {
-    return payload
+    return payload;
   }
 }

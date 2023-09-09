@@ -131,9 +131,9 @@
           "primary": false,
           "nullable": false,
           "enumItems": [
-            "Woman",
-            "Men",
-            "Children"
+            "women",
+            "men",
+            "children"
           ],
           "mappedType": "enum"
         },
