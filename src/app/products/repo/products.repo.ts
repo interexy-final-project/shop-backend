@@ -64,7 +64,11 @@ export class ProductsRepo extends EntityRepository<ProductEntity> {
   }
 
   async getById(id: string) {
-    return await this.getEntityManager().findOne(ProductEntity, { id });
+    try {
+      return await this.getEntityManager().findOne(ProductEntity, { id });
+    } catch (error) {
+      console.error('User not found:', error);
+    }
   }
 
   async updateProducts(ids: string[]) {

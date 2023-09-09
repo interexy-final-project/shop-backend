@@ -25,6 +25,7 @@ export class UserRolesRepo extends EntityRepository<UserRoleEntity> {
   }
 
   public async getDefaultRole(type: UserRoles) {
+    console.log(type);
     return this.findOne(
       { type, isDefault: true },
       { orderBy: { created: 'desc' } },

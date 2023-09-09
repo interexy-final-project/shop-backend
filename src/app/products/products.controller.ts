@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Put, Query } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  Param,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { ProductDto } from './dto/product.dto';
 import { PaginationQueryDto } from 'shared/dtos/pagination-query.dto';
@@ -6,6 +14,7 @@ import { ProductCategories } from './enums/product-categories.enum';
 import { ProductColors } from './enums/product-colors.enum';
 import { ProductSizes } from './enums/product-sizes.enum';
 import { ProductTypes } from './enums/product-types.enum';
+import { ErrorCodes } from 'shared/enums/error-codes.enum';
 
 @Controller('products')
 export class ProductsController {
@@ -67,5 +76,18 @@ export class ProductsController {
       );
     const products = ProductDto.fromEntities(entitiesAndCount[0]);
     return products || [];
+  }
+
+  @Get('product/:id')
+  async findOne(@Param('id') id: string) {
+    const entity = await this.productsService.findProduct(id);
+
+    if (!entity)
+      throw new BadRequestException({
+        message: ErrorCodes.Wrong_Id,
+      });
+
+    const product = ProductDto.fromEntity(entity);
+    return product || [];
   }
 }

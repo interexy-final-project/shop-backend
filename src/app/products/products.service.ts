@@ -41,4 +41,8 @@ export class ProductsService {
   ) {
     return this.repo_products.getAllByCategory(category, paginationQuery);
   }
+
+  public async findProduct(id: string) {
+    return this.repo_products.getById(id);
+  }
 }

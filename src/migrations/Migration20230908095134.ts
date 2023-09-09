@@ -1,6 +1,6 @@
 import { Migration } from '@mikro-orm/migrations';
 
-export class Migration20230907103625 extends Migration {
+export class Migration20230908095134 extends Migration {
 
   async up(): Promise<void> {
     this.addSql('create table "products" ("id" uuid not null, "created" timestamptz(0) not null, "updated" timestamptz(0) not null, "name" text not null, "price" int not null, "images" text[] not null, "colors" text[] not null, "sizes" text[] not null, "status" text check ("status" in (\'Active\', \'Archived\')) not null default \'Active\', "description" text not null, "amount" int not null, "category" text check ("category" in (\'Woman\', \'Men\', \'Children\')) not null, "hip_girth" varchar(255) null, "waist_girth" varchar(255) null, "type" text check ("type" in (\'Jeans-type\', \'T-shirt-type\', \'Shirt-type\')) null, "sleeve_length" varchar(255) null, constraint "products_pkey" primary key ("id"));');
@@ -15,7 +15,7 @@ export class Migration20230907103625 extends Migration {
     this.addSql('alter table "users" add constraint "users_phone_unique" unique ("phone");');
     this.addSql('alter table "users" add constraint "ix_user_email" unique ("email");');
 
-    this.addSql('create table "shipping_addresses" ("id" uuid not null, "created" timestamptz(0) not null, "updated" timestamptz(0) not null, "address" text not null, "city" text not null, "phone" varchar(255) not null, "user_id" uuid null, constraint "shipping_addresses_pkey" primary key ("id"));');
+    this.addSql('create table "shipping_addresses" ("id" uuid not null, "created" timestamptz(0) not null, "updated" timestamptz(0) not null, "address" text not null, "city" text not null, "phone" varchar(255) not null, "user_id" uuid null, "postal_code" varchar(255) not null, constraint "shipping_addresses_pkey" primary key ("id"));');
 
     this.addSql('create table "orders" ("id" uuid not null, "created" timestamptz(0) not null, "updated" timestamptz(0) not null, "user_id" uuid null, "total" int not null, "status" text check ("status" in (\'Active\', \'Archived\')) not null, "address" jsonb not null, "payment_method" text check ("payment_method" in (\'Card\', \'Cash\', \'Kidney\')) not null, constraint "orders_pkey" primary key ("id"));');
 
@@ -33,34 +33,6 @@ export class Migration20230907103625 extends Migration {
 
     this.addSql('alter table "cart_items" add constraint "cart_items_user_id_foreign" foreign key ("user_id") references "users" ("id") on update cascade on delete set null;');
     this.addSql('alter table "cart_items" add constraint "cart_items_product_id_foreign" foreign key ("product_id") references "products" ("id") on update cascade on delete set null;');
-  }
-
-  async down(): Promise<void> {
-    this.addSql('alter table "cart_items" drop constraint "cart_items_product_id_foreign";');
-
-    this.addSql('alter table "users" drop constraint "users_role_id_foreign";');
-
-    this.addSql('alter table "shipping_addresses" drop constraint "shipping_addresses_user_id_foreign";');
-
-    this.addSql('alter table "orders" drop constraint "orders_user_id_foreign";');
-
-    this.addSql('alter table "cart_items" drop constraint "cart_items_user_id_foreign";');
-
-    this.addSql('alter table "order_items" drop constraint "order_items_order_id_foreign";');
-
-    this.addSql('drop table if exists "products" cascade;');
-
-    this.addSql('drop table if exists "user_roles" cascade;');
-
-    this.addSql('drop table if exists "users" cascade;');
-
-    this.addSql('drop table if exists "shipping_addresses" cascade;');
-
-    this.addSql('drop table if exists "orders" cascade;');
-
-    this.addSql('drop table if exists "order_items" cascade;');
-
-    this.addSql('drop table if exists "cart_items" cascade;');
   }
 
 }
