@@ -2,7 +2,6 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
 import { CartItemEntity } from 'app/cart/entities/cart-item.entity';
 import { CartItemDto } from '../dto/cart-item.dto';
-import { ErrorCodes } from 'shared/enums/error-codes.enum';
 
 @Injectable()
 export class CartItemRepo extends EntityRepository<CartItemEntity> {
@@ -70,6 +69,7 @@ export class CartItemRepo extends EntityRepository<CartItemEntity> {
 
   async deleteCartItem(cartId: string) {
     const cartItem = await this.getCartItem(cartId);
+    console.log(cartItem, 'cartItem');
 
     await this.getEntityManager().removeAndFlush(cartItem);
 

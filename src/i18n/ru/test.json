@@ -1,39 +1,12 @@
 {
-  "test": "Текст",
-  "language": {
-    "russian": "Русский",
-    "english": "Английский"
-  },
-  "signin": {
-    "login": "Логин",
-    "signin": "Вход",
-    "signup": "Регистрация",
-    "forgot": "Забыли пароль?",
-    "noaccount": "Нет аккаунта? Регистрация",
-    "email": "Почта",
-    "password": "Пароль"
-  },
-  "signup": {
-    "signup": "Регистрация",
-    "email": "Почта",
-    "password": "Пароль",
-    "gotaccount": "Уже есть аккаунт? Войти"
-  },
-  "resetPassword": {
-    "title": "Сбросьте Свой Пароль",
-    "descriptionOne": "Введите свою почту и мы вышлем вам ссылку на сброс пароля.",
-    "descriptionTwo": "Пожалуйста, проверье её.",
-    "login": "Вернуться к логину"
-  },
-  "footer": {
-    "email": "E-mail: someemail@interexy.com",
-    "phone": "Phone: +1555-01-34"
-  },
-  "orderItem": {
-    "orderTitle": "Номер Заказа:",
-    "orderDate": "Дата Заказа:",
-    "orderEstimation": "Дата доставки:",
-    "orderStatus": "Статус Заказа:",
-    "orderPaymentMethod": "Метод Оплаты:"
-  }
+  "invalidForm": "Неверная форма",
+  "fieldShouldBeString": "Поле должно быть строкой",
+  "fieldShouldBeNumber": "Поле должно быть числом",
+  "fieldShouldBeEnum": "Поле должно быть перечислением",
+  "fieldShouldBeEmail": "Поле должно быть почтой",
+  "notAuthorizedRequest": "Не авторизованный запрос",
+  "invalidStatus_UserInactive": "Неверный статус, пользователь неактивен",
+  "notExistsUser": "Такого пользователя не существует",
+  "wrongPassword": "Неверный пароль",
+  "wrongId": "Неверный ID"
 }

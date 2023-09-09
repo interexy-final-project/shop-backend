@@ -13,18 +13,19 @@ import { NewTShirtTypeForm } from './dto/new-t-shirt.form';
 import { TShirtTypeService } from './t-shirt-type.service';
 import { TShirtTypeDto } from './dto/t-shirt.dto';
 import { PaginationQueryDto } from 'shared/dtos/pagination-query.dto';
-import { ErrorCodes } from 'shared/enums/error-codes.enum';
+
+import { I18n, I18nContext } from 'nestjs-i18n';
 
 @Controller('t-shirt-type')
 export class TShirtTypeController {
   constructor(private readonly tshirtTypeService: TShirtTypeService) {}
   @Post()
-  async createOne(@Body() body: NewTShirtTypeForm) {
+  async createOne(@Body() body: NewTShirtTypeForm, @I18n() i18n: I18nContext) {
     const dto = NewTShirtTypeForm.from(body);
     const errors = await NewTShirtTypeForm.validate(dto);
     if (errors) {
       throw new BadRequestException({
-        message: ErrorCodes.InvalidForm,
+        message: i18n.t('test.invalidForm'),
         errors,
       });
     }
@@ -33,12 +34,12 @@ export class TShirtTypeController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string, @I18n() i18n: I18nContext) {
     const entity = await this.tshirtTypeService.findTShirtProduct(id);
 
     if (!entity)
       throw new BadRequestException({
-        message: ErrorCodes.Wrong_Id,
+        message: i18n.t('test.wrongId'),
       });
 
     const jeansTypeProduct = TShirtTypeDto.fromEntity(entity);
@@ -60,12 +61,16 @@ export class TShirtTypeController {
   }
 
   @Put(':id')
-  async updateOne(@Param('id') id: string, @Body() body: NewTShirtTypeForm) {
+  async updateOne(
+    @Param('id') id: string,
+    @Body() body: NewTShirtTypeForm,
+    @I18n() i18n: I18nContext,
+  ) {
     const dto = NewTShirtTypeForm.from(body);
     const errors = await NewTShirtTypeForm.validate(dto);
     if (errors) {
       throw new BadRequestException({
-        message: ErrorCodes.InvalidForm,
+        message: i18n.t('test.invalidForm'),
         errors,
       });
     }

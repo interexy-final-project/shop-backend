@@ -20,6 +20,7 @@ export class ProductsRepo extends EntityRepository<ProductEntity> {
     sizes: ProductSizes[],
     colors: ProductColors[],
     type: ProductTypes,
+    price: 'asc' | 'desc',
     paginationQuery: PaginationQueryDto,
   ) {
     const filterOptions: { [key: string]: any } = {};
@@ -38,6 +39,10 @@ export class ProductsRepo extends EntityRepository<ProductEntity> {
 
     if (type) {
       filterOptions.type = type;
+    }
+
+    if (price) {
+      filterOptions.price = price;
     }
     const result = await this.getEntityManager().find(
       ProductEntity,
@@ -63,6 +68,21 @@ export class ProductsRepo extends EntityRepository<ProductEntity> {
     );
   }
 
+  // ПОЛУЧАЕМ ТИПЫ КАТЕГОРИИ (ДЖИНСЫ, МАЙКИ, РУБАШКИ)
+
+  async getAllTypes(type: ProductTypes) {
+    const filterOptions: { [key: string]: any } = {};
+
+    if (type) {
+      filterOptions.type = type;
+    }
+    const result = await this.getEntityManager().find(
+      ProductEntity,
+      filterOptions,
+    );
+    return result;
+  }
+
   async getById(id: string) {
     return await this.getEntityManager().findOne(ProductEntity, { id });
   }
@@ -79,7 +99,7 @@ export class ProductsRepo extends EntityRepository<ProductEntity> {
     return 'Done';
   }
 
-  async getAllByCategory(
+  async getAllProductsByCategory(
     category: string,
     paginationQuery: PaginationQueryDto,
   ) {
