@@ -16,8 +16,7 @@ export class CartController {
 
   @Post('add')
   create(@Body() createCartDto: CartItemDto) {
-
-    console.log('createCartDto',createCartDto)
+    console.log('createCartDto', createCartDto);
     return this.cartService.createNewCartItem(createCartDto);
   }
 
@@ -32,12 +31,13 @@ export class CartController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateCartDto: CartItemDto) {
+  update(@Param('id') id: string, @Body() updateCartDto: Partial<CartItemDto>) {
     return this.cartService.updateCartItem(updateCartDto, id);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
+    console.log('id', id);
     return this.cartService.deleteCartItem(id);
   }
 }

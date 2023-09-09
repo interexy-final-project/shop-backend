@@ -7,7 +7,6 @@ import { UserSessionDto } from './dtos/user-session.dto';
 
 import { UserStatuses } from 'app/users/enums/user-statuses.enum';
 import { SecurityService } from './security.service';
-import { ErrorCodes } from 'shared/enums/error-codes.enum';
 
 import { I18nService } from 'nestjs-i18n';
 import { PassportStrategy } from '@nestjs/passport';
@@ -41,11 +40,11 @@ export class JwtStrategyService extends PassportStrategy(
     const user = await this.securityService.getUserByEmail(payload.email);
 
     if (!user) {
-      return done(this.i18n.t(ErrorCodes.NotExists_User), false);
+      return done(this.i18n.t('tets.notExistsUser'), false);
     }
 
     if (user.status !== UserStatuses.ACTIVE) {
-      return done(this.i18n.t(ErrorCodes.InvalidStatus_UserInactive), false);
+      return done(this.i18n.t('tets.invalidStatus_UserInactive'), false);
     }
 
     done(null, payload);

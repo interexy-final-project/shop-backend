@@ -13,19 +13,20 @@ import { JeansTypeService } from './jeans-type.service';
 import { JeansTypeDto } from './dto/jeans-type.dto';
 import { PaginationQueryDto } from 'shared/dtos/pagination-query.dto';
 import { NewJeansTypeForm } from './dto/new-jeans-type.form';
-import { ErrorCodes } from 'shared/enums/error-codes.enum';
+
+import { I18n, I18nContext } from 'nestjs-i18n';
 
 @Controller('jeans-type')
 export class JeansTypeController {
   constructor(private readonly jeansTypeService: JeansTypeService) {}
 
   @Post()
-  async createOne(@Body() body: NewJeansTypeForm) {
+  async createOne(@Body() body: NewJeansTypeForm, @I18n() i18n: I18nContext) {
     const dto = NewJeansTypeForm.from(body);
     const errors = await NewJeansTypeForm.validate(dto);
     if (errors) {
       throw new BadRequestException({
-        message: ErrorCodes.InvalidForm,
+        message: i18n.t('test.invalidForm'),
         errors,
       });
     }
@@ -34,12 +35,12 @@ export class JeansTypeController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string, @I18n() i18n: I18nContext) {
     const entity = await this.jeansTypeService.findJeansProduct(id);
 
     if (!entity)
       throw new BadRequestException({
-        message: ErrorCodes.Wrong_Id,
+        message: i18n.t('test.wrongId'),
       });
 
     const jeansTypeProduct = JeansTypeDto.fromEntity(entity);
@@ -52,12 +53,16 @@ export class JeansTypeController {
   }
 
   @Put(':id')
-  async updateOne(@Param('id') id: string, @Body() body: NewJeansTypeForm) {
+  async updateOne(
+    @Param('id') id: string,
+    @Body() body: NewJeansTypeForm,
+    @I18n() i18n: I18nContext,
+  ) {
     const dto = NewJeansTypeForm.from(body);
     const errors = await NewJeansTypeForm.validate(dto);
     if (errors) {
       throw new BadRequestException({
-        message: ErrorCodes.InvalidForm,
+        message: i18n.t('test.invalidForm'),
         errors,
       });
     }
@@ -66,7 +71,7 @@ export class JeansTypeController {
 
     if (!entityToUpdate) {
       throw new BadRequestException({
-        message: ErrorCodes.Wrong_Id,
+        message: i18n.t('test.wrongId'),
         errors,
       });
     }

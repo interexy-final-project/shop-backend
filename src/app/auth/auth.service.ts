@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { SecurityService } from 'app/security/security.service';
 import { UserRepo } from 'app/users/repo/user.repo';
-import { ErrorCodes } from 'shared/enums/error-codes.enum';
 import { UserSignInForm } from './dto/user-sign-in.form';
 import { UserSignUpForm } from './dto/user-sign-up.form';
 import { BadRequestException } from '@nestjs/common/exceptions';
 import { UserRolesRepo } from 'app/user-roles/repo/user-roles.repo';
 import { UserRoleDto } from 'app/user-roles/dto/user-role.dto';
 import { UserRoles } from 'app/user-roles/enums/user-roles.enum';
+import { I18nContext, I18nService } from 'nestjs-i18n';
 
 @Injectable()
 export class AuthService {
@@ -15,6 +15,7 @@ export class AuthService {
     private readonly repo_users: UserRepo,
     private readonly securityService: SecurityService,
     private readonly repo_user_roles: UserRolesRepo,
+    private readonly i18n: I18nService,
   ) {}
 
   async validateUserById(id: string) {
@@ -24,7 +25,11 @@ export class AuthService {
   async signIn(form: UserSignInForm): Promise<any> {
     const entity = await this.repo_users.getByEmail(form.email);
     if (!entity) {
-      throw new BadRequestException({ message: ErrorCodes.NotExists_User });
+      throw new BadRequestException({
+        message: this.i18n.t('test.notExistsUser', {
+          lang: I18nContext.current().lang,
+        }),
+      });
     }
     const { access_token, refresh_token } =
       await this.securityService.generateTokens(entity);

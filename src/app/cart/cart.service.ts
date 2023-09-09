@@ -7,6 +7,16 @@ export class CartService {
   constructor(private readonly cart_item_repo: CartItemRepo) {}
 
   async createNewCartItem(createCartDto: CartItemDto) {
+    const existingCartItem = await this.cart_item_repo.checkIfCartItemExists(
+      createCartDto,
+    );
+
+    if (existingCartItem) {
+      return this.cart_item_repo.updateCartItem(
+        { quantity: existingCartItem.quantity + 1 },
+        existingCartItem.id,
+      );
+    }
     return await this.cart_item_repo.createNewCartItem(createCartDto);
   }
 
@@ -18,7 +28,7 @@ export class CartService {
     return await this.cart_item_repo.getCartItem(cartId);
   }
 
-  async updateCartItem(dto: CartItemDto, cartId: string) {
+  async updateCartItem(dto: Partial<CartItemDto>, cartId: string) {
     return await this.cart_item_repo.updateCartItem(dto, cartId);
   }
 

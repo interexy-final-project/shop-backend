@@ -14,5 +14,5 @@ export class TShirtTypeEntity extends ProductEntity {
   @Enum({
     name: 'type',
   })
-  type?: ProductTypes.JEANS;
+  type?: ProductTypes.TSHIRT;
 }

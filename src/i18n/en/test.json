@@ -1,57 +1,12 @@
 {
-  "test": "text",
-  "language": {
-    "russian": "Russian",
-    "english": "English"
-  },
-  "signin": {
-    "login": "Login",
-    "signin": " Sign in",
-    "signup": "Sign up",
-    "forgot": "Forgot password?",
-    "noaccount": "Don't have an account? Sign Up",
-    "email": "Email Address",
-    "password": "Password"
-  },
-  "signup": {
-    "signup": "Sign up",
-    "email": "E-mail",
-    "password": "Password",
-    "gotaccount": "Already have an  account? Log in"
-  },
-  "resetPassword": {
-    "title": "Reset Your Password",
-    "descriptionOne": "Enter your email and we'll send you a link to reset your password.",
-    "descriptionTwo": "Please  check it.",
-    "login": "Back to Login"
-  },
-  "footer": {
-    "email": "E-mail: someemail@interexy.com",
-    "phone": "Phone: +1555-01-34"
-  },
-  "orderItem": {
-    "orderTitle": "Order Number:",
-    "orderDate": "Order Date:",
-    "orderEstimation": "Estimated Delivery Date:",
-    "orderStatus": "Order Status:",
-    "orderPaymentMethod": "Order Payment Method:",
-    "detailButton": "View Details",
-    "color": "Color:",
-    "quantity": "Quantity:",
-    "total": "Total:"
-  },
-  "userContacts": {
-    "contactsTitle": "My Info",
-    "contactsDetails": "Contact Details",
-    "changeInfo": "Change",
-    "name": "Your Name",
-    "email": "Email Address",
-    "phone": "Phone number",
-    "password": "Password"
-  },
-  "userProfile": {
-    "myInfo": "My Info",
-    "myOrders": "My Orders",
-    "signOut": "Sign Out"
-  }
+  "invalidForm": "Invalid form",
+  "fieldShouldBeString": "Field should be string",
+  "fieldShouldBeNumber": "Field should be number",
+  "fieldShouldBeEnum": "Field should be enum",
+  "fieldShouldBeEmail": "Field should be email",
+  "notAuthorizedRequest": "Not authorized request",
+  "invalidStatus_UserInactive": "Invalid status, user inactive",
+  "notExistsUser": "Such user doesn't exist",
+  "wrongPassword": "Wrong password",
+  "wrongId": "Wrong ID"
 }

@@ -3,19 +3,19 @@ import { Body, Controller, Post, BadRequestException } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { UserSignInForm } from './dto/user-sign-in.form';
 import { UserSignUpForm } from './dto/user-sign-up.form';
-import { ErrorCodes } from 'shared/enums/error-codes.enum';
+import { I18n, I18nContext } from 'nestjs-i18n';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('sign-in')
-  async signIn(@Body() body: UserSignInForm) {
+  async signIn(@Body() body: UserSignInForm, @I18n() i18n: I18nContext) {
     const dto = UserSignInForm.from(body);
     const errors = await UserSignInForm.validate(dto);
     if (errors) {
       throw new BadRequestException({
-        message: ErrorCodes.InvalidForm,
+        message: i18n.t('test.invalidForm'),
         errors,
       });
     }
@@ -24,12 +24,12 @@ export class AuthController {
   }
 
   @Post('sign-up')
-  async signUp(@Body() body: UserSignUpForm) {
+  async signUp(@Body() body: UserSignUpForm, @I18n() i18n: I18nContext) {
     const dto = UserSignUpForm.from(body);
     const errors = await UserSignUpForm.validate(dto);
     if (errors) {
       throw new BadRequestException({
-        message: ErrorCodes.InvalidForm,
+        message: i18n.t('test.invalidForm'),
         errors,
       });
     }
