@@ -146,15 +146,6 @@
           "nullable": true,
           "mappedType": "string"
         },
-        "sleeve_length": {
-          "name": "sleeve_length",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": true,
-          "mappedType": "string"
-        },
         "waist_girth": {
           "name": "waist_girth",
           "type": "varchar(255)",
@@ -166,12 +157,26 @@
         },
         "type": {
           "name": "type",
-          "type": "smallint",
+          "type": "text",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
+          "enumItems": [
+            "Jeans-type",
+            "T-shirt-type",
+            "Shirt-type"
+          ],
           "mappedType": "enum"
+        },
+        "sleeve_length": {
+          "name": "sleeve_length",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
         }
       },
       "name": "products",
@@ -185,6 +190,15 @@
           "keyName": "products_name_unique",
           "primary": false,
           "unique": true
+        },
+        {
+          "columnNames": [
+            "type"
+          ],
+          "composite": false,
+          "keyName": "products_type_index",
+          "primary": false,
+          "unique": false
         },
         {
           "keyName": "products_pkey",
@@ -260,7 +274,8 @@
             "permissions.auth.refresh-token",
             "permissions.auth.sign-out",
             "permissions.users.get-users",
-            "permissions.users.get-user-info"
+            "permissions.users.get-user-info",
+            "client"
           ],
           "mappedType": "array"
         }
@@ -327,20 +342,29 @@
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": true,
+          "nullable": false,
           "mappedType": "string"
         },
-        "second_name": {
-          "name": "second_name",
+        "last_name": {
+          "name": "last_name",
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": true,
+          "nullable": false,
           "mappedType": "string"
         },
         "email": {
           "name": "email",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "phone": {
+          "name": "phone",
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
@@ -359,6 +383,15 @@
         },
         "rt_hash": {
           "name": "rt_hash",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "text"
+        },
+        "reset_token": {
+          "name": "reset_token",
           "type": "text",
           "unsigned": false,
           "autoincrement": false,
@@ -399,6 +432,15 @@
           ],
           "composite": false,
           "keyName": "users_email_unique",
+          "primary": false,
+          "unique": true
+        },
+        {
+          "columnNames": [
+            "phone"
+          ],
+          "composite": false,
+          "keyName": "users_phone_unique",
           "primary": false,
           "unique": true
         },
@@ -504,6 +546,15 @@
           "primary": false,
           "nullable": true,
           "mappedType": "uuid"
+        },
+        "postal_code": {
+          "name": "postal_code",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
         }
       },
       "name": "shipping_addresses",

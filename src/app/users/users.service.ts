@@ -13,11 +13,7 @@ export class UsersService {
     private readonly repo_users: UserRepo,
     private readonly repo_user_roles: UserRolesRepo,
     private readonly emitter: EventEmitter2,
-  ) {}
-
-  async getUsers() {
-    return await this.repo_users.getList();
-  }
+  ) {}t
 
   async getUserByEmail(email: string) {
     return await this.repo_users.getByEmail(email);

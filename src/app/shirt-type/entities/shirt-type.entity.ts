@@ -10,10 +10,5 @@ import { ProductTypes } from 'app/products/enums/product-types.enum';
 })
 export class ShirtTypeEntity extends ProductEntity {
   @Property({ name: 'sleeve_length' })
-  sleeve_Length?: string;
-
-  @Enum({
-    name: 'type',
-  })
-  type?: ProductTypes.SHIRT;
+  sleeveLength?: string;
 }
