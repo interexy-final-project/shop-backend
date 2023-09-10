@@ -17,7 +17,7 @@ export class UserRepo extends EntityRepository<UserEntity> {
   }
 
   async getByToken(resetToken: string) {
-    return await this.getEntityManager().findOne(UserEntity, { resetToken })
+    return await this.getEntityManager().findOne(UserEntity, { resetToken });
   }
 
   async getByEmail(email: string) {
@@ -39,7 +39,7 @@ export class UserRepo extends EntityRepository<UserEntity> {
       role: dto_role.id,
       firstName: dto.firstName,
       lastName: dto.lastName,
-      phone:dto.phone,
+      phone: dto.phone,
     });
     await this.getEntityManager().persistAndFlush(newUser);
 
@@ -71,7 +71,7 @@ export class UserRepo extends EntityRepository<UserEntity> {
     const user = await this.getEntityManager().findOne(UserEntity, { id });
     const newPassword = await bcrypt.hash(password, 10);
 
-    this.getEntityManager().assign(user, { password:newPassword });
+    this.getEntityManager().assign(user, { password: newPassword });
     await this.getEntityManager().flush();
 
     return 'Ok!';
@@ -89,16 +89,15 @@ export class UserRepo extends EntityRepository<UserEntity> {
       await this.getEntityManager().flush();
     }
 
-    return user ?? null
+    return user ?? null;
   }
 
   async setResetToken(id: string, resetToken: string) {
     const user = await this.getEntityManager().findOne(UserEntity, { id });
-    if(!user) throw new ForbiddenException();
-    console.log(user)
+    if (!user) throw new ForbiddenException();
     this.getEntityManager().assign(user, { resetToken });
     await this.getEntityManager().flush();
 
-    return 'Reset token has been set!'
+    return 'Reset token has been set!';
   }
 }

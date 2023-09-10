@@ -1,10 +1,4 @@
-import {
-  IsEmail,
-  IsNotEmpty,
-  IsPhoneNumber,
-  IsString,
-  validate,
-} from 'class-validator';
+import { IsEmail, IsPhoneNumber, IsString, validate } from 'class-validator';
 import { MatchesProperty } from '../utils/match.validator';
 
 import { ErrorCodes } from 'shared/enums/error-codes.enum';
