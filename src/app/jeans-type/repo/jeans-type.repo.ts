@@ -16,7 +16,7 @@ export class JeansTypeRepo extends EntityRepository<JeansTypeEntity> {
     const updatedEntity = {
       name: dto.name,
       price: dto.price,
-      images: dto.images,
+      images: dto.image,
       colors: dto.colors,
       sizes: dto.sizes,
       status: dto.status,
@@ -74,7 +74,7 @@ export class JeansTypeRepo extends EntityRepository<JeansTypeEntity> {
     const newJeans = this.getEntityManager().create(JeansTypeEntity, {
       name: dto.name,
       price: dto.price,
-      image: dto.images,
+      image: dto.image,
       colors: dto.colors,
       sizes: dto.sizes,
       status: dto.status,

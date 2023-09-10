@@ -53,8 +53,8 @@
           "nullable": false,
           "mappedType": "integer"
         },
-        "images": {
-          "name": "images",
+        "image": {
+          "name": "image",
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,

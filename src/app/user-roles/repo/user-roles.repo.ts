@@ -26,9 +26,11 @@ export class UserRolesRepo extends EntityRepository<UserRoleEntity> {
 
   public async getDefaultRole(type: UserRoles) {
     console.log(type);
-    return this.findOne(
+    const result = await this.findOne(
       { type, isDefault: true },
       { orderBy: { created: 'desc' } },
     );
+    console.log(result, 'result');
+    return result;
   }
 }

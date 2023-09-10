@@ -1,9 +1,9 @@
 import { Migration } from '@mikro-orm/migrations';
 
-export class Migration20230910130158 extends Migration {
+export class Migration20230910131024 extends Migration {
   async up(): Promise<void> {
     this.addSql(
-      'create table "products" ("id" uuid not null, "created" timestamptz(0) not null, "updated" timestamptz(0) not null, "name" text not null, "price" int not null, "images" varchar(255) not null, "colors" text[] not null, "sizes" text[] not null, "status" text check ("status" in (\'active\', \'archived\')) not null default \'active\', "description" text not null, "amount" int not null, "category" text check ("category" in (\'women\', \'men\', \'children\')) not null, "hip_girth" varchar(255) null, "sleeve_length" varchar(255) null, "waist_girth" varchar(255) null, "type" text null, constraint "products_pkey" primary key ("id"));',
+      'create table "products" ("id" uuid not null, "created" timestamptz(0) not null, "updated" timestamptz(0) not null, "name" text not null, "price" int not null, "image" varchar(255) not null, "colors" text[] not null, "sizes" text[] not null, "status" text check ("status" in (\'active\', \'archived\')) not null default \'active\', "description" text not null, "amount" int not null, "category" text check ("category" in (\'women\', \'men\', \'children\')) not null, "hip_girth" varchar(255) null, "sleeve_length" varchar(255) null, "waist_girth" varchar(255) null, "type" text null, constraint "products_pkey" primary key ("id"));',
     );
     this.addSql(
       'alter table "products" add constraint "products_name_unique" unique ("name");',
