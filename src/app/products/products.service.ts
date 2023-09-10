@@ -6,6 +6,7 @@ import { ProductCategories } from './enums/product-categories.enum';
 import { ProductColors } from './enums/product-colors.enum';
 import { ProductSizes } from './enums/product-sizes.enum';
 import { ProductTypes } from './enums/product-types.enum';
+import { ProductPriceFilter } from './enums/product-price-filter.enum';
 
 @Injectable()
 export class ProductsService {
@@ -16,7 +17,7 @@ export class ProductsService {
     sizes: ProductSizes[],
     colors: ProductColors[],
     type: ProductTypes,
-    price: 'asc' | 'desc',
+    price: ProductPriceFilter,
     paginationQuery: PaginationQueryDto,
   ) {
     return this.repo_products.getAll(

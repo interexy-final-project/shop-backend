@@ -1,4 +1,10 @@
-import { IsEmail, IsNotEmpty, IsPhoneNumber, IsString,  validate } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsPhoneNumber,
+  IsString,
+  validate,
+} from 'class-validator';
 import { MatchesProperty } from '../utils/match.validator';
 
 import { ErrorCodes } from 'shared/enums/error-codes.enum';
@@ -15,12 +21,12 @@ export class UserSignUpForm {
   passwordConfirm!: string;
 
   @IsString({ message: ErrorCodes.FieldShouldBeString })
-  firstName!:string;
+  firstName!: string;
 
   @IsString({ message: ErrorCodes.FieldShouldBeString })
   lastName!: string;
 
-  @IsPhoneNumber('BY', { message: ErrorCodes.CartItemExists})
+  @IsPhoneNumber('BY', { message: ErrorCodes.CartItemExists })
   @IsString({ message: ErrorCodes.FieldShouldBeString })
   phone!: string;
 

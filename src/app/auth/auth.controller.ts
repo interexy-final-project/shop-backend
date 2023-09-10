@@ -49,8 +49,6 @@ export class AuthController {
         errors,
       });
     }
-    console.log(dto);
-
     return await this.authService.signUp(dto);
   }
 
