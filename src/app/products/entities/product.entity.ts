@@ -20,7 +20,7 @@ export class ProductEntity extends BaseEntity {
   price!: number;
 
   @Property({ name: 'images' })
-  image!: string;
+  images!: string[];
 
   @Enum({ name: 'colors', array: true, items: () => ProductColors })
   colors!: ProductColors[];
@@ -53,6 +53,10 @@ export class ProductEntity extends BaseEntity {
   @Enum({ name: 'category', array: false, items: () => ProductCategories })
   category!: ProductCategories;
 
+  //   @OneToOne(() => CartItemEntity, (cartItem) => cartItem.product, {
+  //     nullable: true,
+  //   })
+  //   cartItem?: CartItemEntity;
 
   @OneToMany(() => CartItemEntity, (cartItem) => cartItem.product, {
     nullable: true,

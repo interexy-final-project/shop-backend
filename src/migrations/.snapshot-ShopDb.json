@@ -70,10 +70,10 @@
           "primary": false,
           "nullable": false,
           "enumItems": [
-            "BLACK",
-            "WHITE",
-            "RED",
-            "BLUE"
+            "black",
+            "white",
+            "red",
+            "blue"
           ],
           "mappedType": "array"
         },
@@ -87,7 +87,10 @@
           "enumItems": [
             "XS",
             "S",
-            "M"
+            "M",
+            "L",
+            "XL",
+            "XXL"
           ],
           "mappedType": "array"
         },
@@ -98,10 +101,10 @@
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "default": "'Active'",
+          "default": "'active'",
           "enumItems": [
-            "Active",
-            "Archived"
+            "active",
+            "archived"
           ],
           "mappedType": "enum"
         },
@@ -146,6 +149,15 @@
           "nullable": true,
           "mappedType": "string"
         },
+        "sleeve_length": {
+          "name": "sleeve_length",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
+        },
         "waist_girth": {
           "name": "waist_girth",
           "type": "varchar(255)",
@@ -157,26 +169,12 @@
         },
         "type": {
           "name": "type",
-          "type": "text",
+          "type": "smallint",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
-          "enumItems": [
-            "Jeans-type",
-            "T-shirt-type",
-            "Shirt-type"
-          ],
           "mappedType": "enum"
-        },
-        "sleeve_length": {
-          "name": "sleeve_length",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": true,
-          "mappedType": "string"
         }
       },
       "name": "products",
@@ -190,15 +188,6 @@
           "keyName": "products_name_unique",
           "primary": false,
           "unique": true
-        },
-        {
-          "columnNames": [
-            "type"
-          ],
-          "composite": false,
-          "keyName": "products_type_index",
-          "primary": false,
-          "unique": false
         },
         {
           "keyName": "products_pkey",
@@ -666,9 +655,9 @@
           "primary": false,
           "nullable": false,
           "enumItems": [
-            "Card",
-            "Cash",
-            "Kidney"
+            "card",
+            "cash",
+            "kidney"
           ],
           "mappedType": "enum"
         }
@@ -771,7 +760,10 @@
           "enumItems": [
             "XS",
             "S",
-            "M"
+            "M",
+            "L",
+            "XL",
+            "XXL"
           ],
           "mappedType": "enum"
         },
@@ -783,10 +775,10 @@
           "primary": false,
           "nullable": false,
           "enumItems": [
-            "BLACK",
-            "WHITE",
-            "RED",
-            "BLUE"
+            "black",
+            "white",
+            "red",
+            "blue"
           ],
           "mappedType": "enum"
         }
@@ -890,7 +882,10 @@
           "enumItems": [
             "XS",
             "S",
-            "M"
+            "M",
+            "L",
+            "XL",
+            "XXL"
           ],
           "mappedType": "enum"
         },
@@ -902,10 +897,10 @@
           "primary": false,
           "nullable": false,
           "enumItems": [
-            "BLACK",
-            "WHITE",
-            "RED",
-            "BLUE"
+            "black",
+            "white",
+            "red",
+            "blue"
           ],
           "mappedType": "enum"
         }
