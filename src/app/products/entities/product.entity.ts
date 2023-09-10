@@ -19,7 +19,7 @@ export class ProductEntity extends BaseEntity {
   @Property({ name: 'price' })
   price!: number;
 
-  @Property({ name: 'images' })
+  @Property({ name: 'image' })
   image!: string;
 
   @Enum({ name: 'colors', array: true, items: () => ProductColors })
