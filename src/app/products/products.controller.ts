@@ -93,7 +93,6 @@ export class ProductsController {
   public async getAllTypes(
     @Query('category') category: ProductCategories,
     @Query('type') type: ProductTypes,
-    @Query() paginationQuery: PaginationQueryDto,
   ) {
     const entities = await this.productsService.getAllTypes(type);
     const types = ProductDto.fromEntities(entities);
