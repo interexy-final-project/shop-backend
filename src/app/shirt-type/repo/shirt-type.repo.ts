@@ -72,7 +72,7 @@ export class ShirtTypeRepo extends EntityRepository<ShirtTypeEntity> {
     const newShirt = this.getEntityManager().create(ShirtTypeEntity, {
       name: dto.name,
       price: dto.price,
-      images: dto.images,
+      image: dto.image,
       colors: dto.colors,
       sizes: dto.sizes,
       status: dto.status,
