@@ -18,7 +18,7 @@ export class NewTShirtTypeForm {
 
   @IsString({ each: true })
   @IsArray()
-  images!: string[];
+  images!: string;
 
   @IsEnum(ProductColors, { each: true })
   @IsArray()

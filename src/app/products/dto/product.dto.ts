@@ -25,8 +25,7 @@ export class ProductDto extends UUIDDto {
   price!: number;
 
   @IsString()
-  @IsArray()
-  images!: string[];
+  image!: string;
 
   @IsEnum(ProductColors)
   @IsArray()
@@ -80,7 +79,7 @@ export class ProductDto extends UUIDDto {
     it.id = entity.id;
     it.name = entity.name;
     it.description = entity.description;
-    it.images = entity.images;
+    it.image = entity.image;
     it.colors = entity.colors;
     it.sizes = entity.sizes;
     it.price = entity.price;
@@ -90,7 +89,6 @@ export class ProductDto extends UUIDDto {
     it.type = entity.type;
     it.created = entity.created.valueOf();
     it.updated = entity.updated.valueOf();
-    // it.cartItem = CartItemDto.fromEntities(entity.cartItem);
 
     return it;
   }
