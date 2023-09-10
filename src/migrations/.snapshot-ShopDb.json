@@ -55,12 +55,12 @@
         },
         "images": {
           "name": "images",
-          "type": "text[]",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "array"
+          "mappedType": "string"
         },
         "colors": {
           "name": "colors",
