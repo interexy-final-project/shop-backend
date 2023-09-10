@@ -15,6 +15,7 @@ import { ProductColors } from './enums/product-colors.enum';
 import { ProductSizes } from './enums/product-sizes.enum';
 import { ProductTypes } from './enums/product-types.enum';
 import { ErrorCodes } from 'shared/enums/error-codes.enum';
+import { ProductPriceFilter } from './enums/product-price-filter.enum';
 
 @Controller('products')
 export class ProductsController {
@@ -26,11 +27,11 @@ export class ProductsController {
     @Query('sizes') sizes: ProductSizes[],
     @Query('colors') colors: ProductColors[],
     @Query('type') type: ProductTypes,
-    @Query('price') price: 'asc' | 'desc',
+    @Query('price') price: ProductPriceFilter,
 
     @Query() paginationQuery: PaginationQueryDto,
   ) {
-    const entities = await this.productsService.getAllProductsByFilters(
+    const entitiesAndCount = await this.productsService.getAllProductsByFilters(
       category,
       sizes,
       colors,
@@ -38,8 +39,13 @@ export class ProductsController {
       price,
       paginationQuery,
     );
-    const products = ProductDto.fromEntities(entities);
-    return products || [];
+    const products = ProductDto.fromEntities(entitiesAndCount[0]);
+    return (
+      {
+        products: products,
+        count: entitiesAndCount[1],
+      } || []
+    );
   }
 
   @Get()
@@ -87,7 +93,6 @@ export class ProductsController {
   public async getAllTypes(
     @Query('category') category: ProductCategories,
     @Query('type') type: ProductTypes,
-    @Query() paginationQuery: PaginationQueryDto,
   ) {
     const entities = await this.productsService.getAllTypes(type);
     const types = ProductDto.fromEntities(entities);

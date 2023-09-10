@@ -53,7 +53,6 @@ export class ProductEntity extends BaseEntity {
   @Enum({ name: 'category', array: false, items: () => ProductCategories })
   category!: ProductCategories;
 
-
   @OneToMany(() => CartItemEntity, (cartItem) => cartItem.product, {
     nullable: true,
   })
