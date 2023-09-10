@@ -28,6 +28,7 @@ export class UserSignUpForm {
     const it = new UserSignUpForm();
     it.email = String(form.email);
     it.password = String(form.password);
+    it.passwordConfirm = String(form.passwordConfirm)
     it.firstName = String(form.firstName);
     it.lastName = String(form.lastName);
     it.phone = String(form.phone);
