@@ -16,9 +16,8 @@ export class NewTShirtTypeForm {
   @IsNumber()
   price!: number;
 
-  @IsString({ each: true })
-  @IsArray()
-  images!: string;
+  @IsString()
+  image!: string;
 
   @IsEnum(ProductColors, { each: true })
   @IsArray()
@@ -48,7 +47,7 @@ export class NewTShirtTypeForm {
     it.waistGirth = form.waistGirth;
     it.name = form.name;
     it.price = form.price;
-    it.images = form.images;
+    it.image = form.image;
     it.colors = form.colors;
     it.sizes = form.sizes;
     it.status = form.status;

@@ -29,15 +29,12 @@ export class OrderService {
   }
 
   async createOrder(dto: OrderDto) {
-    console.log(dto);
     const { id, userId } = await this.order_repo.createOrder(dto);
     const cartItems = CartItemDto.fromEntities(
       await this.cart_repo.getCartItems(userId),
     );
     cartItems.map(async (item) => {
-      console.log(item, 'item');
       const productJSON = await this.product_repo.getById(item.productId);
-      console.log(productJSON, 'json');
       await this.order_item_repo.createOrderItem(
         {
           ...item,

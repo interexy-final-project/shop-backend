@@ -1,4 +1,4 @@
-import { Entity, Enum, OneToMany, OneToOne, Property } from '@mikro-orm/core';
+import { Entity, Enum, OneToMany, Property } from '@mikro-orm/core';
 
 import { BaseEntity } from 'shared/entities/base.entity';
 import { ProductColors } from 'app/products/enums/product-colors.enum';

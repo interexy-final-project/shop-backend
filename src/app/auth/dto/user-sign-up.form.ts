@@ -1,10 +1,4 @@
-import {
-  IsEmail,
-  IsNotEmpty,
-  IsPhoneNumber,
-  IsString,
-  validate,
-} from 'class-validator';
+import { IsEmail, IsPhoneNumber, IsString, validate } from 'class-validator';
 import { MatchesProperty } from '../utils/match.validator';
 
 import { ErrorCodes } from 'shared/enums/error-codes.enum';
@@ -18,7 +12,7 @@ export class UserSignUpForm {
 
   @MatchesProperty('password')
   @IsString({ message: ErrorCodes.FieldShouldBeString })
-  passwordConfirm!: string;
+  confirmPassword!: string;
 
   @IsString({ message: ErrorCodes.FieldShouldBeString })
   firstName!: string;
@@ -34,7 +28,7 @@ export class UserSignUpForm {
     const it = new UserSignUpForm();
     it.email = String(form.email);
     it.password = String(form.password);
-    it.passwordConfirm = String(form.passwordConfirm)
+    it.confirmPassword = String(form.confirmPassword);
     it.firstName = String(form.firstName);
     it.lastName = String(form.lastName);
     it.phone = String(form.phone);

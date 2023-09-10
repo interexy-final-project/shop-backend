@@ -1,6 +1,5 @@
 import {
   Body,
-  Get,
   Controller,
   Post,
   BadRequestException,

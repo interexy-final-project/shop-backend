@@ -16,7 +16,6 @@ export class CartController {
 
   @Post('add')
   create(@Body() createCartDto: CartItemDto) {
-    console.log('createCartDto', createCartDto);
     return this.cartService.createNewCartItem(createCartDto);
   }
 
@@ -37,7 +36,6 @@ export class CartController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    console.log('id', id);
     return this.cartService.deleteCartItem(id);
   }
 }
